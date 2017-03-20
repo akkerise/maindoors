@@ -1,0 +1,824 @@
+* {
+  margin: 0; padding: 0px;
+  font-family: Helvetica;
+}
+a{
+  text-decoration: none;
+}
+#dwrapper{
+  width: 100%;
+  overflow: auto;
+}
+.dwrapper{
+  width: 100%;
+  border-bottom: 2px solid #c3c3c3;
+}
+#dwrapper-end{
+    width: 100%;
+  background: #e6e6e6;
+}
+#dcontent{
+  margin: 0px auto;
+  width: 932px;
+  padding: 30px 0px 8px 0px;
+  
+}
+#dfooter, #dMyMainDoor,#dlease-content,.dcontainer{
+  margin: 0px auto;
+  width: 932px;
+}
+
+
+#dfooter-top{
+  margin-top:30px;
+  background: url(../images/bg-footer-top.png) repeat-x center;
+  width:100%;
+  
+}
+#dcontent-footer-top{
+  padding: 5px 14px 0px 80px;
+}
+#dcontent-footer-top .dcontact{
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  font-family: Helvetica Neue;
+  color:#2ec5f0;
+}
+#dcontent-footer-top button{
+  float: right;
+  background-color: #FFFFFF;
+  border: none;
+  color: #2ec5f0;
+  font-size: 13.73px;
+  font-family: Helvetica Neue;
+  padding: 3.5px 2px 2px 10px;
+  
+}
+
+#dfooter-menu-top{
+  margin:20px 0px 0px 0px;
+  text-align: right;
+}
+
+#dfooter-menu-top ul li{
+  display: inline-block;
+  margin-right: 10px;
+}
+#dfooter-menu-top ul li a{
+  color: #999999;
+  text-decoration: none;
+  font-size: 10px;
+  font-family: Helvetica Neue;
+}
+#dfooter #dfooter-mid{
+  height: 217px;
+  
+}
+#dfooter-mid .dcate-footer{
+  width: 140px;
+  float: left;
+  margin-right: 13px;
+  padding-top: 8px;
+}
+#dfooter-mid .dcate-footer:first-child{
+  padding-left: 14px;
+}
+#dfooter-mid .dcate-footer p.dlead a{
+  font-size: 16.48px;
+  color: #2ec5f0;
+  font-family: Helvetica Neue;
+  text-align: left;
+  text-decoration:none;
+} 
+#dfooter-mid .dcate-footer p.dcate-child a{
+  font-size: 11.9px;
+  font-family: Helvetica Neue;
+  color:#999999;
+  text-decoration:none;
+}
+
+#dwrapper-end #dfooter-bot{
+  padding: 7px 7px 9px 7px;
+  width: 932px;
+  margin: 0 auto;
+}
+#dwrapper-end #dfooter-bot ul{
+    text-align: right;
+
+}
+#dwrapper-end #dfooter-bot ul li{
+  list-style: none;
+  display: inline-block;
+  margin-right: 18px;
+}
+#dwrapper-end #dfooter-bot ul li a{
+  text-decoration: none;
+  font-size: 10.07px;
+  color: #999999;
+  font-family: Helvetica Neue;
+}
+
+/*Thue_vs cho thue Dienct */
+/*My maindoor*/
+#dMyMainDoor{
+  margin-top: 30px;
+}
+
+#dMyMainDoor #dlease-block1{
+  width: 300px;
+  float: left;
+  margin-right: 6px;
+}
+#dMyMainDoor #dlease-block1 #dlease-child-block1{
+  width: 150px;
+  float: left;
+  height: 300px;
+  background: url(../images/thue_chothue_bg_1.png) repeat-x top;
+  
+}
+
+#dMyMainDoor #dlease-block1 #dlease-child-block1 p{
+  color: #999999;
+  font-size:12px;
+  padding-left:15px;
+  padding-bottom:5px;
+  font-family: Helvetica Neue;
+  font-weight: 300;
+}
+#dMyMainDoor #dlease-block1 #dlease-child-block1 .myMD{
+  align: center;
+  color:#57cff1;
+  font-size: 18px;
+  margin-top:30px;
+  margin-bottom:30px;
+  font-family: Helvetica Neue;
+  font-weight: 300;
+}
+#dMyMainDoor #dlease-block1 button{
+  color: #FFFFFF;
+  background: #28acd2;
+  border: none;
+  font-size:12px;
+  font-family:Helvetica Neue;
+  padding: 4px 10px 4px 10px;
+  border-radius:5px;
+  margin-top:60px;
+  margin-left: 20px;
+}
+/*Lease-content*/
+#dwrapper #dlease-content{
+  min-height:500px;
+}
+#dlease-content #dlease-content-new-left{
+  width: 300px;
+  float: left;
+}
+#dlease-content-new-left #dlease-left-new-top{
+  background: url(../images/lease_new_top_bg_03.png) repeat-x top;
+  height:100px;
+  margin-top: 17px;
+  border: 1.5px solid #f5f5f5;
+}
+#dlease-content-new-left #dlease-left-new-top p{
+  padding: 22px 60px 5px 27px;
+  font-size:14px;
+  font-family:Helvetica Neue;
+  color: #18c2f1;
+}
+#dlease-content-new-left #dlease-left-new-top button{
+  border: none;
+  color: #FFFFFF;
+  margin: 0px 30px 20px 20px;
+  float: right;
+  background: #2cbde7;
+  font-family:Helvetica Neue;
+  border-radius: 3px;
+  padding: 4px 10px 4px 10px;
+  font-size: 12px;
+  
+}
+#dlease-content-new-left .dnew-left-title-hot{
+  margin-top: 20px;
+  background: url(../images/bg_title_hot.png) no-repeat left;
+  height: 21px;
+}
+
+.dnew-left-title-hot p{
+  font-size: 12px;
+  font-family:Helvetica Neue;
+  color: #999999;
+  padding-left: 10px;
+  
+}
+#dlease-content-new-left .dnew-left-new-hot{
+  background: url(../images/bg_hot_new_left.png) repeat-x;
+  padding-top:15px; 
+  border: 1px solid #f5f5f5;
+}
+.dnew-left-new-hot #dnewhot-img{
+  width: 260px;
+  margin: 0px auto;   
+}
+.dnew-left-new-hot p.new-hot-tit{
+  font-size: 14px;
+  font-family: Helvetica Neue;
+  color: #49caf2;
+  padding: 10px 10px 10px 20px;
+}
+.dnew-left-new-hot p.short-detail{
+  font-size: 13px;
+  font-family: Helvetica Neue;
+  color: #999999;
+  padding: 0px 10px 15px 20px;
+}
+
+#dlease-list-hot-news{
+  width: 298px;
+  background: url(../images/bg_lease_new_news_03.png) repeat-x top;
+  height: 346px;
+  border: 1px solid #f5f5f5;
+  
+}
+#dlease-list-hot-news ul{
+  padding:  10px 10px 10px 12px;
+  list-style: none;
+}
+#dlease-list-hot-news ul li{
+  margin-bottom: 5px;
+}
+
+#dlease-list-hot-news ul li a{
+  text-decoration: none;
+  font-size: 14px;
+  font-family:Helvetica Neue;
+  color:#999999;
+}
+
+/*Right content*/
+
+#dlease-content-new-right{
+  width: 625px;
+  float: right;
+  background : linear-gradient(#def3fd, #fbfbfb);
+  margin-top: 18px;
+  border: 1px solid #f5f5f5;
+}
+#dlease-content-new-right .list-content-right{
+  border-bottom: 1px solid #d4d4d4;
+  margin: 20px 30px 20px 20px;
+  padding-bottom: 50px;
+}
+
+#dlease-content-new-right .list-content-right img{
+  float: left;
+  margin-right: 20px;
+  margin-top:5px;
+}
+#dlease-content-new-right .list-content-right h2{
+  color: #18c2f1;
+  font-size: 18px;
+  font-family:Helvetica Neue;
+  font-weight: 400;
+  padding-bottom: 5px
+}
+
+#dlease-content-new-right .list-content-right p{
+  font-size: 14px;
+  font-family:Helvetica Neue;
+  color: #999999;
+}
+
+#dlease-content-new-right .list-content-right:last-child{
+  border: none;
+}
+#dlease-content-new-right .pagination{
+  text-align: center;
+  width: 60%;
+  float: right;
+  
+}
+#dlease-content-new-right .pagination ul{
+  list-style: none;
+  
+}
+#dlease-content-new-right .pagination ul li{
+  width: 20px;
+  border: 1px solid #d4d4d4;
+  margin: 0px auto;
+  float: left;
+
+  
+}
+#dlease-content-new-right .pagination ul li a{
+  text-decoration: none;
+  color: #999999;
+}
+
+/*Trang Dau tu vs tu van*/
+
+#parent-wrapper{
+  width: 100%;
+}
+
+/*Sale offfff*/
+#dsale-off{
+  height: 600px;
+  background: #ebebeb;
+}
+#dsale-off h1{
+  text-align: center;
+  color: #2ec5f0;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 20px 0px 20px 0px;
+}
+#dsale-off #list-sale-off{
+  width: 810px;
+  margin: 0px auto;
+  overflow: auto;
+}
+#dsale-off .list-project-sale-off{
+  width: 250px;
+  height: 203px;
+  background: #FFFFFF;
+  float: left;
+  margin: 0px 10px 20px 10px;
+}
+#dsale-off .list-project-sale-off h3{
+  font-size: 12px;
+  color: #2ec5f0;
+  text-align: center;
+  font-weight: 400;
+  padding: 10px 0px 0px 0px;
+}
+#dsale-off .list-project-sale-off p{
+  color: #999999;
+  font-size: 10px;
+  text-align: center;
+}
+#dsale-off .list-project-sale-off p span{
+  color: black;
+  font-size: 14px;
+  
+}
+#img-project-hot{
+  margin: 0px auto;
+}
+#img-project-hot img{
+	width:100%;
+	
+}
+
+#financial-highlight{
+  height: 400px;
+  background: #ebebeb;
+}
+#financial-highlight .dcontainer h1{
+  text-align: center;
+  padding: 30px 30px 30px 30px;
+  font-size: 24px;
+  
+  font-weight: 300;
+  color: #2ec5f0;
+  
+}
+#financial-highlight .dcontainer #dpartner{
+  margin: 0px auto;
+  padding: 0px 20px 15px 60px;
+  overflow: auto;
+}
+#financial-highlight .dcontainer #dpartner .dbank{
+  float: left;
+  width: 250px;
+  margin-right: 30px;
+  background: #FFFFFF;
+  height: 200px;
+}
+#financial-highlight .dcontainer #dpartner .dbank .logo-img{
+  text-align: center;
+  padding-top: 10px;
+}
+#financial-highlight .dcontainer #dpartner ul{
+  padding: 0px 10px 10px 30px;
+}
+#financial-highlight .dcontainer #dpartner ul li{
+  list-style: none;
+  margin-bottom: 10px;
+}
+#financial-highlight .dcontainer #dpartner ul li img{
+  margin-right: 5px;
+}
+#financial-highlight .dcontainer #dpartner ul li a{
+  font-size: 12px;
+  color: #999999;
+}
+
+/**/
+#interior-design{
+  height: 440px;
+  background: url(../images/thiet_ke_noi_that_02.jpg);
+}
+#interior-design #md-life-style{
+  width: 469px;
+  float: right;
+  background: rgba(83,182,208,0.7);
+  height: 440px;
+  
+}
+#interior-design #md-life-style h1{
+  font-size: 36px;
+  color: #ffffff;
+  font-weight: 300;
+  margin-top:175px;
+  margin-left: 55px;
+  margin-bottom: 70px;
+}
+#interior-design #md-life-style p{
+  font-size: 20px;
+  color: #ffffff;
+  margin-left: 55px;
+  font-weight: 300;
+}
+#interior-design #md-life-style button{
+  font-size: 18px;
+  margin-left: 55px;
+  margin-top: 15px;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #FFF;
+  padding: 8px 10px 8px 10px;
+  background: rgba(0,0,0,0.4);
+  font-weight: 300;
+}
+
+#demo-apartment{
+  height: 415px;
+  background: #ebebeb;
+}
+#demo-apartment h1{
+  text-align: center;
+  font-weight: 300;
+  color: #2ec5f0;
+  padding: 30px 0px 30px 0px;
+  font-size: 24px;
+}
+#list-all-apartment{
+  width: 790px;
+  margin: 0px auto;
+}
+#list-all-apartment .list-apartment{
+  float: left;
+  width: 250px;
+  margin-right: 20px;
+  background: #FFF;
+}
+#list-all-apartment .list-apartment:last-child{
+  margin: 0px;
+}
+#list-all-apartment .list-apartment p.tit-demo-apartment{
+  font-size: 12px;
+  color: #5c5c5c;
+  padding: 15px 10px 15px 15px;
+  height:30px;
+}
+#list-all-apartment .short-demo{
+  font-size: 12px;
+  height:30px;
+  padding: 0px 10px 10px 15px;
+  color: #a5a0a0;
+}
+#list-all-apartment img.see-more{
+  float:right;
+  margin-right:10px;
+  margin-bottom:5px;
+}
+#price-list-interior{
+  overflow: hidden;
+  margin-top: 30px;
+}
+#price-list-interior .price-table,#price-list-interior .project-progress, #price-list-interior .document-all{
+  width: 292px;
+  float: left;
+  height: 370px;
+  background: #f0f0f0;
+}
+#price-list-interior .price-table, #price-list-interior .document-all{
+  margin-right: 24px;
+}
+#price-list-interior .price-table ul li, #price-list-interior .project-progress ul li, #price-list-interior .document-all ul li{
+  list-style: none;
+}
+#price-list-interior .price-table:first-child, #price-list-interior .document-all:first-child{
+  margin-left: 5px;
+}
+#price-list-interior .title-price{
+  padding: 15px 10px 10px 15px;
+  border-bottom: 2px solid #e8e8e8;
+}
+#price-list-interior .title-price img.i_bang_gia{
+  float: left;
+  margin-right: 10px;
+}
+#price-list-interior .title-price .title-lead-name, #price-list-interior .document-all .title-lead-name{
+  color: #36322d;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#price-list-interior .price-table ul, #price-list-interior .document-all ul{
+  padding: 0px 10px 10px 10px;
+}
+#price-list-interior .price-table ul li{
+  margin-bottom: 5px;
+}
+#price-list-interior .document-all ul li{
+  margin-bottom: 21px;
+}
+#price-list-interior .price-table ul li a, #price-list-interior .document-all ul li a{
+  font-size: 12px;
+  color: #687070;
+}
+
+#price-list-interior .price-table ul li p, #price-list-interior .document-all ul li p{
+  color: #9f9f9b;
+  padding-left: 10px;
+  font-size: 12px;
+}
+#price-list-interior ul li p{
+  font-size: 12px;
+  color: #687070;
+}
+#price-list-interior .project-progress ul li p i{
+  color: #9f9f9b;
+  font-size: 12px;
+}
+#price-list-interior .project-progress ul li{
+  overflow: auto;
+  margin-bottom:10px;
+  padding: 5px 10px 0px 10px ;
+}
+#price-list-interior .project-progress ul li img{
+  float: left;
+  margin-right:10px;
+}
+.interior-see-more{
+  float: right;
+  font-size: 12px;
+  padding: 0px 20px 10px 0px;
+  color: #5c6ca9;
+  margin-top: -10px;
+}
+/*
+Tai sao chon md
+*/
+#why-choose-md{
+  height: 360px;
+  background: #f3f3f3;
+  margin-top: 30px;
+}
+#why-choose-md h1{
+  text-align: center;
+  font-size: 24px;
+  color: #53b6d0;
+  font-weight: 300;
+  padding: 20px 10px 20px 10px; 
+}
+#why-choose-md .list-why-choose{
+  width: 210px;
+  float: left;
+  border-right: 1.5px solid #e9e9e9;
+  padding: 10px 10px 10px 10px;
+  height: 230px;
+}
+#why-choose-md .list-why-choose:last-child{
+  border:none;
+}
+#why-choose-md .list-why-choose img.logo-why-choose{
+  padding-left: 20px;
+}
+#why-choose-md .list-why-choose h2{
+  color: #555555;
+  font-size: 14px;
+  text-align: center;
+  height: 46px;
+  font-weight: 400;
+}
+#why-choose-md .list-why-choose ul li{
+  list-style: none;
+  font-size: 14px;
+  overflow: auto;
+  color:#999999;
+}
+#why-choose-md .list-why-choose ul li img{
+  float: left;
+  
+}
+#why-choose-md .list-why-choose ul li div{
+  float: right;
+  width: 188px
+}
+
+/* Trang San Pham */
+#sp-depart-name{
+  overflow: auto;
+}
+#sp-depart-name img{
+  float: left;
+  margin: 10px 10px 10px 0px;
+}
+#sp-depart-name h1{
+  font-size: 18px;
+  padding: 10px 10px 0px 10px;
+  font-weight: 400;
+}
+#sp-depart-name p{
+  font-size: 10px;
+  font-weight: 300;
+}
+#sp-depart-name p span{
+  color: #30c5f0;
+}
+#sp-introduce{
+  overflow: auto;
+}
+#sp-introduce #video-360{
+  float: left;
+  width: 415px;
+}
+#sp-introduce #sp-anh-noi-that{
+  width: 101px;
+  float: left;
+}
+
+#sp-introduce #sp-map #sp-img-3d{
+  float: left;
+  margin-top: -3.5px;
+}
+#sp-introduce #sp-map #gg-map{
+  margin-top: -3.5px;
+}
+/*Tham dinh BDS*/
+#tham-dinh-bds{
+  overflow: auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #999999;
+}
+#tham-dinh-bds #tong-quan{
+  width: 639px;
+  float: left;
+}
+#tham-dinh-bds #tong-quan h2{
+  font-size: 21.53px;
+  font-weight: 400;
+}
+#tham-dinh-bds #tong-quan h2:first-child{
+  margin-top: 10px;
+}
+#tham-dinh-bds #tong-quan img{
+  margin-bottom: 10px;
+}
+#tham-dinh-bds #tong-quan p#chi-duong{
+  color: #999999;
+  padding: 10px 10px 10px 10px;
+  font-size: 16.75px;
+  
+}
+
+#tham-dinh-bds #tong-quan table tr{
+  height: 30px;
+}
+#tham-dinh-bds #tong-quan table tr td.first-title{
+  width: 187px;
+  padding-left: 10px;
+  color: #999999;
+}
+#tham-dinh-bds #tong-quan table tr td{
+  font-size: 16.75px;
+  font-weight: 300;
+}
+
+#tham-dinh-bds #cong-cu{  
+  width: 293px;
+  float: left;  
+}
+#tham-dinh-bds #cong-cu #all-cong-cu{
+  margin-top:20px;
+  padding: 30px 10px 10px 50px;
+}
+#tham-dinh-bds #cong-cu #all-cong-cu .item-cong-cu{
+  float: left;
+}
+#tham-dinh-bds #cong-cu #all-cong-cu .item-cong-cu h3{
+  text-align: center;
+  font-size: 11.96px;
+  padding-bottom: 20px;
+  font-weight: 400;
+  color:#999999;
+}
+#tham-dinh-bds #cong-cu button{
+  border: none;
+  border-radius: 5px;
+  background:#30c5f0;
+  color: #FFF;
+  font-size:16px;
+  padding: 0px 10px 10px 10px;
+  margin: 10px 10px 10px 60px;
+  cursor: pointer;
+}
+#tham-dinh-bds #cong-cu button img{
+  margin-bottom: -5px;
+}
+/*comment-and-like*/
+#comment-and-like{
+  overflow: auto;
+}
+#comment{
+  width: 580px;
+  float: left;
+  margin-top: 20px;
+}
+#comment #add-comment{
+  padding: 20px 0px 15px 0px;
+  overflow: auto;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+#comment #add-comment img{
+  float: left;
+  margin-right:10px;
+}
+#comment #add-comment textarea{
+  margin: 10px 10px 10px 10px;
+  width: 485px;
+  padding: 5px 0px 5px 10px;
+  height: 28px;
+  font-size:12px;
+  
+}
+#comment-and-like #comment .total-cmt{
+  font-size: 16.75px;
+  color: #434343;
+  margin: 10px 0px 10px 0px;
+  font-weight:300;
+}
+#comment ul li{
+  overflow: auto;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #c6c6c6;
+}
+#comment ul li img{
+  float: left;
+  margin: 0px 10px 0px 0px;
+}
+#comment ul li div{
+  margin-left: 60px;
+  margin-bottom: 10px;
+  color: #434343;
+  font-size: 16.75px;
+  font-weight: 300;
+}
+#comment ul li div p:first-child{
+  margin-bottom: 5px;
+}
+
+#comment ul li div p:last-child{
+  color: #999999;
+  margin-top:5px;
+}
+#like-and-share{
+  width: 350px;
+  float: left;
+  padding: 20px 0px 0px 0px;
+}
+#like-and-share .like{
+  border-bottom: 1px solid #999999;
+  margin: 10px 00px 5px 30px;
+  font-size: 16.75px;
+  color: #999999;
+  font-weight: 300;
+  padding: 0px 0px 15px 0px;
+  
+}
+#like-and-share .like img{
+  float: left;
+  margin-right:5px;
+}
+#like-and-share .like #sp-view{
+  float: right;
+}
+#like-and-share #sp-cung-nguoi-dang{
+  font-size: 16.75px;
+  margin: 10px 0px 5px 30px;
+}
+#like-and-share #sp-cung-nguoi-dang p{
+  margin: 5px 0px 5px 0px
+}
+#like-and-share #sp-cung-nguoi-dang img{
+  float: left;
+  margin: 5px 4px 5px 3px;
+  display:block;
+  
+}
+/*End Trang San Pham*/
+
