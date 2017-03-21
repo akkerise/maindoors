@@ -17,22 +17,19 @@
 <!-- 2. HTML ở đây -->
 <div id="wrapper">
     <!-- .header -->
-@include('maindoors.blocks.header')
-<!-- END header -->
+        @include('maindoors.blocks.header')
+    <!-- END header -->
+    {{-- .content --}}
+    @yield('content')
+    {{-- END .content --}}
 
-@yield('content')
-
-<!-- .register -->
-@yield('register')
-<!-- END POPUP REGISTER-->
+    <!-- .register -->
+    @yield('register')
+    <!-- END POPUP REGISTER-->
 
     <!-- .login -->
-@yield('login')
-<!-- END POPUP LOGIN-->
-
-
-    <!-- END class Content -->
-@yield('content')
+    @yield('login')
+    <!-- END POPUP LOGIN-->
 
 <!-- .footer -->
     @include('maindoors.blocks.footer')

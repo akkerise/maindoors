@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('master');
+    return view('maindoors.blades.home');
 });
 
 Route::get('/home', function () {
@@ -23,7 +23,7 @@ Route::get('/daututuvan', function () {
     return view('maindoors.blades.daututuvan');
 });
 
-Route::get('/dang-tin', function () {
+Route::get('/dangtin', function () {
     return view('maindoors.blades.dang-tin');
 });
 
@@ -33,4 +33,20 @@ Route::get('/noithat', function () {
 
 Route::get('/sanphamnoithatvlxd', function () {
     return view('maindoors.blades.sanphamnoithatvlxd');
+});
+
+Route::get('/thuevachothue', function () {
+    return view('maindoors.blades.thuevachothue');
+});
+
+Route::get('/tintucbds', function () {
+    return view('maindoors.blades.tintucbds');
+});
+
+Route::get('/trangsanpham', function () {
+    return view('maindoors.blades.trang_san_pham');
+});
+
+Route::get('/vatlieuxaydung', function () {
+    return view('maindoors.blades.vatlieuxaydung');
 });
