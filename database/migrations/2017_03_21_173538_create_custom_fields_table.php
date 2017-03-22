@@ -15,7 +15,8 @@ class CreateCustomFieldsTable extends Migration
     {
         Schema::create('custom_fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('value');
         });
     }
 

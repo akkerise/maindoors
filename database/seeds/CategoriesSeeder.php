@@ -12,13 +12,16 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 50;
+        $limit = 10;
+//        $candidates = Candidate::lists('id');
         for ($i = 0; $i < $limit; $i++) {
             DB::table('categories')->insert([
                 'name' => $faker->name,
-                'keywords' => $faker->name,
-                'description' => $faker->name,
-                'parent_id' => rand(1, 20)
+                'keyword' => strtolower($faker->text($maxNbChars = 200)),
+                'description' => $faker->text($maxNbChars = 200),
+                'parent_id' => rand(1, 20),
+                'created_at' => $faker->dateTime($max = 'now'),
+                'updated_at' => $faker->dateTime($max = 'now'),
             ]);
         }
     }
