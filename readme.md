@@ -37,6 +37,7 @@
 1. Sử dụng blade trong laravel để cắt giao diện hoàn chỉnh.
 2. Khởi tạo model và migration để khởi tạo bảng và các kết nối khóa dữ liệu nhanh chóng.
 3. Sử dụng seeder và faker để bind một số nhóm dữ liệu .
+
 ## License
-1. AkKe : Nguyễn Anh Thanh - PHP Developer.
-2. VISHOP COMPANY INC.
+1. AkKe : Nguyễn Anh Thanh - PHP Developer (Laravel Framework version 5.4).
+2. VISHOP COMPANY INC - Nguyễn Công Chính.
