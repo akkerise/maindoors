@@ -17,7 +17,7 @@ class CategoriesSeeder extends Seeder
         for ($i = 0; $i < $limit; $i++) {
             DB::table('categories')->insert([
                 'name' => $faker->name,
-                'keyword' => strtolower($faker->text($maxNbChars = 200)),
+                'keyword' => strtolower($faker->text($maxNbChars = 15)),
                 'description' => $faker->text($maxNbChars = 200),
                 'parent_id' => rand(1, 20),
                 'created_at' => $faker->dateTime($max = 'now'),
