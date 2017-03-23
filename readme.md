@@ -29,8 +29,14 @@
     ```
         php artisan db:seed --class=DatabaseSeeder
     ```
-
+    
     > Tham khảo : [Seedding](https://laravel.com/docs/5.4/seeding) , [Faker](https://github.com/fzaninotto/Faker)
+
+
+## Những phần việc đã làm trong maindoors
+1. Sử dụng blade trong laravel để cắt giao diện hoàn chỉnh.
+2. Khởi tạo model và migration để khởi tạo bảng và các kết nối khóa dữ liệu nhanh chóng.
+3. Sử dụng seeder và faker để bind một số nhóm dữ liệu .
 ## License
 1. AkKe : Nguyễn Anh Thanh - PHP Developer.
 2. VISHOP COMPANY INC.
