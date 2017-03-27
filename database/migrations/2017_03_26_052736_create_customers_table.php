@@ -17,8 +17,8 @@ class CreateCustomersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
-            $table->date('accept_time');
-            $table->timestamps();
+            $table->dateTime('accept_time');
+            $table->dateTime('created_at');
         });
     }
 

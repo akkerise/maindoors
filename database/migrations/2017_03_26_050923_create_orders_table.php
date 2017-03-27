@@ -21,8 +21,9 @@ class CreateOrdersTable extends Migration
             $table->integer('payment_total_order');
             $table->text('information');
             $table->tinyInteger('status');
-            $table->string('voucher_percent');
-            $table->string('voucher_money');
+            $table->integer('voucher_percent');
+            $table->integer('voucher_money');
+            $table->integer('customer_id');
 //            $table->integer('customer_id')->unsigned();
 //            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
