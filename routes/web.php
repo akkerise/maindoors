@@ -50,3 +50,29 @@ Route::get('/trangsanpham', function () {
 Route::get('/vatlieuxaydung', function () {
     return view('maindoors.blades.vatlieuxaydung');
 });
+
+
+
+/*Ngân Lượng Checkout V2.0*/
+
+Route::get('nganluong','NganLuongController@index');
+Route::post('nganluong','NganLuongController@indexpost');
+Route::get('nlreceiver','NganLuongController@nlReceiver')->name('nlReceiver');
+
+/*Ngân Lượng CheckOut V3.1*/
+
+Route::get('nganluongv3','NganLuongV3Controller@getNLv3');
+Route::post('nganluongv3','NganLuongV3Controller@postNLv3')->name('postNLv3');
+Route::post('nlreceiverv3','NganLuongV3Controller@nlReceiverV3');
+
+
+Route::get('getIdUser',function (){
+//    $idUsers = DB::table('users')->pluck('id');
+    $orderIds = DB::table('orders')->pluck('id')->toArray();
+    dd($orderIds);
+});
+//Route::get('get',function (){
+//    $idUsers = DB::table('users')->pluck('id');
+//});
+;
+

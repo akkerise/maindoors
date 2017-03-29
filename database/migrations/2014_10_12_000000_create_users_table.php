@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->tinyInteger('gender')->nullable();
             $table->text('description');
+            $table->integer('total_money');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 10;
+        $limit = 100;
         $cateIds = Categories::all()->pluck('id')->toArray();
         $userIds = User::all()->pluck('id')->toArray();
         $customerIds = Customer::all()->pluck('id')->toArray();

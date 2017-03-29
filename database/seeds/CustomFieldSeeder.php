@@ -12,7 +12,7 @@ class CustomFieldSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 10;
+        $limit = 100;
         for ($i = 0; $i < $limit; $i++) {
             DB::table('custom_fields')->insert([
                 'name' => $faker->name,

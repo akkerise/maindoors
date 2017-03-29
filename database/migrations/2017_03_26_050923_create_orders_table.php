@@ -16,14 +16,22 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('ordercode');
+            $table->string('order_code');
             $table->string('payment_type');
-            $table->integer('payment_total_order');
+            $table->string('payment_method');
+            $table->integer('price');
             $table->text('information');
-            $table->tinyInteger('status');
+            $table->tinyInteger('transaction_status');
             $table->integer('voucher_percent');
             $table->integer('voucher_money');
             $table->integer('customer_id');
+            //                Ngân Lượng field
+            $table->text('transaction_info');
+            $table->integer('payment_id');
+            $table->text('error_text');
+            $table->string('secure_code');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 //            $table->integer('customer_id')->unsigned();
 //            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
