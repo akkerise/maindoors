@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CustomFieldSeeder extends Seeder
+class CustomerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,11 @@ class CustomFieldSeeder extends Seeder
         $faker = Faker\Factory::create();
         $limit = 20;
         for ($i = 0; $i < $limit; $i++) {
-            DB::table('custom_fields')->insert([
+            DB::table('customers')->insert([
                 'name' => $faker->name,
-                'value' => $faker->name,
+                'address' => $faker->address,
+                'accept_time' => $faker->dateTime($max = 'now'),
+                'created_at' => $faker->dateTime($max= 'now')
             ]);
         }
     }

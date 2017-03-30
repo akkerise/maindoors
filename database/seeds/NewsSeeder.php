@@ -13,7 +13,7 @@ class NewsSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 100;
+        $limit = 20;
         $cateIds = Categories::all()->pluck('id')->toArray();
         for ($i = 0; $i < $limit; $i++) {
             DB::table('news')->insert([

@@ -63,7 +63,7 @@ Route::get('nlreceiver','NganLuongController@nlReceiver')->name('nlReceiver');
 
 Route::get('nganluongv3','NganLuongV3Controller@getNLv3');
 Route::post('nganluongv3','NganLuongV3Controller@postNLv3')->name('postNLv3');
-Route::post('nlreceiverv3','NganLuongV3Controller@nlReceiverV3');
+Route::get('nlreceiverv3','NganLuongV3Controller@nlReceiverV3');
 
 
 Route::get('getIdUser',function (){
@@ -76,3 +76,5 @@ Route::get('getIdUser',function (){
 //});
 ;
 
+// Laravel Log View
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

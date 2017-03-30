@@ -12,7 +12,7 @@ class ProductCustomFieldSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 100;
+        $limit = 20;
         $productIds = App\Product::all()->pluck('id')->toArray();
         $custom_fieldIds = App\CustomField::all()->pluck('id')->toArray();
         for ($i = 0; $i < $limit; $i++) {
