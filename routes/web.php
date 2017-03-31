@@ -78,3 +78,57 @@ Route::get('getIdUser',function (){
 
 // Laravel Log View
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::get('products','ProductController@index');
+Route::get('product/{id}','ProductController@show');
+
+
+// View Light Admin
+Route::get('lightadmin',function (){
+    return view('light-admin.master');
+});
+Route::get('dashboard',function (){
+    return view('light-admin.blades.dashboard');
+});
+Route::get('user',function (){
+    return view('light-admin.blades.user');
+});
+Route::get('icons',function (){
+    return view('light-admin.blades.icons');
+});
+Route::get('maps',function (){
+	return view('light-admin.blades.maps');
+});
+Route::get('table',function (){
+	return view('light-admin.blades.table');
+});
+Route::get('template',function (){
+	return view('light-admin.blades.template');
+});
+Route::get('notifications',function (){
+	return view('light-admin.blades.notifications');
+});
+Route::get('upgrade',function (){
+	return view('light-admin.blades.upgrade');
+});
+Route::get('typography',function (){
+	return view('light-admin.blades.typography');
+});
+
+// AdminLTE
+Route::get('adminlte',function (){
+    return view('adminlte.app');
+});
+Route::get('dashboard',function (){
+    return view('adminlte.pages.dashboard');
+});
+Route::get('userprofile',function (){
+    return view('adminlte.pages.userprofile');
+});
+Route::get('login',function (){
+    return view('adminlte.pages.login');
+});
+Route::get('register',function (){
+    return view('adminlte.pages.register');
+});
+
