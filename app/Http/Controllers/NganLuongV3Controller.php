@@ -702,7 +702,7 @@ class NganLuongV3Controller extends Controller
                 // AkKe Debugging
                 // dd($payment_method);
                 if($payment_method =="VISA"){
-                    dd($payment_method);
+                    // dd($payment_method);
                     $nl_result= $nlcheckout->VisaCheckout($order_code,$total_amount,$payment_type,$order_description,$tax_amount,
                         $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile,
                         $buyer_address,$array_items,$bank_code);
@@ -747,8 +747,10 @@ class NganLuongV3Controller extends Controller
                 // dd($nl_result_dom->checkout_url);
                 if ($nl_result_dom->error_code =='00'){
 
-//                    dd($request->all());
+                    // dd($request->all());
 
+                    $id_merchan = User::all()->where('email',$request->buyer_email)->first()->id;
+                    
                     // AkKe add orders table
                     $order = new Order;
                     $order->name = $request->buyer_fullname;
@@ -766,6 +768,7 @@ class NganLuongV3Controller extends Controller
 //                    $order->tax_amount = $tax_amount;
 //                    $order->discount_amount = $discount_amount;
 //                    $order->free_shipping = rand(1000,50000);
+                    $order->user_id = $id_merchan;
                     $order->order_description = $order_description;
                     $order->secure_code = $order_code;
 //                    $order->payment_id = rand(1,100);
@@ -804,11 +807,14 @@ class NganLuongV3Controller extends Controller
             if($nl_errorcode == '00') {
                 if($nl_transaction_status == '00') {
 
-                    // Find And Update User When Transaction Done
-                    $user_merchan = User::all()->where('email',$nl_result->buyer_email)->first();
+                    // Find id And Update User When Transaction Done
+                   
+                    $mId = Order::all()->where('order_code',$nl_result->order_code)->first()->user_id;
+                    // dd($mId);
+                    $user_merchan = User::find($mId);
+                    // dd($user_merchan);
                     $user_merchan_id = $user_merchan->id;
                     $user_merchan->total_money -= $nl_result->total_amount;
-                    $user_merchan->remember_token = $nl_result->token;
                     $user_merchan->save();
 
                     // Update order of merchan have buyer_email
