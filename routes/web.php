@@ -132,3 +132,7 @@ Route::get('register',function (){
     return view('adminlte.pages.register');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
