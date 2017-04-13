@@ -37,13 +37,13 @@
             {{ csrf_field() }}
             {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
             @include('adminlte.blocks.errors')
-
+            @include('adminlte.blocks.alerts')
             <div class="form-group has-feedback">
-                <input type="username" name="username" class="form-control" placeholder="Username">
+                <input type="username" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" name="password" class="form-control" placeholder="Password" value="{{ old('password') }}">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">

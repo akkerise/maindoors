@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class UserSeeder extends Seeder
                 'gender' => rand(1,4),
                 'description' => $faker->text($maxNbChars = 200),
                 'total_money' => $faker->numberBetween($min=10000 ,$max=999999999),
+                'confirm_code' => Hash::make($faker->name),
                 'confirmed' => $faker->boolean(),
                 'level' => $faker->numberBetween($min=1,$max=4),
                 'remember_token' => $faker->sha256,

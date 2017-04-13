@@ -7,10 +7,4 @@
         </ul>
     </div>
 @endif
-@push('errors')
-<script type="text/javascript">
-    document.ready(function () {
-        $("div.alert").delay(3000).slideUp();
-    });
-</script>
-@endpush
+

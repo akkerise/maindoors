@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('gender')->nullable();
             $table->text('description')->nullable();
             $table->integer('total_money')->nullable();
+            $table->string('confirm_code');
             $table->boolean('confirmed');
             $table->tinyInteger('level');
             $table->rememberToken(100);
