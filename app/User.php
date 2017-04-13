@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Product;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username',  'password', 'email', 'address' , 'gender' , 'description' , 'total_money'
+        'fullname', 'username',  'password', 'email', 'address' , 'gender' , 'confirmed' , 'description' , 'total_money'
     ];
 
     /**
@@ -24,6 +24,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','level'
     ];
+
+    public function product(){
+        return $this->hasMany('Product');
+    }
 }

@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
         $limit = 20;
         for ($i = 0; $i < $limit; $i++) {
             DB::table('users')->insert([
+                'fullname' => $faker->name,
                 'username' => $faker->userName,
                 'password' => $faker->password,
                 'email' => $faker->safeEmail,
@@ -22,6 +23,9 @@ class UserSeeder extends Seeder
                 'gender' => rand(1,4),
                 'description' => $faker->text($maxNbChars = 200),
                 'total_money' => $faker->numberBetween($min=10000 ,$max=999999999),
+                'confirmed' => $faker->boolean(),
+                'level' => $faker->numberBetween($min=1,$max=4),
+                'remember_token' => $faker->sha256,
                 'created_at' => $faker->dateTime($max = 'now'),
                 'updated_at' => $faker->dateTime($max = 'now'),
             ]);

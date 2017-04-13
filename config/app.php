@@ -180,6 +180,10 @@ return [
         // Laravel Log View
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
+
+        // Laravel Pretty Route
+        PrettyRoutes\ServiceProvider::class,
+
     ],
 
     /*

@@ -133,6 +133,23 @@ Route::get('register',function (){
 });
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'admin','middleware' => 'adminlte'],function (){
+    Route::get('login','Admin\LoginController@getLogin')->name('admin.login.getLogin');
+    Route::post('login','Admin\LoginController@postLogin')->name('admin.login.postLogin');
+    Route::post('logout', 'Auth\LoginController@postLogout')->name('admin.login.postLogout');
+    Route::get('register','Admin\RegisterController@getRegister')->name('admin.register.getRegister');
+    Route::post('register','Admin\RegisterController@postRegister')->name('admin.register.postRegister');
+    Route::get('forgotpassword','Admin\ForgotPasswordController@getForgotPassword')->name('admin.forgotpassword.getForgotPassword');
+    Route::post('forgotpassword','Admin\ForgotPasswordController@postForgotPassword')->name('admin.forgotpassword.postForgotPassword');
+
+
+    Route::get('dashboard','Admin\DashboardController@getDashboard')->name('admin.dashboard.getDashboard')->middleware('adminlte');
+    Route::get('userprofile','Admin\UserProfileController@getUserProfile')->middleware('adminlte');
+
+});
+
+

@@ -8,4 +8,8 @@ class CustomField extends Model
 {
     protected $table = 'custom_fields';
     protected $fillable = ['name','value'];
+
+    public function productCustomField(){
+        return $this->hasMany('App\ProductCustomField');
+    }
 }

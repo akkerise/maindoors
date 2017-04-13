@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "fzaninotto/faker": "^1.6",
+        "garygreen/pretty-routes": "^0.0.6",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "nesbot/carbon": "^1.22",

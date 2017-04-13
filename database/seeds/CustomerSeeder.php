@@ -17,6 +17,7 @@ class CustomerSeeder extends Seeder
             DB::table('customers')->insert([
                 'name' => $faker->name,
                 'address' => $faker->address,
+                'phonenumber' => $faker->phoneNumber,
                 'accept_time' => $faker->dateTime($max = 'now'),
                 'created_at' => $faker->dateTime($max= 'now')
             ]);

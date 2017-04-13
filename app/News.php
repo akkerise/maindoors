@@ -8,4 +8,8 @@ class News extends Model
 {
     protected $table = 'news';
     protected $fillable = ['title','content','description','parent_id','cate_id'];
+
+    public function menu(){
+        return $this->hasMany('App\Menu');
+    }
 }

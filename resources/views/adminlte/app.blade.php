@@ -267,3 +267,4 @@
 <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
 </body>
 </html>
+@stack('errors')
