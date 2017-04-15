@@ -30,4 +30,10 @@ class User extends Authenticatable
     public function product(){
         return $this->hasMany('Product');
     }
+
+//    public function checkLevel($username){
+//        $user = $this->all()->where('username',$username)->first();
+//        $level = $user->level;
+//        return $level;
+//    }
 }

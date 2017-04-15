@@ -97,5 +97,6 @@
     });
   });
 </script>
+<script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
 </body>
 </html>

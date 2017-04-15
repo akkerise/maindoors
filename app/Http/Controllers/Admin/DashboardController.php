@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+//    public function __construct()
+//    {
+//        return $this->middleware('adminlte');
+//    }
+
     public function getDashBoard(){
         $eightNewMemberRegisters = DB::table('users')->orderBy('id','ASC')->take(8);
         return view('adminlte.pages.dashboard',compact('eightNewMemberRegisters'));

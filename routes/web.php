@@ -86,7 +86,7 @@ Route::get('product/{id}','ProductController@show');
 // View Light Admin
 Route::get('lightadmin',function (){
     return view('light-admin.master');
-});
+})->name('lightadmin');
 Route::get('dashboard',function (){
     return view('light-admin.blades.dashboard');
 });
@@ -116,40 +116,44 @@ Route::get('typography',function (){
 });
 
 // AdminLTE
-Route::get('adminlte',function (){
-    return view('adminlte.app');
-});
-Route::get('dashboard',function (){
-    return view('adminlte.pages.dashboard');
-});
-Route::get('userprofile',function (){
-    return view('adminlte.pages.userprofile');
-});
-Route::get('login',function (){
-    return view('adminlte.pages.login');
-});
-Route::get('register',function (){
-    return view('adminlte.pages.register');
-});
+//Route::get('adminlte',function (){
+//    return view('adminlte.app');
+//});
+//Route::get('dashboard',function (){
+//    return view('adminlte.pages.dashboard');
+//});
+//Route::get('userprofile',function (){
+//    return view('adminlte.pages.userprofile');
+//});
+//Route::get('login',function (){
+//    return view('adminlte.pages.login');
+//});
+//Route::get('register',function (){
+//    return view('adminlte.pages.register');
+//});
 
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('homefront');
 
-Route::group(['prefix' => 'admin','middleware' => 'adminlte'],function (){
+Route::group(['prefix' => 'admin'],function (){
     Route::get('login','Admin\LoginController@getLogin')->name('admin.login.getLogin');
     Route::post('login','Admin\LoginController@postLogin')->name('admin.login.postLogin');
-    Route::post('logout', 'Auth\LoginController@postLogout')->name('admin.login.postLogout');
+    Route::get('logout', 'Admin\LoginController@getLogout')->name('admin.login.getLogout');
     Route::get('register','Admin\RegisterController@getRegister')->name('admin.register.getRegister');
     Route::post('register','Admin\RegisterController@postRegister')->name('admin.register.postRegister');
+    Route::get('confirm','Admin\RegisterController@getConfirm')->name('admin.register.getConfirm');
     Route::get('forgotpassword','Admin\ForgotPasswordController@getForgotPassword')->name('admin.forgotpassword.getForgotPassword');
     Route::post('forgotpassword','Admin\ForgotPasswordController@postForgotPassword')->name('admin.forgotpassword.postForgotPassword');
 
-
-    Route::get('dashboard','Admin\DashboardController@getDashboard')->name('admin.dashboard.getDashboard')->middleware('adminlte');
-    Route::get('userprofile','Admin\UserProfileController@getUserProfile')->middleware('adminlte');
+    Route::get('dashboard','Admin\DashboardController@getDashboard')->middleware('adminlte')->name('admin.dashboard.getDashboard');
+    Route::get('userprofile','Admin\UserProfileController@getUserProfile')->middleware('adminlte')->name('admin.dashboard.getUserProfile');
 
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

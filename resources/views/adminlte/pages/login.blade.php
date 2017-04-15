@@ -32,7 +32,7 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-
+            {{--{{ dd(Auth::check()) }}--}}
         <form action="{{ route('admin.login.postLogin') }}" method="post">
             {{ csrf_field() }}
             {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
@@ -96,5 +96,6 @@
         });
     });
 </script>
+<script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
 </body>
 </html>

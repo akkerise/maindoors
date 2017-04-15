@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('adminlte');
+    }
+
     public function getRegister(){
         return view('adminlte.pages.register');
     }
@@ -44,7 +49,7 @@ class RegisterController extends Controller
             $newUser->confirm_code = $confirm_code;
             $newUser->total_money = 0;
             $newUser->level = 2;
-            $newUser->confirmed = false;
+            $newUser->confirmed = true;
             $newUser->save();
             return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Tạo thành công tài khoản mới !',

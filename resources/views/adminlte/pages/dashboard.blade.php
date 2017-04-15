@@ -5,7 +5,10 @@
 @section('content')
 	<!-- Main content -->
 	<section class="content">
+		{{--{{ dd(Auth::check()) }}--}}
 		<!-- Info boxes -->
+		@include('adminlte.blocks.errors')
+		@include('adminlte.blocks.alerts')
 		<div class="row">
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
