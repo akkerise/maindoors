@@ -32,20 +32,27 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-            {{--{{ dd(Auth::check()) }}--}}
-        <form action="{{ route('admin.login.postLogin') }}" method="post">
+        {{--{{ dd(Auth::check()) }}--}}
+        <form action="{{ route('admin.resetpassword.resetPassword') }}" method="post">
             {{ csrf_field() }}
             {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
             @include('adminlte.blocks.errors')
             @include('adminlte.blocks.alerts')
             <div class="form-group has-feedback">
-                <input type="username" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
                 <input type="password" name="password" class="form-control" placeholder="Password" value="{{ old('password') }}">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+            <div class="form-group has-feedback">
+                <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password" value="{{ old('confirmpassword') }}">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="hidden" name="md5Forgot" value="{{ $md5Forgot }}">
+            </div>
+            <div class="form-group has-feedback">
+                <input type="hidden" name="emailForgot" value="{{ $emailForgot }}">
+            </div>
+
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
@@ -56,7 +63,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Reset Password</button>
                 </div>
                 <!-- /.col -->
             </div>

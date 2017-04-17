@@ -136,7 +136,8 @@ Route::get('typography',function (){
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('homefront');
-
+Route::get('503','ErrorController@error503')->name('error503');
+Route::get('404','ErrorController@error404')->name('error404');
 Route::group(['prefix' => 'admin'],function (){
     Route::get('login','Admin\LoginController@getLogin')->name('admin.login.getLogin');
     Route::post('login','Admin\LoginController@postLogin')->name('admin.login.postLogin');
@@ -144,12 +145,17 @@ Route::group(['prefix' => 'admin'],function (){
     Route::get('register','Admin\RegisterController@getRegister')->name('admin.register.getRegister');
     Route::post('register','Admin\RegisterController@postRegister')->name('admin.register.postRegister');
     Route::get('confirm','Admin\RegisterController@getConfirm')->name('admin.register.getConfirm');
-    Route::get('forgotpassword','Admin\ForgotPasswordController@getForgotPassword')->name('admin.forgotpassword.getForgotPassword');
-    Route::post('forgotpassword','Admin\ForgotPasswordController@postForgotPassword')->name('admin.forgotpassword.postForgotPassword');
+    Route::get('forgot','Admin\ForgotPasswordController@getForgotPassword')->name('admin.forgot.getForgotPassword');
+    Route::post('forgot','Admin\ForgotPasswordController@postForgotPassword')->name('admin.forgot.postForgotPassword');
+    Route::get('checkforgot/{md5forgot}/{emailforgot}','Admin\ForgotPasswordController@checkForgot')->name('admin.forgot.checkForgot');
+    Route::post('resetpassword','Admin\ForgotPasswordController@resetPassword')->name('admin.resetpassword.resetPassword');
+
 
     Route::get('dashboard','Admin\DashboardController@getDashboard')->middleware('adminlte')->name('admin.dashboard.getDashboard');
-    Route::get('userprofile','Admin\UserProfileController@getUserProfile')->middleware('adminlte')->name('admin.dashboard.getUserProfile');
-
+    Route::get('usermanager','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
+    Route::get('userprofile/{id}','Admin\UserManagermentController@getUserProfile')->middleware('adminlte')->name('admin.dashboard.getUserProfile');
+    Route::get('userlevel/{level}','Admin\UserManagermentController@getUserLevel')->middleware('adminlte')->name('admin.dashboard.getUserLevel');
+//    Route::get('usermanager/{id}','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
 });
 
 

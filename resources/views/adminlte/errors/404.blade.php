@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ isset($error) ? $error : 'Service Unavaiable !' }}</title>
+    <title>{{ isset($error) ? $error : 'Page Not Found !' }}</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -41,7 +41,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">{{ isset($error) ? $error : 'Service Unavaiable !' }}</div>
+        <div class="title">{{ isset($error) ? $error : 'Page Not Found !' }}</div>
     </div>
 </div>
 </body>

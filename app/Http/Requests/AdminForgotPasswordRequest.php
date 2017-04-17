@@ -24,7 +24,16 @@ class AdminForgotPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' => 'required|email|between:6,64'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.email' => 'Bạn nhập không đúng định dạng email !',
+            'email.required' => 'Bạn không được để trống !',
+            'email.between' => 'Bạn phải nhập ký tự trong khoảng :min đến :max ký tự'
         ];
     }
 }

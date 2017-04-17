@@ -27,17 +27,30 @@
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
       <li class="active treeview">
-        <a href="#">
+        <a href="{{ route('admin.dashboard.getDashboard') }}">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+        </a>
+        {{--<ul class="treeview-menu">--}}
+          {{--<li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>--}}
+          {{--<li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
+        {{--</ul>--}}
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-share"></i> <span>User Managerment</span>
           <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-          <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+          <li><a href="{{ route('admin.dashboard.getUserLevel',[1]) }}"><i class="fa fa-circle-o"></i> Admin</a></li>
+          <li><a href="{{ route('admin.dashboard.getUserLevel',[2]) }}"><i class="fa fa-circle-o"></i> Mod</a></li>
+          <li><a href="{{ route('admin.dashboard.getUserLevel',[3]) }}"><i class="fa fa-circle-o"></i> Gangster</a></li>
+          <li><a href="{{ route('admin.dashboard.getUserLevel',[4]) }}"><i class="fa fa-circle-o"></i> Member</a></li>
         </ul>
       </li>
+
       <li class="treeview">
         <a href="#">
           <i class="fa fa-files-o"></i>

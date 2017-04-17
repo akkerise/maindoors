@@ -49,6 +49,9 @@ class LoginController extends Controller
     {
         Auth::logout($request->user());
         Session::flush();
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : 'admin/login');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : 'admin/login')->with([
+            'msgAlert' => 'Bạn đã thoát ra ngoài ứng dụng thành công !',
+            'lvlAlert' => 'success'
+        ]);
     }
 }
