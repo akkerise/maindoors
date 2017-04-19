@@ -43,6 +43,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Fullname</th>
                                         <th>Username</th>
                                         <th>Emails</th>
                                         <th>Level</th>
@@ -55,6 +56,7 @@
                                     <tr>
                                         <td><a href="{{ route('admin.dashboard.getUserProfile',[$user->id]) }}">{{ $user->id }}</a></td>
                                         <td>{{ $user->fullname }}</td>
+                                        <td>{{ $user->username }}</td>
                                         <td><span class="label label-success">{{ $user->email }}</span></td>
                                         <td>
                                             <div class="sparkbar" data-color="#00a65a" data-height="20">

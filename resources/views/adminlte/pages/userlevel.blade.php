@@ -43,6 +43,7 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Fullname</th>
                                 <th>Username</th>
                                 <th>Emails</th>
                                 <th>Level</th>
