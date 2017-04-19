@@ -12,12 +12,12 @@
         @section('content-header')
             <section class="content-header">
                 <h1>
-                    User Level
+                    User Permission
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="{{ route('admin.dashboard.getDashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                     {{--<li><a href="#">Examples</a></li>--}}
-                    <li class="active">User Level</li>
+                    <li class="active">User Permission</li>
                 </ol>
             </section>
     @endsection

@@ -44,10 +44,14 @@
             </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{ route('admin.dashboard.getUserLevel',[1]) }}"><i class="fa fa-circle-o"></i> Admin</a></li>
-          <li><a href="{{ route('admin.dashboard.getUserLevel',[2]) }}"><i class="fa fa-circle-o"></i> Mod</a></li>
-          <li><a href="{{ route('admin.dashboard.getUserLevel',[3]) }}"><i class="fa fa-circle-o"></i> Gangster</a></li>
-          <li><a href="{{ route('admin.dashboard.getUserLevel',[4]) }}"><i class="fa fa-circle-o"></i> Member</a></li>
+          <li><a href="{{ route('admin.dashboard.getUser') }}"> <i class="fa fa-circle"></i> All</a>
+            <ul class="treeview-menu">
+              <li><a href="{{ route('admin.dashboard.getUserLevel',[1]) }}"><i class="fa fa-circle-o"></i> Admin</a></li>
+              <li><a href="{{ route('admin.dashboard.getUserLevel',[2]) }}"><i class="fa fa-circle-o"></i> Mod</a></li>
+              <li><a href="{{ route('admin.dashboard.getUserLevel',[3]) }}"><i class="fa fa-circle-o"></i> Gangster</a></li>
+              <li><a href="{{ route('admin.dashboard.getUserLevel',[4]) }}"><i class="fa fa-circle-o"></i> Member</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
 
