@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('adminlte');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('adminlte');
+    // }
 
     public function getRegister(){
         return view('adminlte.pages.register');

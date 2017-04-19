@@ -60,7 +60,7 @@
         </div>
         <!-- /.social-auth-links -->
 
-        <a href="#">I forgot my password</a><br>
+        <a href="{{ route('admin.forgot.getForgotPassword') }}">I forgot my password</a><br>
         <a href="{{ route('admin.register.getRegister') }}" class="text-center">Register a new membership</a>
 
     </div>

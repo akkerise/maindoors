@@ -1,2 +1,2 @@
-<a href="{{ url('admin/checkforgot/'. $md5Forgot . '/' . $emailForgot) }}">Bấm vào đây để đặt lại mật khẩu</a><br>
+{{-- <a href="{{ url('admin/checkforgot/'. $md5Forgot . '/' . $emailForgot) }}">Bấm vào đây để đặt lại mật khẩu</a><br> --}}
 <a href="{{ route('admin.forgot.checkForgot',[$md5Forgot,$emailForgot]) }}">Bấm vào đây để đặt lại mật khẩu</a>

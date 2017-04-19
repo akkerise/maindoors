@@ -16,25 +16,20 @@ use Illuminate\Support\Facades\Auth;
 
 class ForgotPasswordController extends Controller
 {
-//    protected $md5Forgot;
-//    protected $emailForgot;
-
-//    public function __construct($md5Forgot,$emailForgot)
-//    {
-//        $this->md5Forgot = $md5Forgot;
-//        $this->emailForgot = $emailForgot;
-//    }
 
     public function getForgotPassword(){
         return view('adminlte.pages.forgotpassword');
     }
 
     public function postForgotPassword(AdminForgotPasswordRequest $request){
+        
         $emailForgot = $request->email;
         $userForgot = User::all()->where('email',$emailForgot)->first();
+        
         if (!empty($userForgot)){
             $md5Forgot = Hash::make($userForgot->fullname . $userForgot->username . $userForgot->confirm_code);
             Mail::to($request->email)->send(new ForgotPassword($md5Forgot,$emailForgot));
+            // dd(1);
             return redirect()->route('admin.forgot.getForgotPassword')->with([
                 'msgAlert' => 'Bạn gửi mail thành công , hãy kiểm tra lại hòm mail',
                 'lvlAlert' => 'success'
@@ -48,8 +43,6 @@ class ForgotPasswordController extends Controller
     }
 
     public function checkForgot($md5Forgot,$emailForgot){
-//        $this->md5Forgot = $md5Forgot;
-//        $this->emailForgot = $emailForgot;
         return view('adminlte.pages.resetpassword')->with([
             'md5Forgot' => $md5Forgot,
             'emailForgot' => $emailForgot
