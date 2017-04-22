@@ -59,9 +59,7 @@ class ForgotPasswordController extends Controller
     }
 
     public function resetPassword(AdminResetPasswordRequest $request){
-//        dd($request->all());
         $userForgot = User::findOrFail($request->idForgot);
-//        dd($userForgot);
         if(Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $request->md5Forgot)){
             $userForgot->password = Hash::make($request->password);
             $userForgot->save();
