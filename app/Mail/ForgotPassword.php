@@ -16,14 +16,16 @@ class ForgotPassword extends Mailable
      *
      * @return void
      */
-
+    protected $idForgot;
     protected $md5Forgot;
-    protected $emailForgot;
+//    protected $emailForgot;
 
-    public function __construct($md5Forgot,$emailForgot)
+
+    public function __construct($idForgot, $md5Forgot)
     {
+        $this->idForgot = $idForgot;
         $this->md5Forgot = $md5Forgot;
-        $this->emailForgot = $emailForgot;
+//        $this->emailForgot = $emailForgot;
     }
 
     /**
@@ -34,8 +36,9 @@ class ForgotPassword extends Mailable
     public function build()
     {
         return $this->view('adminlte.emails.forgotpassword')->with([
+            'idForgot' => $this->idForgot,
             'md5Forgot' => $this->md5Forgot,
-            'emailForgot' => $this->emailForgot,
+//            'emailForgot' => $this->emailForgot,
         ]);
     }
 }

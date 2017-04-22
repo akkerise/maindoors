@@ -22,15 +22,14 @@ class ForgotPasswordController extends Controller
     }
 
     public function postForgotPassword(AdminForgotPasswordRequest $request){
-        
+//        dd($request->all());
         $emailForgot = $request->email;
         $userForgot = User::all()->where('email',$emailForgot)->first();
-        
+        $idForgot = $userForgot->id;
         if (!empty($userForgot)){
             $md5Forgot = Hash::make($userForgot->fullname . $userForgot->username . $userForgot->confirm_code);
-            Mail::to($request->email)->send(new ForgotPassword($md5Forgot,$emailForgot));
-            // dd(1);
-            return redirect()->route('admin.forgot.getForgotPassword')->with([
+            Mail::to($request->email)->send(new ForgotPassword($md5Forgot,$idForgot));
+            return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Bạn gửi mail thành công , hãy kiểm tra lại hòm mail',
                 'lvlAlert' => 'success'
             ]);
@@ -42,8 +41,11 @@ class ForgotPasswordController extends Controller
         }
     }
 
-    public function checkForgot($md5Forgot,$emailForgot){
-        $userForgot = User::all()->where('email', $emailForgot)->first();
+    public function checkForgot($idForgot,$md5Forgot){
+//        dd(1);
+//        $userForgot = User::all()->where('email', $emailForgot)->first();
+        $userForgot = User::find($idForgot)->get();
+//        dd($userForgot);
         if (Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $md5Forgot) === false) {
             return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Có thể bạn bị giả mạo hoặc đường link xác nhận không đúng !',
@@ -51,8 +53,9 @@ class ForgotPasswordController extends Controller
             ]);
         }
         return view('adminlte.pages.resetpassword')->with([
+            'idForgot' => $idForgot,
             'md5Forgot' => $md5Forgot,
-            'emailForgot' => $emailForgot,
+//            'emailForgot' => $emailForgot,
             'msgAlert' => 'Bạn đã xác minh hãy đổi mật khẩu trước khi đăng nhập !',
             'lvlAlert' => 'success'
         ]);
