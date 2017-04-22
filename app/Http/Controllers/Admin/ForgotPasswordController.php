@@ -22,13 +22,12 @@ class ForgotPasswordController extends Controller
     }
 
     public function postForgotPassword(AdminForgotPasswordRequest $request){
-//        dd($request->all());
         $emailForgot = $request->email;
         $userForgot = User::all()->where('email',$emailForgot)->first();
         $idForgot = $userForgot->id;
         if (!empty($userForgot)){
             $md5Forgot = Hash::make($userForgot->fullname . $userForgot->username . $userForgot->confirm_code);
-            Mail::to($request->email)->send(new ForgotPassword($md5Forgot,$idForgot));
+            Mail::to($request->email)->send(new ForgotPassword($idForgot,$md5Forgot));
             return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Bạn gửi mail thành công , hãy kiểm tra lại hòm mail',
                 'lvlAlert' => 'success'
@@ -42,10 +41,8 @@ class ForgotPasswordController extends Controller
     }
 
     public function checkForgot($idForgot,$md5Forgot){
-//        dd(1);
-//        $userForgot = User::all()->where('email', $emailForgot)->first();
-        $userForgot = User::find($idForgot)->get();
-//        dd($userForgot);
+//        dd($idForgot);
+        $userForgot = User::findOrFail($idForgot);
         if (Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $md5Forgot) === false) {
             return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Có thể bạn bị giả mạo hoặc đường link xác nhận không đúng !',
@@ -62,7 +59,9 @@ class ForgotPasswordController extends Controller
     }
 
     public function resetPassword(AdminResetPasswordRequest $request){
-        $userForgot = User::all()->where('email',$request->emailForgot)->first();
+//        dd($request->all());
+        $userForgot = User::findOrFail($request->idForgot);
+//        dd($userForgot);
         if(Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $request->md5Forgot)){
             $userForgot->password = Hash::make($request->password);
             $userForgot->save();

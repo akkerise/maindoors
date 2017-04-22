@@ -47,12 +47,11 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="hidden" name="md5Forgot" value="{{ $md5Forgot }}">
+                <input type="hidden" name="idForgot" value="{{ $idForgot }}">
             </div>
             <div class="form-group has-feedback">
-                <input type="hidden" name="emailForgot" value="{{ $emailForgot }}">
+                <input type="hidden" name="md5Forgot" value="{{ $md5Forgot }}">
             </div>
-
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
