@@ -41,7 +41,6 @@ class ForgotPasswordController extends Controller
     }
 
     public function checkForgot($idForgot,$md5Forgot){
-//        dd($idForgot);
         $userForgot = User::findOrFail($idForgot);
         if (Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $md5Forgot) === false) {
             return redirect()->route('admin.login.getLogin')->with([
@@ -52,7 +51,6 @@ class ForgotPasswordController extends Controller
         return view('adminlte.pages.resetpassword')->with([
             'idForgot' => $idForgot,
             'md5Forgot' => $md5Forgot,
-//            'emailForgot' => $emailForgot,
             'msgAlert' => 'Bạn đã xác minh hãy đổi mật khẩu trước khi đăng nhập !',
             'lvlAlert' => 'success'
         ]);
