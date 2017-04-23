@@ -76,7 +76,8 @@
                                         <button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>
+                                        {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
+                                        <a class="btn btn-block btn-xs btn-flat btn-danger" href="{{ route('admin.dashboard.getDeleteUser',[$user->id]) }}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

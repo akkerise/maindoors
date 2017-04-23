@@ -52,6 +52,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @include('adminlte.blocks.errors')
+                                    @include('adminlte.blocks.alerts')
                                     @foreach($users as $user)
                                     <tr>
                                         <td><a href="{{ route('admin.dashboard.getUserProfile',[$user->id]) }}">{{ $user->id }}</a></td>
@@ -74,11 +76,11 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>
+                                            <a class="btn btn-block btn-xs btn-flat btn-primary" href="">Update</a>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-block btn-xs btn-flat btn-danger"><a
-                                                        href="{{ route('admin.dashboard.postDeleteUser',[$user->id]) }}" type="hidden"></a>Delete</button>
+                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
+                                            <a class="btn btn-block btn-xs btn-flat btn-danger" href="{{ route('admin.dashboard.getDeleteUser',[$user->id]) }}">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach

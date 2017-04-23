@@ -156,7 +156,7 @@ Route::group(['prefix' => 'admin'],function (){
     Route::get('dashboard','Admin\DashboardController@getDashboard')->middleware('adminlte')->name('admin.dashboard.getDashboard');
     Route::get('usermanager','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
 
-    Route::post('deleteuser/{id}','Admin\UserManagermentController@postDeleteUser')->middleware('adminlte')->name('admin.dashboard.postDeleteUser');
+    Route::get('deleteuser/{id}','Admin\UserManagermentController@getDeleteUser')->middleware('adminlte')->name('admin.dashboard.getDeleteUser');
 
     Route::get('userprofile/{id}','Admin\UserManagermentController@getUserProfile')->middleware('adminlte')->name('admin.dashboard.getUserProfile');
     Route::get('userlevel/{level}','Admin\UserManagermentController@getUserLevel')->middleware('adminlte')->name('admin.dashboard.getUserLevel');
