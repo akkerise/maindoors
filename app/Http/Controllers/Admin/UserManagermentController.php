@@ -25,4 +25,14 @@ class UserManagermentController extends Controller
            'showUserLevel' => $showUserLevel
         ]);
     }
+
+    public function postDeleteUser($id){
+        $deleteUser = User::findOrFail($id);
+        $nameDeleteUser = $deleteUser->username;
+        $deleteUser->delete();
+        return redirect()->route('admin.dashboard.getUser')->with([
+            'msgAlert' => 'Bạn đã xóa thành công user : ' . $nameDeleteUser,
+            'lvlAlert' => 'success'
+        ]);
+    }
 }

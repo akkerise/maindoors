@@ -77,7 +77,8 @@
                                             <button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>
+                                            <button type="button" class="btn btn-block btn-xs btn-flat btn-danger"><a
+                                                        href="{{ route('admin.dashboard.postDeleteUser',[$user->id]) }}" type="hidden"></a>Delete</button>
                                         </td>
                                     </tr>
                                     @endforeach

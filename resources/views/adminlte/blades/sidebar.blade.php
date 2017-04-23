@@ -44,11 +44,33 @@
             </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{ route('admin.dashboard.getUser') }}"> <i class="fa fa-circle"></i> All</a></li>
-          <li><a href="{{ route('admin.dashboard.getUserLevel',[1]) }}"><i class="fa fa-circle-o"></i> Admin</a></li>
-          <li><a href="{{ route('admin.dashboard.getUserLevel',[2]) }}"><i class="fa fa-circle-o"></i> Mod</a></li>
-          <li><a href="{{ route('admin.dashboard.getUserLevel',[3]) }}"><i class="fa fa-circle-o"></i> Gangster</a></li>
-          <li><a href="{{ route('admin.dashboard.getUserLevel',[4]) }}"><i class="fa fa-circle-o"></i> Member</a></li>
+          <li>
+            <a href="{{ route('admin.dashboard.getUser') }}"> <i class="fa fa-circle"></i> All
+              <span class="pull-right-container">
+                <small class="label pull-right" style="background-color: white; color: grey;">{{ (count($countUser = DB::table('users')->count()) > 0) ? $countUser : "" }}</small>
+              </span>
+            </a>
+          </li>
+          <li><a href="{{ route('admin.dashboard.getUserLevel',[1]) }}"><i class="fa fa-circle-o"></i> Admin
+              <span class="pull-right-container">
+                <small class="label pull-right bg-red">{{ (count($countAdmin = DB::table('users')->where('level',1)->count()) > 0) ? $countAdmin : "" }}</small>
+              </span>
+            </a></li>
+          <li><a href="{{ route('admin.dashboard.getUserLevel',[2]) }}"><i class="fa fa-circle-o"></i> Mod
+              <span class="pull-right-container">
+                <small class="label pull-right bg-blue">{{ (count($countMod = DB::table('users')->where('level',2)->count()) > 0) ? $countMod : "" }}</small>
+              </span>
+            </a></li>
+          <li><a href="{{ route('admin.dashboard.getUserLevel',[3]) }}"><i class="fa fa-circle-o"></i> Gangster
+              <span class="pull-right-container">
+                <small class="label pull-right bg-yellow">{{ (count($countGangster = DB::table('users')->where('level',3)->count()) > 0) ? $countGangster : "" }}</small>
+              </span>
+            </a></li>
+          <li><a href="{{ route('admin.dashboard.getUserLevel',[4]) }}"><i class="fa fa-circle-o"></i> Member
+              <span class="pull-right-container">
+                <small class="label pull-right bg-green">{{ (count($countMember = DB::table('users')->where('level',4)->count()) > 0) ? $countMember : "" }}</small>
+              </span>
+            </a></li>
         </ul>
       </li>
 
