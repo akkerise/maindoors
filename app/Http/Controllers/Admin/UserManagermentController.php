@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\Contracts\DashboardRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\UserManagermentRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class UserManagermentController extends Controller
 {
     protected $userManagerment;
 
-    public function __construct(DashboardRepositoryInterface $dashboardRepository)
+    public function __construct(UserRepositoryInterface $dashboardRepository)
     {
         $this->userManagerment = $dashboardRepository;
     }

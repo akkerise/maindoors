@@ -8,10 +8,10 @@
 
 namespace App\Repositories\Eloquents;
 
-use App\Repositories\Contracts\DashboardRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\User;
 
-class DashboardRepository implements DashboardRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
 
     public function all()

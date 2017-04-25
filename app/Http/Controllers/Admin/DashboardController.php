@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\DB;
-use App\Repositories\Contracts\DashboardRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class DashboardController extends Controller
 {
     protected $dashboardRepository;
 
-    public function __construct(DashboardRepositoryInterface $dashboardRepository)
+    public function __construct(UserRepositoryInterface $dashboardRepository)
     {
         $this->dashboardRepository = $dashboardRepository;
     }

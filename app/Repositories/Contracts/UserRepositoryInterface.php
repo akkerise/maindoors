@@ -7,7 +7,7 @@
  */
 namespace App\Repositories\Contracts;
 
-interface DashboardRepositoryInterface {
+interface UserRepositoryInterface {
     public function all();
     public function find($id);
     public function getUserAttr($attr,$param);
