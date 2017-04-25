@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Contracts\DashboardRepositoryInterface;
+use App\Repositories\Contracts\UserManagermentRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -10,25 +12,32 @@ use Auth;
 
 class UserManagermentController extends Controller
 {
+    protected $userManagerment;
+
+    public function __construct(DashboardRepositoryInterface $dashboardRepository)
+    {
+        $this->userManagerment = $dashboardRepository;
+    }
+
     public function getUser(){
-        $users = User::all()->sortBy('id');
+        $users = $this->userManagerment->all()->sortBy('id');
         return view('adminlte.pages.usermanagerment',compact('users'));
     }
 
     public function getUserProfile($id){
-        $showId = User::findOrFail($id);
+        $showId = $this->userManagerment->find($id);
         return view('adminlte.pages.userprofile',compact('showId'));
     }
 
-    public function getUserLevel($level){
-        $showUserLevel = User::all()->where('level',$level);
+    public function getUserLevel($param){
+        $showUserLevel = $this->userManagerment->getUserAttr('level',$param);
         return view('adminlte.pages.userlevel')->with([
            'showUserLevel' => $showUserLevel
         ]);
     }
 
     public function getDeleteUser($id){
-        $deleteUser = User::findOrFail($id);
+        $deleteUser = $this->userManagerment->find($id);
         if ($id === Auth::id() || Auth::user()->level !== 1 || $deleteUser->level === 1){
             return redirect()->route('admin.dashboard.getUser')->with([
                 'msgAlert' => 'Bạn không có quyền xóa username này ! ',

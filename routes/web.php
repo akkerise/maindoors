@@ -159,7 +159,9 @@ Route::group(['prefix' => 'admin'],function (){
     Route::get('deleteuser/{id}','Admin\UserManagermentController@getDeleteUser')->middleware('adminlte')->name('admin.dashboard.getDeleteUser');
 
     Route::get('userprofile/{id}','Admin\UserManagermentController@getUserProfile')->middleware('adminlte')->name('admin.dashboard.getUserProfile');
-    Route::get('userlevel/{level}','Admin\UserManagermentController@getUserLevel')->middleware('adminlte')->name('admin.dashboard.getUserLevel');
+
+    Route::get('userlevel/level/{param}','Admin\UserManagermentController@getUserLevel')->middleware('adminlte')->name('admin.dashboard.getUserLevel');
+
     Route::get('newuser','Admin\UserManagermentController@getNewUser')->middleware('adminlte')->name('admin.dashboard.getNewUser');
     Route::post('newuser','Admin\UserManagermentController@postNewUser')->middleware('adminlte')->name('admin.dashboard.postNewUser');
 //    Route::get('usermanager/{id}','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');

@@ -6,18 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\Contracts\DashboardRepositoryInterface;
 
 class DashboardController extends Controller
 {
+    protected $dashboardRepository;
 
-    public function __construct(DashboardRepository $dashboardRepository)
+    public function __construct(DashboardRepositoryInterface $dashboardRepository)
     {
-        $this->dasboardRepository = $dashboardRepository;
+        $this->dashboardRepository = $dashboardRepository;
     }
 
     public function getDashBoard(){
-//        $eightNewMemberRegisters = DB::table('users')->orderBy('id','ASC')->take(8);
-        $eightNewMemberRegisters = $this->dasboardRepository->all()->sortByDesc('id')->take(8);
-        return view('adminlte.pages.dashboard',compact('eightNewMemberRegisters'));
+        return view('adminlte.pages.dashboard');
     }
 }
