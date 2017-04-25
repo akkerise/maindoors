@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-//    public function __construct()
-//    {
-//        return $this->middleware('adminlte');
-//    }
+
+    public function __construct(DashboardRepository $dashboardRepository)
+    {
+        $this->dasboardRepository = $dashboardRepository;
+    }
 
     public function getDashBoard(){
-        $eightNewMemberRegisters = DB::table('users')->orderBy('id','ASC')->take(8);
+//        $eightNewMemberRegisters = DB::table('users')->orderBy('id','ASC')->take(8);
+        $eightNewMemberRegisters = $this->dasboardRepository->all()->sortByDesc('id')->take(8);
         return view('adminlte.pages.dashboard',compact('eightNewMemberRegisters'));
     }
 }
