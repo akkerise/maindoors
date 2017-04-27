@@ -10,14 +10,15 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 
 class DashboardController extends Controller
 {
-    protected $dashboardRepository;
+    protected $userRepository;
 
-    public function __construct(UserRepositoryInterface $dashboardRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-        $this->dashboardRepository = $dashboardRepository;
+        $this->userRepository = $userRepository;
     }
 
-    public function getDashBoard(){
+    public function getDashBoard()
+    {
         return view('adminlte.pages.dashboard');
     }
 }

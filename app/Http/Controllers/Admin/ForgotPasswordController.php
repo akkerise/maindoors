@@ -6,6 +6,7 @@ use App\Http\Controllers\ErrorController;
 use App\Http\Requests\Admin\AdminForgotPasswordRequest;
 use App\Http\Requests\AdminResetPasswordRequest;
 use App\Mail\ForgotPassword;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,6 +17,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ForgotPasswordController extends Controller
 {
+    protected $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     public function getForgotPassword(){
         return view('adminlte.pages.forgotpassword');
@@ -23,7 +30,8 @@ class ForgotPasswordController extends Controller
 
     public function postForgotPassword(AdminForgotPasswordRequest $request){
         $emailForgot = $request->email;
-        $userForgot = User::all()->where('email',$emailForgot)->first();
+//        $userForgot = User::all()->where('email',$emailForgot)->first();
+        $userForgot = $this->userRepository->getUserByAttr('email',$emailForgot)->first();
         $idForgot = $userForgot->id;
         if (!empty($userForgot)){
             $md5Forgot = Hash::make($userForgot->fullname . $userForgot->username . $userForgot->confirm_code);
@@ -41,7 +49,7 @@ class ForgotPasswordController extends Controller
     }
 
     public function checkForgot($idForgot,$md5Forgot){
-        $userForgot = User::findOrFail($idForgot);
+        $userForgot = $this->userRepository->find($idForgot);
         if (Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $md5Forgot) === false) {
             return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Có thể bạn bị giả mạo hoặc đường link xác nhận không đúng !',
@@ -57,7 +65,7 @@ class ForgotPasswordController extends Controller
     }
 
     public function resetPassword(AdminResetPasswordRequest $request){
-        $userForgot = User::findOrFail($request->idForgot);
+        $userForgot = $this->userRepository->find($request->idForgot);
         if(Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $request->md5Forgot)){
             $userForgot->password = Hash::make($request->password);
             $userForgot->save();

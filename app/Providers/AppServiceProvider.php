@@ -27,5 +27,8 @@ class AppServiceProvider extends ServiceProvider
 //            'App\Repositories\Contracts\UserRepositoryInterface',
 //            'App\Repositories\Eloquents\UserRepository'
 //        );
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 }

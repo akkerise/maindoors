@@ -7,15 +7,18 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.3",
+        "doctrine/dbal": "^2.5",
         "fzaninotto/faker": "^1.6",
         "garygreen/pretty-routes": "^0.0.6",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "league/fractal": "^0.16.0",
         "nesbot/carbon": "^1.22",
-        "rap2hpoutre/laravel-log-viewer": "^0.8.1"
+        "rap2hpoutre/laravel-log-viewer": "^0.10.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.3",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.7"
     },

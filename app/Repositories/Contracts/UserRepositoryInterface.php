@@ -9,6 +9,8 @@ namespace App\Repositories\Contracts;
 
 interface UserRepositoryInterface {
     public function all();
+    public function getAllUserSortByParam($attr,$type);
     public function find($id);
-    public function getUserAttr($attr,$param);
+    public function getUserByAttr($attr,$param);
+    public function insertNewUser($fullname, $username, $password, $email, $token);
 }

@@ -52,6 +52,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {{--{{ dd($showUserLevel) }}--}}
                             @foreach($showUserLevel as $user)
                                 <tr>
                                     <td><a href="{{ route('admin.dashboard.getUserProfile',[$user->id]) }}">{{ $user->id }}</a></td>

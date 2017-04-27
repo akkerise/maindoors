@@ -172,3 +172,7 @@ Route::group(['prefix' => 'admin'],function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+// Check logs
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
