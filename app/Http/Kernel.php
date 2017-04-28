@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             // AkKe Fix
 //            \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+//            \App\Http\Middleware\AdminLTEMiddleware::class,
         ],
 
         'api' => [

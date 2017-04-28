@@ -16,6 +16,14 @@ class LoginController extends Controller
 
     public function getLogin()
     {
+//        if (Auth::user()->level === 1){
+//            return redirect()->route('admin.dashboard.getDashboard')->with([
+//                'msgAlert' => 'Bạn đã đăng nhập thành công !',
+//                'lvlAlert' => 'success'
+//            ]);
+//        }else{
+//            return view('adminlte.pages.login');
+//        }
         return view('adminlte.pages.login');
     }
 
@@ -26,7 +34,7 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($login)) {
-            if (Auth::user()->level == 1) {
+            if (Auth::user()->level === 1) {
                 return redirect()->route('admin.dashboard.getDashboard')->with([
                     'msgAlert' => 'Bạn đã đăng nhập thành công !',
                     'lvlAlert' => 'success'
