@@ -49,7 +49,7 @@ class ForgotPasswordController extends Controller
     }
 
     public function checkForgot($idForgot,$md5Forgot){
-        $userForgot = $this->userRepository->find($idForgot);
+        $userForgot = $this->userRepository->findId($idForgot);
         if (Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $md5Forgot) === false) {
             return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Có thể bạn bị giả mạo hoặc đường link xác nhận không đúng !',
@@ -65,7 +65,7 @@ class ForgotPasswordController extends Controller
     }
 
     public function resetPassword(AdminResetPasswordRequest $request){
-        $userForgot = $this->userRepository->find($request->idForgot);
+        $userForgot = $this->userRepository->findId($request->idForgot);
         if(Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $request->md5Forgot)){
             $userForgot->password = Hash::make($request->password);
             $userForgot->save();

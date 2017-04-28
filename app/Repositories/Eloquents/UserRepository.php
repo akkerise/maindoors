@@ -30,7 +30,7 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function find($id)
+    public function findId($id)
     {
         return User::all()->find($id);
     }
@@ -40,15 +40,15 @@ class UserRepository implements UserRepositoryInterface
         return User::all()->where($attr, $param);
     }
 
-    public function insertNewUser($fullname, $username, $password, $email, $token)
+    public function insertNewUser($fullName, $username, $password, $email, $token)
     {
         $newUser = new User;
-        $newUser->fullname = $fullname;
+        $newUser->fullname = $fullName;
         $newUser->username = $username;
         $newUser->password = Hash::make($password);
         $newUser->email = $email;
         $newUser->remember_token = $token;
-        $newUser->confirm_code = Hash::make($fullname);
+        $newUser->confirm_code = Hash::make($fullName);
         $newUser->total_money = 0;
         $newUser->level = 2;
         $newUser->confirmed = false;

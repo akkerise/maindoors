@@ -44,7 +44,12 @@ class RegisterController extends Controller
                 'lvlAlert' => 'warning'
             ]);
         } else {
-            $this->userRepository->insertNewUser($request->fullname, $request->username, $request->password, $request->email, $request->_token);
+            $fullName = $request->fullname;
+            $username = $request->username;
+            $password = $request->password;
+            $email = $request->email;
+            $_token = $request->_token;
+            $this->userRepository->insertNewUser($fullName, $username, $password, $email, $_token);
             return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Tạo thành công tài khoản mới !',
                 'lvlAlert' => 'success'

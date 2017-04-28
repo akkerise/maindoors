@@ -27,7 +27,7 @@ class UserManagermentController extends Controller
 
     public function getUserProfile($id)
     {
-        $showId = $this->userManagerment->find($id);
+        $showId = $this->userManagerment->findId($id);
         return view('adminlte.pages.userprofile', compact('showId'));
     }
 
@@ -41,7 +41,7 @@ class UserManagermentController extends Controller
 
     public function getDeleteUser($id)
     {
-        $deleteUser = $this->userManagerment->find($id);
+        $deleteUser = $this->userManagerment->findId($id);
         if ($id === Auth::id() || Auth::user()->level !== 1 || $deleteUser->level === 1) {
             return redirect()->route('admin.dashboard.getUser')->with([
                 'msgAlert' => 'Bạn không có quyền xóa username này ! ',
