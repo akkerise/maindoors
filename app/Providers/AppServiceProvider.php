@@ -25,10 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->app->bind(
-//            'App\Repositories\Contracts\UserRepositoryInterface',
-//            'App\Repositories\Eloquents\UserRepository'
-//        );
         if ($this->app->environment() !== 'production') {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
