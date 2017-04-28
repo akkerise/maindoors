@@ -14,17 +14,19 @@ class LoginController extends Controller
 
     protected $redirectAfterLogout = 'admin/login';
 
+    public function __construct()
+    {
+        $this->middleware('adminlte')->only('getLogin');
+    }
+
     public function getLogin()
     {
-//        if (Auth::user()->level === 1){
-//            return redirect()->route('admin.dashboard.getDashboard')->with([
-//                'msgAlert' => 'Bạn đã đăng nhập thành công !',
-//                'lvlAlert' => 'success'
-//            ]);
-//        }else{
-//            return view('adminlte.pages.login');
-//        }
-        return view('adminlte.pages.login');
+        if (Auth::user()->level === 1){
+            return redirect()->route('admin.dashboard.getDashboard');
+        }else{
+            return view('adminlte.pages.login');
+        }
+//        return view('adminlte.pages.login');
     }
 
     public function postLogin(AdminLoginRequest $request)

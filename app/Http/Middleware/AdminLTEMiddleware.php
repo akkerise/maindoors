@@ -21,6 +21,7 @@ class AdminLTEMiddleware
     {
         if (Auth::check() && Auth::user()->level === 1) {
             return $next($request);
+//            return redirect()->route('admin.dashboard.getDashboard');
         } else {
             return redirect()->route('admin.login.getLogin')->with([
                 'msgAlert' => 'Stop. Bạn không có quyền vào khu vực này!',

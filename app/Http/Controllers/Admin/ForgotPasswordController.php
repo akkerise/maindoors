@@ -30,7 +30,6 @@ class ForgotPasswordController extends Controller
 
     public function postForgotPassword(AdminForgotPasswordRequest $request){
         $emailForgot = $request->email;
-//        $userForgot = User::all()->where('email',$emailForgot)->first();
         $userForgot = $this->userRepository->getUserByAttr('email',$emailForgot)->first();
         $idForgot = $userForgot->id;
         if (!empty($userForgot)){
