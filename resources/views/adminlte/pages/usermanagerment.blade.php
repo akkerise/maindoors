@@ -47,6 +47,7 @@
                                         <th>Username</th>
                                         <th>Emails</th>
                                         <th>Level</th>
+                                        <th>Gender</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -74,6 +75,17 @@
                                                     Not Human
                                                 @endif
                                             </div>
+                                        </td>
+                                        <td>
+                                            @if($user->gender === 1)
+                                                Male
+                                            @elseif($user->gender === 2)
+                                                Female
+                                            @elseif($user->gender === 3)
+                                                Gay
+                                            @else
+                                                Les
+                                            @endif
                                         </td>
                                         <td>
                                             <a class="btn btn-block btn-xs btn-flat btn-primary" href="">Update</a>
