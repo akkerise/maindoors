@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelIDEHelperProvider extends ServiceProvider
+class LaravelIDEHelperServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
