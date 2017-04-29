@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\AdminLoginRequest;
-//use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
-use App\Repositories\Contracts\UserRepositoryInterface;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AdminLoginRequest;
+// use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
+use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -18,18 +19,19 @@ class LoginController extends Controller
 
     public function __construct(UserRepositoryInterface $userRepository)
     {
-        $this->middleware('adminlte')->only('getLogin');
+//        $this->middleware('adminlte')->only('getLogin');
         $this->userRepository = $userRepository;
     }
 
     public function getLogin()
     {
-        if (Auth::user()->level === 1){
-            return redirect()->route('admin.dashboard.getDashboard');
-        }else{
-            return view('adminlte.pages.login');
-        }
-//        return view('adminlte.pages.login');
+        // dd(1);
+//        if (Auth::user()->level === 1) {
+//            return redirect()->route('admin.dashboard.getDashboard');
+//        } else {
+//            return view('adminlte.pages.login');
+//        }
+        return view('adminlte.pages.login');
     }
 
     public function postLogin(AdminLoginRequest $request)

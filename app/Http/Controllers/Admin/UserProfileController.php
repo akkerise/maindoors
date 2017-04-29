@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-//use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
-use App\Repositories\Contracts\UserRepositoryInterface;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 
-class UserProfileController extends Controller
-{
-    protected $userRepository;
+class UserProfileController extends Controller {
+	protected $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
+	public function __construct(UserRepositoryInterface $userRepository) {
+		$this->userRepository = $userRepository;
+	}
 
-    public function getUserProfile()
-    {
-        return view('adminlte.pages.userprofile');
-    }
+	public function getUserProfile() {
+		return view('adminlte.pages.userprofile');
+	}
 }
