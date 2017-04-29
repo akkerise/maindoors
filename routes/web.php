@@ -175,3 +175,4 @@ Route::get('api/users','APIController@getAllUsers');
 Route::get('products', 'TestController@getAllProduct');
 Route::get('orders', 'TestController@getAllOrder');
 Route::get('users','TestController@getAllUser');
+Route::get('instead/{nameModel}','TestController@getInstead');
