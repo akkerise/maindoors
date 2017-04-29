@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\DB;
+//use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
-
 class DashboardController extends Controller
 {
     protected $userRepository;

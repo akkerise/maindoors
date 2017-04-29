@@ -6,9 +6,9 @@
  * Time: 4:21 PM
  */
 
-namespace App\Repositories\Eloquents;
+namespace App\Repositories\UserRepositories\Eloquents;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 use App\User;
 use Hash;
 

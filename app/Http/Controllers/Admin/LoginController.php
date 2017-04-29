@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AdminLoginRequest;
-use App\User;
+//use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,10 +14,12 @@ class LoginController extends Controller
 {
 
     protected $redirectAfterLogout = 'admin/login';
+    protected $userRepository;
 
-    public function __construct()
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->middleware('adminlte')->only('getLogin');
+        $this->userRepository = $userRepository;
     }
 
     public function getLogin()

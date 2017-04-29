@@ -6,6 +6,7 @@ use App\Http\Controllers\ErrorController;
 use App\Http\Requests\Admin\AdminForgotPasswordRequest;
 use App\Http\Requests\AdminResetPasswordRequest;
 use App\Mail\ForgotPassword;
+//use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;

@@ -149,19 +149,11 @@ Route::group(['prefix' => 'admin'],function (){
     Route::post('forgot','Admin\ForgotPasswordController@postForgotPassword')->name('admin.forgot.postForgotPassword');
     Route::get('checkforgot/{idForgot}/{md5Forgot}','Admin\ForgotPasswordController@checkForgot')->name('admin.forgot.checkForgot');
     Route::post('resetpassword','Admin\ForgotPasswordController@resetPassword')->name('admin.resetpassword.resetPassword');
-
-
-
-
     Route::get('dashboard','Admin\DashboardController@getDashboard')->middleware('adminlte')->name('admin.dashboard.getDashboard');
     Route::get('usermanager','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
-
     Route::get('deleteuser/{id}','Admin\UserManagermentController@getDeleteUser')->middleware('adminlte')->name('admin.dashboard.getDeleteUser');
-
     Route::get('userprofile/{id}','Admin\UserManagermentController@getUserProfile')->middleware('adminlte')->name('admin.dashboard.getUserProfile');
-
     Route::get('userlevel/level/{param}','Admin\UserManagermentController@getUserLevel')->middleware('adminlte')->name('admin.dashboard.getUserLevel');
-
     Route::get('newuser','Admin\UserManagermentController@getNewUser')->middleware('adminlte')->name('admin.dashboard.getNewUser');
     Route::post('newuser','Admin\UserManagermentController@postNewUser')->middleware('adminlte')->name('admin.dashboard.postNewUser');
 //    Route::get('usermanager/{id}','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
@@ -176,3 +168,10 @@ Route::get('/home', 'HomeController@index');
 
 // Check logs
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+
+// Test
+Route::get('api/users','APIController@getAllUsers');
+Route::get('products', 'TestController@getAllProduct');
+Route::get('orders', 'TestController@getAllOrder');
+Route::get('users','TestController@getAllUser');
