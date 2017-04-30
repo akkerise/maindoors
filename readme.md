@@ -24,13 +24,15 @@
     ```
     > Tham khảo : [Migrations](https://laravel.com/docs/5.4/migrations)
 
-3. Bind thử 10 trường dữ liệu với faker và seeder command line : 
+3. Bind thử 20 trường dữ liệu với faker và seeder command line : 
 
     ```
-        php artisan db:seed --class=DatabaseSeeder
+        php artisan migrate db:seed
     ```
     
     > Tham khảo : [Seedding](https://laravel.com/docs/5.4/seeding) , [Faker](https://github.com/fzaninotto/Faker)
+4. Repository Pattern
+
 
 
 ## Những phần việc đã làm trong maindoors
