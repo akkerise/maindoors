@@ -23,6 +23,9 @@ class CustomerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            'App\Repositories\CustomerRepositories\Contracts\CustomerRepositoryInterface',
+            'App\Repositories\CustomerRepositories\Eloquents\CustomerRepository'
+        );
     }
 }

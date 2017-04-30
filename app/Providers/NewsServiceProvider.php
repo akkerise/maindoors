@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class CategoryServiceProvider extends ServiceProvider
+class NewsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -24,8 +24,8 @@ class CategoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\Repositories\CategoryRepositories\Contracts\CategoryRepositoryInterface',
-            'App\Repositories\CategoryRepositories\Eloquents\CategoryRepository'
+            'App\Repositories\NewsRepositories\Contracts\NewsRepositoryInterface',
+            'App\Repositories\NewsRepositories\Eloquents\NewsRepository'
         );
     }
 }

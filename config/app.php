@@ -181,7 +181,12 @@ return [
         App\Providers\UserServiceProvider::class,
         App\Providers\ProductServiceProvider::class,
         App\Providers\OrderServiceProvider::class,
-
+        App\Providers\CustomerServiceProvider::class,
+        App\Providers\CategoryServiceProvider::class,
+        App\Providers\MenuServiceProvider::class,
+        App\Providers\NewsServiceProvider::class,
+        App\Providers\ProductCustomFieldServiceProvider::class,
+        App\Providers\CustomFieldServiceProvider::class,
 
         // Laravel Log View
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
