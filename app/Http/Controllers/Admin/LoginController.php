@@ -19,19 +19,19 @@ class LoginController extends Controller
 
     public function __construct(UserRepositoryInterface $userRepository)
     {
-//        $this->middleware('adminlte')->only('getLogin');
         $this->userRepository = $userRepository;
     }
 
     public function getLogin()
     {
-        // dd(1);
-//        if (Auth::user()->level === 1) {
-//            return redirect()->route('admin.dashboard.getDashboard');
-//        } else {
-//            return view('adminlte.pages.login');
-//        }
-        return view('adminlte.pages.login');
+        if (empty(Auth::user())){
+            return view('adminlte.pages.login');
+        }else{
+            return redirect()->route('admin.dashboard.getDashboard')->with([
+                'msgAlert' => 'Bạn đã đăng nhập nên không thể đăng nhập lại !',
+                'lvlAlert' => 'warning'
+            ]);
+        }
     }
 
     public function postLogin(AdminLoginRequest $request)
@@ -41,20 +41,15 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($login)) {
-            if (Auth::user()->level === 1) {
+            if (Auth::check() === true){
                 return redirect()->route('admin.dashboard.getDashboard')->with([
                     'msgAlert' => 'Bạn đã đăng nhập thành công !',
                     'lvlAlert' => 'success'
                 ]);
-            } else {
-                return redirect()->route('admin.login.getLogin')->with([
-                    'msgAlert' => 'Stop. Bạn không có quyền vào khu vực này!',
-                    'lvlAlert' => 'danger'
-                ]);
             }
         } else {
             return redirect()->route('admin.login.getLogin')->with([
-                'msgAlert' => 'Bạn đã đăng nhập thất bại!',
+                'msgAlert' => 'Đăng nhập thất bại, mời bạn nhập lại thông tin!',
                 'lvlAlert' => 'warning'
             ]);
         }

@@ -142,20 +142,25 @@ Route::group(['prefix' => 'admin'],function (){
     Route::get('login','Admin\LoginController@getLogin')->name('admin.login.getLogin');
     Route::post('login','Admin\LoginController@postLogin')->name('admin.login.postLogin');
     Route::get('logout', 'Admin\LoginController@getLogout')->name('admin.login.getLogout');
+
     Route::get('register','Admin\RegisterController@getRegister')->name('admin.register.getRegister');
     Route::post('register','Admin\RegisterController@postRegister')->name('admin.register.postRegister');
     Route::get('confirm','Admin\RegisterController@getConfirm')->name('admin.register.getConfirm');
+
     Route::get('forgot','Admin\ForgotPasswordController@getForgotPassword')->name('admin.forgot.getForgotPassword');
     Route::post('forgot','Admin\ForgotPasswordController@postForgotPassword')->name('admin.forgot.postForgotPassword');
     Route::get('checkforgot/{idForgot}/{md5Forgot}','Admin\ForgotPasswordController@checkForgot')->name('admin.forgot.checkForgot');
     Route::post('resetpassword','Admin\ForgotPasswordController@resetPassword')->name('admin.resetpassword.resetPassword');
-    Route::get('dashboard','Admin\DashboardController@getDashboard')->middleware('adminlte')->name('admin.dashboard.getDashboard');
-    Route::get('usermanager','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
-    Route::get('deleteuser/{id}','Admin\UserManagermentController@getDeleteUser')->middleware('adminlte')->name('admin.dashboard.getDeleteUser');
-    Route::get('userprofile/{id}','Admin\UserManagermentController@getUserProfile')->middleware('adminlte')->name('admin.dashboard.getUserProfile');
-    Route::get('userlevel/level/{param}','Admin\UserManagermentController@getUserLevel')->middleware('adminlte')->name('admin.dashboard.getUserLevel');
-    Route::get('newuser','Admin\UserManagermentController@getNewUser')->middleware('adminlte')->name('admin.dashboard.getNewUser');
-    Route::post('newuser','Admin\UserManagermentController@postNewUser')->middleware('adminlte')->name('admin.dashboard.postNewUser');
+
+    Route::group(['middleware' => 'adminlte'], function(){
+        Route::get('dashboard','Admin\DashboardController@getDashboard')->name('admin.dashboard.getDashboard');
+        Route::get('usermanager','Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');
+        Route::get('deleteuser/{id}','Admin\UserManagermentController@getDeleteUser')->name('admin.dashboard.getDeleteUser');
+        Route::get('userprofile/{id}','Admin\UserManagermentController@getUserProfile')->name('admin.dashboard.getUserProfile');
+        Route::get('userlevel/level/{param}','Admin\UserManagermentController@getUserLevel')->name('admin.dashboard.getUserLevel');
+        Route::get('newuser','Admin\UserManagermentController@getNewUser')->name('admin.dashboard.getNewUser');
+        Route::post('newuser','Admin\UserManagermentController@postNewUser')->name('admin.dashboard.postNewUser');
+    });
 //    Route::get('usermanager/{id}','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
 });
 
