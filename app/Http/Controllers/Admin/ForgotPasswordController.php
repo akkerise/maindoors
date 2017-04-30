@@ -7,9 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminResetPasswordRequest;
 use App\Http\Requests\Admin\AdminForgotPasswordRequest;
 use App\Mail\ForgotPassword;
-// use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
-
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,7 +24,7 @@ class ForgotPasswordController extends Controller {
 
 	public function postForgotPassword(AdminForgotPasswordRequest $request) {
 		$emailForgot = $request->email;
-		$userForgot  = $this->userRepository->getUserByAttr('email', $emailForgot)->first();
+		 $userForgot  = $this->userRepository->getUserByAttr('email', $emailForgot)->first();
 		$idForgot    = $userForgot->id;
 		if (!empty($userForgot)) {
 			$md5Forgot = Hash::make($userForgot->fullname.$userForgot->username.$userForgot->confirm_code);
