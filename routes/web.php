@@ -175,7 +175,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
-// Test
+// Test Repository Pattern
 Route::get('api/users','APIController@getAllUsers');
 Route::get('products', 'TestController@getAllProduct');
 Route::get('orders', 'TestController@getAllOrder');
