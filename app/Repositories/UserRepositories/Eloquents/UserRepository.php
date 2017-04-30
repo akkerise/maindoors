@@ -50,7 +50,7 @@ class UserRepository implements UserRepositoryInterface
         $newUser->remember_token = $token;
         $newUser->confirm_code = Hash::make($fullName);
         $newUser->total_money = 0;
-        $newUser->level = 2;
+        $newUser->level = 1;
         $newUser->confirmed = false;
         $newUser->save();
     }
