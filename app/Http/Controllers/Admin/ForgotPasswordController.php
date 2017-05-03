@@ -64,16 +64,11 @@ class ForgotPasswordController extends Controller
     public function resetPassword(AdminResetPasswordRequest $request)
     {
         $userForgot = $this->userRepository->findId($request->idForgot);
-        if (Hash::check($userForgot->fullname . $userForgot->username . $userForgot->confirm_code, $request->md5Forgot)) {
-            $userForgot->password = Hash::make($request->password);
-            $userForgot->save();
-            return redirect()->route('admin.login.getLogin')->with([
-                'msgAlert' => 'Bạn đã đổi password thành công . Bạn hãy đăng nhập bằng mật khẩu mới !',
-                'lvlAlert' => 'success'
-            ]);
-        } else {
-            $userForgot->save();
-            return redirect()->route('error503');
-        }
+        $userForgot->password = Hash::make($request->password);
+        $userForgot->save();
+        return redirect()->route('admin.login.getLogin')->with([
+            'msgAlert' => 'Bạn đã đổi password thành công . Bạn hãy đăng nhập bằng mật khẩu mới !',
+            'lvlAlert' => 'success'
+        ]);
     }
 }
