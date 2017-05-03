@@ -52,21 +52,20 @@ Route::get('/vatlieuxaydung', function () {
 });
 
 
-
 /*Ngân Lượng Checkout V2.0*/
 
-Route::get('nganluong','NganLuongController@index');
-Route::post('nganluong','NganLuongController@indexpost');
-Route::get('nlreceiver','NganLuongController@nlReceiver')->name('nlReceiver');
+Route::get('nganluong', 'NganLuongController@index');
+Route::post('nganluong', 'NganLuongController@indexpost');
+Route::get('nlreceiver', 'NganLuongController@nlReceiver')->name('nlReceiver');
 
 /*Ngân Lượng CheckOut V3.1*/
 
-Route::get('nganluongv3','NganLuongV3Controller@getNLv3');
-Route::post('nganluongv3','NganLuongV3Controller@postNLv3')->name('postNLv3');
-Route::get('nlreceiverv3','NganLuongV3Controller@nlReceiverV3');
+Route::get('nganluongv3', 'NganLuongV3Controller@getNLv3');
+Route::post('nganluongv3', 'NganLuongV3Controller@postNLv3')->name('postNLv3');
+Route::get('nlreceiverv3', 'NganLuongV3Controller@nlReceiverV3');
 
 
-Route::get('getIdUser',function (){
+Route::get('getIdUser', function () {
 //    $idUsers = DB::table('users')->pluck('id');
     $orderIds = DB::table('orders')->pluck('id')->toArray();
     dd($orderIds);
@@ -79,40 +78,40 @@ Route::get('getIdUser',function (){
 // Laravel Log View
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('products','ProductController@index');
-Route::get('product/{id}','ProductController@show');
+Route::get('products', 'ProductController@index');
+Route::get('product/{id}', 'ProductController@show');
 
 
 // View Light Admin
-Route::get('lightadmin',function (){
+Route::get('lightadmin', function () {
     return view('light-admin.master');
 })->name('lightadmin');
-Route::get('dashboard',function (){
+Route::get('dashboard', function () {
     return view('light-admin.blades.dashboard');
 });
-Route::get('user',function (){
+Route::get('user', function () {
     return view('light-admin.blades.user');
 });
-Route::get('icons',function (){
+Route::get('icons', function () {
     return view('light-admin.blades.icons');
 });
-Route::get('maps',function (){
-	return view('light-admin.blades.maps');
+Route::get('maps', function () {
+    return view('light-admin.blades.maps');
 });
-Route::get('table',function (){
-	return view('light-admin.blades.table');
+Route::get('table', function () {
+    return view('light-admin.blades.table');
 });
-Route::get('template',function (){
-	return view('light-admin.blades.template');
+Route::get('template', function () {
+    return view('light-admin.blades.template');
 });
-Route::get('notifications',function (){
-	return view('light-admin.blades.notifications');
+Route::get('notifications', function () {
+    return view('light-admin.blades.notifications');
 });
-Route::get('upgrade',function (){
-	return view('light-admin.blades.upgrade');
+Route::get('upgrade', function () {
+    return view('light-admin.blades.upgrade');
 });
-Route::get('typography',function (){
-	return view('light-admin.blades.typography');
+Route::get('typography', function () {
+    return view('light-admin.blades.typography');
 });
 
 // AdminLTE
@@ -136,34 +135,33 @@ Route::get('typography',function (){
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('homefront');
-Route::get('503','ErrorController@error503')->name('error503');
-Route::get('404','ErrorController@error404')->name('error404');
-Route::group(['prefix' => 'admin'],function (){
-    Route::get('login','Admin\LoginController@getLogin')->name('admin.login.getLogin');
-    Route::post('login','Admin\LoginController@postLogin')->name('admin.login.postLogin');
+Route::get('503', 'ErrorController@error503')->name('error503');
+Route::get('404', 'ErrorController@error404')->name('error404');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('login', 'Admin\LoginController@getLogin')->name('admin.login.getLogin');
+    Route::post('login', 'Admin\LoginController@postLogin')->name('admin.login.postLogin');
     Route::get('logout', 'Admin\LoginController@getLogout')->name('admin.login.getLogout');
 
-    Route::get('register','Admin\RegisterController@getRegister')->name('admin.register.getRegister');
-    Route::post('register','Admin\RegisterController@postRegister')->name('admin.register.postRegister');
-    Route::get('confirm','Admin\RegisterController@getConfirm')->name('admin.register.getConfirm');
+    Route::get('register', 'Admin\RegisterController@getRegister')->name('admin.register.getRegister');
+    Route::post('register', 'Admin\RegisterController@postRegister')->name('admin.register.postRegister');
+    Route::get('confirm', 'Admin\RegisterController@getConfirm')->name('admin.register.getConfirm');
 
-    Route::get('forgot','Admin\ForgotPasswordController@getForgotPassword')->name('admin.forgot.getForgotPassword');
-    Route::post('forgot','Admin\ForgotPasswordController@postForgotPassword')->name('admin.forgot.postForgotPassword');
-    Route::get('checkforgot/{idForgot}/{md5Forgot}','Admin\ForgotPasswordController@checkForgot')->name('admin.forgot.checkForgot');
-    Route::post('resetpassword','Admin\ForgotPasswordController@resetPassword')->name('admin.resetpassword.resetPassword');
+    Route::get('forgot', 'Admin\ForgotPasswordController@getForgotPassword')->name('admin.forgot.getForgotPassword');
+    Route::post('forgot', 'Admin\ForgotPasswordController@postForgotPassword')->name('admin.forgot.postForgotPassword');
+    Route::get('checkforgot/{idForgot}/{md5Forgot}', 'Admin\ForgotPasswordController@checkForgot')->name('admin.forgot.checkForgot');
+    Route::post('resetpassword', 'Admin\ForgotPasswordController@resetPassword')->name('admin.resetpassword.resetPassword');
 
-    Route::group(['middleware' => 'adminlte'], function(){
-        Route::get('dashboard','Admin\DashboardController@getDashboard')->name('admin.dashboard.getDashboard');
-        Route::get('usermanager','Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');
-        Route::get('deleteuser/{id}','Admin\UserManagermentController@getDeleteUser')->name('admin.dashboard.getDeleteUser');
-        Route::get('userprofile/{id}','Admin\UserManagermentController@getUserProfile')->name('admin.dashboard.getUserProfile');
-        Route::get('userlevel/level/{param}','Admin\UserManagermentController@getUserLevel')->name('admin.dashboard.getUserLevel');
-        Route::get('newuser','Admin\UserManagermentController@getNewUser')->name('admin.dashboard.getNewUser');
-        Route::post('newuser','Admin\UserManagermentController@postNewUser')->name('admin.dashboard.postNewUser');
+    Route::group(['middleware' => 'adminlte'], function () {
+        Route::get('dashboard', 'Admin\DashboardController@getDashboard')->name('admin.dashboard.getDashboard');
+        Route::get('usermanager', 'Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');
+        Route::get('deleteuser/{id}', 'Admin\UserManagermentController@getDeleteUser')->name('admin.dashboard.getDeleteUser');
+        Route::get('userprofile/{id}', 'Admin\UserManagermentController@getUserProfile')->name('admin.dashboard.getUserProfile');
+        Route::get('userlevel/level/{param}', 'Admin\UserManagermentController@getUserLevel')->name('admin.dashboard.getUserLevel');
+        Route::get('newuser', 'Admin\UserManagermentController@getNewUser')->name('admin.dashboard.getNewUser');
+        Route::post('newuser', 'Admin\UserManagermentController@postNewUser')->name('admin.dashboard.postNewUser');
     });
 //    Route::get('usermanager/{id}','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
 });
-
 
 
 Auth::routes();
@@ -176,14 +174,14 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
 // Test Repository Pattern
-Route::get('api/users','APIController@getAllUsers');
+Route::get('api/users', 'APIController@getAllUsers');
 Route::get('products', 'TestController@getAllProduct');
 Route::get('orders', 'TestController@getAllOrder');
-Route::get('users','TestController@getAllUser');
-Route::get('customers','TestController@getAllCustomer');
-Route::get('categories','TestController@getAllCategory');
-Route::get('news','TestController@getAllNews');
-Route::get('menus','TestController@getAllMenu');
-Route::get('customfields','TestController@getAllCustomField');
-Route::get('productcustomfields','TestController@getAllProductCustomField');
-Route::get('instead/{nameModel}','TestController@getInstead');
+Route::get('users', 'TestController@getAllUser');
+Route::get('customers', 'TestController@getAllCustomer');
+Route::get('categories', 'TestController@getAllCategory');
+Route::get('news', 'TestController@getAllNews');
+Route::get('menus', 'TestController@getAllMenu');
+Route::get('customfields', 'TestController@getAllCustomField');
+Route::get('productcustomfields', 'TestController@getAllProductCustomField');
+Route::get('instead/{nameModel}', 'TestController@getInstead');

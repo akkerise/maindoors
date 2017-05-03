@@ -35,7 +35,7 @@ class TestController extends Controller
                                 NewsRepositoryInterface $newsRepository,
                                 ProductCustomFieldRepositoryInterface $productcustomfieldRepository,
                                 CustomFieldRepositoryInterface $customfieldRepository
-                                )
+    )
     {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
@@ -44,7 +44,7 @@ class TestController extends Controller
         $this->categoryRepository = $categoryRepository;
         $this->newsRepository = $newsRepository;
         $this->customfieldRepository = $customfieldRepository;
-        $this->productcustomfieldRepository =$productcustomfieldRepository;
+        $this->productcustomfieldRepository = $productcustomfieldRepository;
         $this->menuRepository = $menuRepository;
     }
 
@@ -79,24 +79,33 @@ class TestController extends Controller
         return "Your Data Not Found";
     }
 
-    public function getAllCustomer(){
+    public function getAllCustomer()
+    {
         return $this->customerRepository->getAll();
     }
 
-    public function getAllCategory(){
+    public function getAllCategory()
+    {
         return $this->categoryRepository->getAll();
     }
 
-    public function getAllCustomField(){
+    public function getAllCustomField()
+    {
         return $this->customfieldRepository->getAll();
     }
-    public function getAllMenu(){
+
+    public function getAllMenu()
+    {
         return $this->menuRepository->getAll();
     }
-    public function getAllProductCustomField(){
+
+    public function getAllProductCustomField()
+    {
         return $this->productcustomfieldRepository->getAll();
     }
-    public function getAllNews(){
+
+    public function getAllNews()
+    {
         return $this->newsRepository->getAll();
     }
 }

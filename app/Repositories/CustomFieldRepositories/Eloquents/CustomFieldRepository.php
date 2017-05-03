@@ -5,6 +5,7 @@
  * Date: 5/1/17
  * Time: 2:32 AM
  */
+
 namespace App\Repositories\CustomFieldRepositories\Eloquents;
 
 use App\CustomField;
