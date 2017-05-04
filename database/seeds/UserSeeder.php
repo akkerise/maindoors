@@ -21,16 +21,36 @@ class UserSeeder extends Seeder
                 'password' => $faker->password,
                 'email' => $faker->safeEmail,
                 'address' => $faker->address,
-                'gender' => rand(1,4),
+                'gender' => rand(1, 4),
                 'description' => $faker->text($maxNbChars = 200),
-                'total_money' => $faker->numberBetween($min=10000 ,$max=999999999),
+                'total_money' => $faker->numberBetween($min = 10000, $max = 999999999),
                 'confirm_code' => Hash::make($faker->name),
                 'confirmed' => $faker->boolean(),
-                'level' => $faker->numberBetween($min=1,$max=4),
+                'level' => $faker->numberBetween($min = 1, $max = 4),
                 'remember_token' => $faker->sha256,
                 'created_at' => $faker->dateTime($max = 'now'),
                 'updated_at' => $faker->dateTime($max = 'now'),
             ]);
         }
+
+        if (empty(DB::table('users')->where('username', 'akkerise')->first())) {
+            DB::table('users')->insert([
+                'fullname' => 'AkKeRise',
+                'username' => 'akkerise',
+                'password' => '1chocxuongho',
+                'email' => 'akkerise@gmail.com',
+                'address' => $faker->address,
+                'gender' => 1,
+                'description' => $faker->text($maxNbChars = 200),
+                'total_money' => $faker->numberBetween($min = 10000, $max = 999999999),
+                'confirm_code' => Hash::make($faker->name),
+                'confirmed' => true,
+                'level' => 1,
+                'remember_token' => $faker->sha256,
+                'created_at' => $faker->dateTime($max = 'now'),
+                'updated_at' => $faker->dateTime($max = 'now'),
+            ]);
+        }
+
     }
 }
