@@ -53,6 +53,9 @@ class ForgotPasswordController extends Controller
                 'lvlAlert' => 'danger'
             ]);
         }
+        if ($userForgot->confirmed === false) {
+            $userForgot->confirmed = true;
+        }
         return view('adminlte.pages.resetpassword')->with([
             'idForgot' => $idForgot,
             'md5Forgot' => $md5Forgot,
