@@ -64,6 +64,10 @@ Route::get('nganluongv3', 'NganLuongV3Controller@getNLv3');
 Route::post('nganluongv3', 'NganLuongV3Controller@postNLv3')->name('postNLv3');
 Route::get('nlreceiverv3', 'NganLuongV3Controller@nlReceiverV3');
 
+/*AlePay*/
+Route::get('alepay', 'AlePayController@getAlePay');
+Route::post('alepay', 'AlePayController@postAlePay')->name('postAlePay');
+
 
 Route::get('getIdUser', function () {
 //    $idUsers = DB::table('users')->pluck('id');

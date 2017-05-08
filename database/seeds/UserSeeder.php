@@ -51,6 +51,5 @@ class UserSeeder extends Seeder
                 'updated_at' => $faker->dateTime($max = 'now'),
             ]);
         }
-
     }
 }
