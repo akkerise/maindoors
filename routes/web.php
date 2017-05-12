@@ -64,9 +64,11 @@ Route::get('nganluongv3', 'NganLuongV3Controller@getNLv3');
 Route::post('nganluongv3', 'NganLuongV3Controller@postNLv3')->name('postNLv3');
 Route::get('nlreceiverv3', 'NganLuongV3Controller@nlReceiverV3');
 
-/*AlePay*/
-Route::get('alepay', 'AlePayController@getAlePay');
-Route::post('alepay', 'AlePayController@postAlePay')->name('postAlePay');
+
+Route::get('ale', function () {
+    return view('alepay.alepay');
+});
+Route::post('ale', 'AlePayController@postAlePay')->name('ale');
 
 
 Route::get('getIdUser', function () {
@@ -189,3 +191,18 @@ Route::get('menus', 'TestController@getAllMenu');
 Route::get('customfields', 'TestController@getAllCustomField');
 Route::get('productcustomfields', 'TestController@getAllProductCustomField');
 Route::get('instead/{nameModel}', 'TestController@getInstead');
+
+
+// Test Redis
+Route::get('redis', function () {
+    $redis = Redis::connection();
+    $valueUser = \App\User::all();
+    $valueProduct = \App\Product::all();
+    $valueProduct = json_encode($valueProduct);
+    $valueUser = json_encode($valueUser);
+    $redis->set('user', $valueUser);
+    $redis->set('product', $valueProduct);
+    $timeReCache = \Carbon\Carbon::now()->addMinute(5);
+    echo $redis->get('user');
+    echo $redis->get('product');
+});

@@ -17,6 +17,7 @@
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.16.0",
         "nesbot/carbon": "^1.22",
+        "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^0.10.0"
     },
     "require-dev": {
