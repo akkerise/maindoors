@@ -10,46 +10,38 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('maindoors.blades.home');
+    return view('metronic.blocks.index');
 });
 
-Route::get('/home', function () {
-    return view('maindoors.blades.home');
-});
-
-Route::get('/daututuvan', function () {
-    return view('maindoors.blades.daututuvan');
-});
-
-Route::get('/dangtin', function () {
-    return view('maindoors.blades.dang-tin');
-});
-
-Route::get('/noithat', function () {
-    return view('maindoors.blades.noithat');
-});
-
-Route::get('/sanphamnoithatvlxd', function () {
-    return view('maindoors.blades.sanphamnoithatvlxd');
-});
-
-Route::get('/thuevachothue', function () {
-    return view('maindoors.blades.thuevachothue');
-});
-
-Route::get('/tintucbds', function () {
-    return view('maindoors.blades.tintucbds');
-});
-
-Route::get('/trangsanpham', function () {
-    return view('maindoors.blades.trang_san_pham');
-});
-
-Route::get('/vatlieuxaydung', function () {
-    return view('maindoors.blades.vatlieuxaydung');
-});
+//
+//Route::get('/home', function () {
+//    return view('maindoors.blades.home');
+//});
+//Route::get('/daututuvan', function () {
+//    return view('maindoors.blades.daututuvan');
+//});
+//Route::get('/dangtin', function () {
+//    return view('maindoors.blades.dang-tin');
+//});
+//Route::get('/noithat', function () {
+//    return view('maindoors.blades.noithat');
+//});
+//Route::get('/sanphamnoithatvlxd', function () {
+//    return view('maindoors.blades.sanphamnoithatvlxd');
+//});
+//Route::get('/thuevachothue', function () {
+//    return view('maindoors.blades.thuevachothue');
+//});
+//Route::get('/tintucbds', function () {
+//    return view('maindoors.blades.tintucbds');
+//});
+//Route::get('/trangsanpham', function () {
+//    return view('maindoors.blades.trang_san_pham');
+//});
+//Route::get('/vatlieuxaydung', function () {
+//    return view('maindoors.blades.vatlieuxaydung');
+//});
 
 
 /*Ngân Lượng Checkout V2.0*/
@@ -206,3 +198,14 @@ Route::get('redis', function () {
     echo $redis->get('user');
     echo $redis->get('product');
 });
+
+Route::get('metronic', function(){
+    return view('metronic.app');
+});
+
+Route::get('index', function (){
+   return view('metronic.blocks.index');
+})->name('metronic.home');
+Route::get('metronic-blog', function (){
+    return view('metronic.blocks.blog');
+})->name('metronic.blog');
