@@ -4,7 +4,7 @@
         <div class="container">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a href="index.html">
+                <a href="{{ route('metronic.home') }}">
                     <img src="{!! asset('metronic/assets/layouts/layout3/img/logo-default.jpg') !!}" alt="logo"
                          class="logo-default">
                 </a>
