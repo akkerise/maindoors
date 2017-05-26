@@ -13,7 +13,7 @@ class CustomerSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         $limit = 20;
-        for ($i = 0; $i < $limit; $i++) {
+        for ($i = 1; $i < $limit; $i++) {
             DB::table('customers')->insert([
                 'name' => $faker->name,
                 'address' => $faker->address,

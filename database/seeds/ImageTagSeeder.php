@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Categories;
-class MenuSeeder extends Seeder
+
+class ImageTagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,13 +12,13 @@ class MenuSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 20;
-        $cateIds = Categories::all()->pluck('id')->toArray();
+        $limit = 100;
+        $imageIds = App\Images::all()->pluck('id')->toArray();
+        $tagIds = App\Tag::all()->pluck('id')->toArray();
         for ($i = 0; $i < $limit; $i++) {
-            DB::table('menus')->insert([
-                'name' => $faker->name,
-                'cate_id' => $faker->randomElement($cateIds),
-                'parent_id' => rand(1,$limit),
+            DB::table('image_tags')->insert([
+                'image_id' => $faker->randomElement($imageIds),
+                'tag_id' => $faker->randomElement($tagIds),
                 'created_at' => $faker->dateTime($max = 'now'),
                 'updated_at' => $faker->dateTime($max = 'now'),
             ]);

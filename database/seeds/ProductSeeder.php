@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
         $cateIds = Categories::all()->pluck('id')->toArray();
         $userIds = User::all()->pluck('id')->toArray();
         $customerIds = Customer::all()->pluck('id')->toArray();
-        for ($i = 0; $i < $limit; $i++) {
+        for ($i = 1; $i < $limit; $i++) {
             DB::table('products')->insert([
                 'name' => $faker->name,
                 'price' => $faker->numberBetween(1000,999999999),

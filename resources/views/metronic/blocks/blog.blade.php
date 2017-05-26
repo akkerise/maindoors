@@ -1,4 +1,6 @@
 @extends('metronic.app')
+@section('title', 'Blog')
+@section('title-description', 'blog listing page')
 @section('content-body')
     <div class="page-content">
         <div class="container">
@@ -9,7 +11,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Blog</span>
+                    <a href="{{ route('metronic.blog') }}">Blog</a>
                 </li>
             </ul>
             <!-- END PAGE BREADCRUMBS -->
@@ -21,7 +23,7 @@
                             <div class="blog-post-lg bordered blog-container">
                                 <div class="blog-img-thumb">
                                     <a href="javascript:;">
-                                        <img src="{{ asset('metronic/assets/pages/img/page_general_search/5.jpg') }}" />
+                                        <img src="{{ asset('metronic/assets/pages/img/page_general_search/5.jpg') }}">
                                     </a>
                                 </div>
                                 <div class="blog-post-content">
@@ -56,7 +58,7 @@
                             <div class="blog-post-lg bordered blog-container">
                                 <div class="blog-img-thumb">
                                     <a href="javascript:;">
-                                        <img src="{{ asset('metronic/assets/pages/img/page_general_search/05.jpg') }}" />
+                                        <img src="{{ asset('metronic/assets/pages/img/page_general_search/05.jpg') }}">
                                     </a>
                                 </div>
                                 <div class="blog-post-content">
@@ -97,7 +99,7 @@
                                             <i class="fa fa-quote-left"></i> Lorem ipsum dolore siat amet consectetuer adipiscing eliot sed diam nonummy nih siad euismod laoreet dolore </div>
                                         <div class="blog-quote-avatar">
                                             <a href="javascript:;">
-                                                <img src="{{ asset('metronic/assets/pages/img/avatars/team12.jpg') }}" />
+                                                <img src="{{ asset('metronic/assets/pages/img/avatars/team12.jpg') }}">
                                             </a>
                                         </div>
                                         <div class="blog-quote-author">
@@ -112,7 +114,7 @@
                                     <div class="blog-video bordered blog-container">
                                         <div class="blog-img-thumb">
                                             <a href="javascript:;">
-                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/4.jpg') }}" />
+                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/4.jpg') }}">
                                             </a>
                                         </div>
                                         <a href="javascript:;" class="blog-video-play">
@@ -129,7 +131,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="blog-banner blog-container" style="background-image:url({{ asset('metronic/assets/pages/img/background/7.jpg') }});">
+                                    <div class="blog-banner blog-container" style="background-image:url('{{ asset('metronic/assets/pages/img/background/7.jpg') }}');">
                                         <h2 class="blog-title blog-banner-title">
                                             <a href="javascript:;">Metronic Latest Features</a>
                                         </h2>
@@ -141,7 +143,7 @@
                                     <div class="blog-post-sm bordered blog-container">
                                         <div class="blog-img-thumb">
                                             <a href="javascript:;">
-                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/1.jpg') }}" />
+                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/1.jpg') }}">
                                             </a>
                                         </div>
                                         <div class="blog-post-content">
@@ -166,7 +168,7 @@
                                     <div class="blog-post-sm bordered blog-container">
                                         <div class="blog-img-thumb">
                                             <a href="javascript:;">
-                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/02.jpg') }}" />
+                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/02.jpg') }}">
                                             </a>
                                         </div>
                                         <div class="blog-post-content">
@@ -193,7 +195,7 @@
                                     <div class="blog-post-sm bordered blog-container">
                                         <div class="blog-img-thumb">
                                             <a href="javascript:;">
-                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/2.jpg') }}" />
+                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/2.jpg') }}">
                                             </a>
                                         </div>
                                         <div class="blog-post-content">
@@ -218,7 +220,7 @@
                                     <div class="blog-post-sm bordered blog-container">
                                         <div class="blog-img-thumb">
                                             <a href="javascript:;">
-                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/03.jpg') }}" />
+                                                <img src="{{ asset('metronic/assets/pages/img/page_general_search/03.jpg') }}">
                                             </a>
                                         </div>
                                         <div class="blog-post-content">

@@ -15,10 +15,10 @@ class CreateProductCustomFieldsTable extends Migration
     {
         Schema::create('product_custom_fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('custom_field_id')->unsigned();
+            $table->unsignedInteger('custom_field_id');
 //            $table->foreign('custom_field_id')->references('id')->on('custom_fields')->onDelete('cascade');
             $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+//            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

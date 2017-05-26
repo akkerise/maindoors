@@ -1,12 +1,13 @@
 @extends('metronic.app')
-
+@section('title', 'Dashboard')
+@section('title-description', 'dashboard & statistics')
 @section('content-body')
     <div class="page-content">
         <div class="container">
             <!-- BEGIN PAGE BREADCRUMBS -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('metronic.home') }}">Home</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>

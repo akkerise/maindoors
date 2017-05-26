@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('confirm_code');
             $table->boolean('confirmed');
             $table->tinyInteger('level');
+            $table->text('image_avatar',1000);
             $table->rememberToken(100);
             $table->timestamps();
         });

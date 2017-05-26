@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Categories;
 
-class NewsSeeder extends Seeder
+class CommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,15 +12,15 @@ class NewsSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 20;
-        $cateIds = Categories::all()->pluck('id')->toArray();
+        $limit = 88;
+        $userIds = App\User::all()->pluck('id')->toArray();
+        $blogIds = App\Blog::all()->pluck('id')->toArray();
         for ($i = 1; $i < $limit; $i++) {
-            DB::table('news')->insert([
-                'title' => $faker->name,
-                'content' => $faker->numberBetween(1000,999999999),
-                'description' => $faker->text($maxNbChars = 300),
+            DB::table('comments')->insert([
+                'comment' => $faker->text(rand(100,400)),
+                'user_id' => $faker->randomElement($userIds),
+                'blog_id' => $faker->randomElement($blogIds),
                 'parent_id' => rand(1,$limit),
-                'cate_id' => $faker->randomElement($cateIds),
                 'created_at' => $faker->dateTime($max = 'now'),
                 'updated_at' => $faker->dateTime($max = 'now'),
             ]);

@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-05-17.
+    * Generated on 2017-05-26.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -142,6 +142,7 @@ namespace PHPSTORM_META {
             'translator' instanceof \Illuminate\Translation\Translator,
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'command.tinker' instanceof \Laravel\Tinker\Console\TinkerCommand,
+            'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
         ],
         \Illuminate\Contracts\Container\Container::make('') => [
             '' == '@',
@@ -276,6 +277,7 @@ namespace PHPSTORM_META {
             'translator' instanceof \Illuminate\Translation\Translator,
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'command.tinker' instanceof \Laravel\Tinker\Console\TinkerCommand,
+            'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
         ],
         \App::make('') => [
             '' == '@',
@@ -410,6 +412,7 @@ namespace PHPSTORM_META {
             'translator' instanceof \Illuminate\Translation\Translator,
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'command.tinker' instanceof \Laravel\Tinker\Console\TinkerCommand,
+            'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
         ],
         \app('') => [
             '' == '@',
@@ -544,6 +547,7 @@ namespace PHPSTORM_META {
             'translator' instanceof \Illuminate\Translation\Translator,
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'command.tinker' instanceof \Laravel\Tinker\Console\TinkerCommand,
+            'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
         ],
     ];
 }

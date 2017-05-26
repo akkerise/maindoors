@@ -6,11 +6,13 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "andrefigueira/blog-article-faker": "^1.0",
         "barryvdh/laravel-debugbar": "^2.3",
         "barryvdh/laravel-ide-helper": "^2.3",
         "doctrine/dbal": "^2.5",
         "fzaninotto/faker": "^1.6",
         "garygreen/pretty-routes": "^0.0.6",
+        "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.4.*",
         "laravel/passport": "^2.0",
         "laravel/socialite": "^3.0",
@@ -18,7 +20,8 @@
         "league/fractal": "^0.16.0",
         "nesbot/carbon": "^1.22",
         "predis/predis": "^1.1",
-        "rap2hpoutre/laravel-log-viewer": "^0.10.0"
+        "rap2hpoutre/laravel-log-viewer": "^0.10.0",
+        "zjango/laracurl": "^1.1"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

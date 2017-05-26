@@ -20,5 +20,10 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuSeeder::class);
         $this->call(NewsSeeder::class);
         $this->call(ProductCustomFieldSeeder::class);
+        $this->call(ImageSeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(ImageTagSeeder::class);
+        $this->call(BlogSeeder::class);
+        $this->call(CommentSeeder::class);
     }
 }

@@ -16,7 +16,7 @@ class OrderSeeder extends Seeder
         $customerIds = Customer::all()->pluck('id')->toArray();
 //        $orderIds = DB::table('orders')->pluck('id')->toArray();
         $limit = 20;
-        for ($i = 0; $i < $limit; $i++) {
+        for ($i = 1; $i < $limit; $i++) {
             DB::table('orders')->insert([
                 'name' => $faker->name,
                 'receiver_email' => $faker->safeEmail,
@@ -45,7 +45,7 @@ class OrderSeeder extends Seeder
                 'buyer_mobile' => $faker->text($maxNbChars = 10),
                 'buyer_name' => $faker->name,
                 'buyer_email' => $faker->safeEmail,
-                'user_id' => rand(1,20),
+                'user_id' => rand(1,$limit),
                 'created_at' => $faker->dateTime($max = 'now'),
                 'updated_at' => $faker->dateTime($max = 'now')
             ]);

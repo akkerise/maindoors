@@ -157,6 +157,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('userlevel/level/{param}', 'Admin\UserManagermentController@getUserLevel')->name('admin.dashboard.getUserLevel');
         Route::get('newuser', 'Admin\UserManagermentController@getNewUser')->name('admin.dashboard.getNewUser');
         Route::post('newuser', 'Admin\UserManagermentController@postNewUser')->name('admin.dashboard.postNewUser');
+
+        Route::get('/redirect', 'Admin\SocialAdminController@redirect')->name('redirectFacebook');
+        Route::get('/callback', 'SocialAuthController@callback');
     });
 //    Route::get('usermanager/{id}','Admin\UserManagermentController@getUser')->middleware('adminlte')->name('admin.dashboard.getUser');
 });
@@ -209,3 +212,8 @@ Route::get('index', function (){
 Route::get('metronic-blog', function (){
     return view('metronic.blocks.blog');
 })->name('metronic.blog');
+
+Route::get('test-api', function (){
+
+});
+Route::post('test-api', 'APIController@getAllUsers');

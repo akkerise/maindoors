@@ -13,12 +13,12 @@ class ProductCustomFieldSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         $limit = 20;
-        $productIds = App\Product::all()->pluck('id')->toArray();
-        $custom_fieldIds = App\CustomField::all()->pluck('id')->toArray();
-        for ($i = 0; $i < $limit; $i++) {
+//        $custom_fieldIds = \App\CustomField::all()->pluck('id')->toArray();
+//        $productIds = \App\Product::all()->pluck('id')->toArray();
+        for ($i = 1; $i < $limit; $i++) {
             DB::table('product_custom_fields')->insert([
-                'custom_field_id' => $faker->randomElement($custom_fieldIds),
-                'product_id' => $faker->randomElement($productIds),
+                'custom_field_id' => rand(1,$limit),
+                'product_id' => rand(1,$limit),
             ]);
         }
     }
