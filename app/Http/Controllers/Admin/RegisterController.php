@@ -46,7 +46,6 @@ class RegisterController extends Controller
                 $data[$k] = $v;
             }
             $result = $this->userRepository->insertNewUser($data);
-            dd($result);
             if ($result !== true) {
                 return redirect()->back()->withInput()->with([
                     'msgAlert' => 'Bạn gặp vấn đề khi lưu tài khoản mới vào database' . $result,
@@ -54,7 +53,7 @@ class RegisterController extends Controller
                 ]);
             } else {
                 return redirect()->route('admin.login.getLogin')->with([
-                    'msgAlert' => 'Tạo thành công tài khoản mới !',
+                    'msgAlert' => 'Đăng ký thành công tài khoản mới , hãy kiểm tra hòm mail để xác thực tài khoản trước khi đăng nhập !',
                     'lvlAlert' => 'success'
                 ]);
             }

@@ -25,7 +25,6 @@ class ForgotPassword extends Mailable
     {
         $this->idForgot = $idForgot;
         $this->md5Forgot = $md5Forgot;
-//        $this->emailForgot = $emailForgot;
     }
 
     /**
@@ -38,7 +37,6 @@ class ForgotPassword extends Mailable
         return $this->view('adminlte.emails.forgotpassword')->with([
             'idForgot' => $this->idForgot,
             'md5Forgot' => $this->md5Forgot,
-//            'emailForgot' => $this->emailForgot,
         ]);
     }
 }
