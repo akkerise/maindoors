@@ -16,9 +16,14 @@ class RegisterUser extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    protected $idNewUser;
+    protected $md5EmailNewUser;
+
+    public function __construct($idNewUser, $md5EmailNewUser)
     {
-        //
+        $this->idNewUser = $idNewUser;
+        $this->md5EmailNewUser = $md5EmailNewUser;
     }
 
     /**
@@ -28,6 +33,9 @@ class RegisterUser extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('adminlte.emails.registeruser')->with([
+            'idNewUser' => $this->idNewUser,
+            'md5EmailNewUser' => $this->md5EmailNewUser
+        ]);
     }
 }

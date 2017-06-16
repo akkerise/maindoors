@@ -13,6 +13,8 @@ use App\User;
 use Doctrine\DBAL\Driver\PDOException;
 use Hash;
 use Faker;
+use App\Mail\RegisterUser;
+use Illuminate\Support\Facades\Mail;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -49,20 +51,27 @@ class UserRepository implements UserRepositoryInterface
         $data['address'] = $faker->address;
         $data['gender'] = rand(1, 4);
         $data['description'] = $faker->text;
-        $data['total_money'] = $faker->numberBetween(10000, 999999999);
+        $data['total_money'] = $faker->numberBetween($min = 10000, $max = 999999999);
         $data['confirm_code'] = md5($data['email']);
         $data['confirmed'] = FALSE;
-        $data['level'] = rand(1, 4);
+        $data['level'] = rand(3, 4);
         $data['image_avatar'] = $faker->imageUrl($width = 1000, $height = 1000);
         $data['password'] = Hash::make($data['password']);
         $data['remember_token'] = $token;
+
         $newUser = new User($data);
         try {
             $newUser->save();
         } catch (PDOException $e) {
             return $e->getMessage();
         }
-        return true;
+        $idNewUser = $this->getUserByAttr('email', $data['email'])->first()->id;
+        $resultEmail = $this->sendMailNewUser($idNewUser, $data);
+        if ($resultEmail === true) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function updateUserInfo($data, $id)
@@ -82,8 +91,14 @@ class UserRepository implements UserRepositoryInterface
         return true;
     }
 
-    private function convertKeysData($data)
+    private function sendMailNewUser($idNewUser, $data)
     {
-
+        $md5EmailNewUser = md5($data['email']);
+        try{
+            Mail::to($data['email'])->send(new RegisterUser($idNewUser, $md5EmailNewUser));
+        }catch (\Exception $e){
+            return $e->getMessage();
+        }
+        return true;
     }
 }

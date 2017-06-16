@@ -150,6 +150,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('checkforgot/{idForgot}/{md5Forgot}', 'Admin\ForgotPasswordController@checkForgot')->name('admin.forgot.checkForgot');
     Route::post('resetpassword', 'Admin\ForgotPasswordController@resetPassword')->name('admin.resetpassword.resetPassword');
 
+    Route::get('checkregister/{idNewUser}/{md5EmailNewUser}', 'Admin\RegisterController@checkActiveRegister')->name('admin.active.checkActiveRegister');
+
     Route::group(['middleware' => 'adminlte'], function () {
         Route::get('dashboard', 'Admin\DashboardController@getDashboard')->name('admin.dashboard.getDashboard');
         Route::get('usermanager', 'Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');

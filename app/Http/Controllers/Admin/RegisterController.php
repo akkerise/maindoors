@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-// use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Http\Requests\AdminRegisterRequest;
 use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
+
 
 class RegisterController extends Controller
 {
@@ -48,7 +48,7 @@ class RegisterController extends Controller
             $result = $this->userRepository->insertNewUser($data);
             if ($result !== true) {
                 return redirect()->back()->withInput()->with([
-                    'msgAlert' => 'Bạn gặp vấn đề khi lưu tài khoản mới vào database' . $result,
+                    'msgAlert' => 'Mail xác thực tài khoản bị lỗi mời bạn liên hệ với quản trị viên !',
                     'lvlAlert' => 'danger'
                 ]);
             } else {
@@ -58,5 +58,23 @@ class RegisterController extends Controller
                 ]);
             }
         }
+    }
+
+    public function checkActiveRegister($idNewUser, $md5EmailNewUser){
+        $checkNewUser = $this->userRepository->findId($idNewUser);
+        if (md5($checkNewUser->email) !== $md5EmailNewUser) {
+            return redirect()->route('admin.login.getLogin')->with([
+                'msgAlert' => 'Có thể bạn bị giả mạo hoặc đường link xác nhận không đúng !',
+                'lvlAlert' => 'danger'
+            ]);
+        }
+        if ($checkNewUser->confirmed === false) {
+            $checkNewUser->confirmed = true;
+            $checkNewUser->save();
+        }
+        return view('adminlte.pages.login')->with([
+            'msgAlert' => 'Bạn đã xác minh tài khoản thành công mời bạn đăng nhập !',
+            'lvlAlert' => 'success'
+        ]);
     }
 }

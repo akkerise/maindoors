@@ -1,0 +1,2 @@
+{{--<a href="{{ url('admin/checkforgot/'. $idForgot . '/' . $md5Forgot) }}">Bấm vào đây để đặt lại mật khẩu</a><br>--}}
+<a href="{{ route('admin.active.checkActiveRegister',[$idNewUser, $md5EmailNewUser]) }}">Bấm vào đây để xác minh tài khoản mới đăng ký !</a>
