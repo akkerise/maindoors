@@ -54,7 +54,7 @@ class UserRepository implements UserRepositoryInterface
         $data['confirmed'] = FALSE;
         $data['level'] = rand(1, 4);
         $data['image_avatar'] = $faker->imageUrl($width = 1000, $height = 1000);
-        $data['password'] = Hash::make($data['email']);
+        $data['password'] = Hash::make($data['password']);
         $data['remember_token'] = $token;
         $newUser = new User($data);
         try {
