@@ -137,6 +137,7 @@ Route::get('503', 'ErrorController@error503')->name('error503');
 Route::get('404', 'ErrorController@error404')->name('error404');
 Route::group(['prefix' => 'admin'], function () {
     Route::get('login', 'Admin\LoginController@getLogin')->name('admin.login.getLogin');
+    Route::get('/', 'Admin\LoginController@getLogin')->name('admin.login.getLogin');
     Route::post('login', 'Admin\LoginController@postLogin')->name('admin.login.postLogin');
     Route::get('logout', 'Admin\LoginController@getLogout')->name('admin.login.getLogout');
 
