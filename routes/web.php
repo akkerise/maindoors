@@ -159,6 +159,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('newuser', 'Admin\UserManagermentController@getNewUser')->name('admin.dashboard.getNewUser');
         Route::post('newuser', 'Admin\UserManagermentController@postNewUser')->name('admin.dashboard.postNewUser');
 
+
         Route::get('/redirect', 'Admin\SocialAdminController@redirect')->name('redirectFacebook');
         Route::get('/callback', 'SocialAuthController@callback');
     });

@@ -9,204 +9,247 @@
 
     <!-- Content Wrapper. Contains page content -->
 
-            @section('content-header')
+        @section('content-header')
             <section class="content-header">
                 <h1>
                     User Managerment
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="{{ route('admin.dashboard.getDashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                    <li><a href="{{ route('admin.dashboard.getDashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
                     {{--<li><a href="#">Examples</a></li>--}}
                     <li class="active">User Managerment</li>
                 </ol>
             </section>
-            @endsection
+    @endsection
 
-            @section('content')
-                <!-- TABLE: LATEST ORDERS -->
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Users</h3>
+    @section('content')
+        <!-- TABLE: LATEST ORDERS -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Users</h3>
 
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
-                                            class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="table-responsive">
-                                <table class="table no-margin">
-                                    <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Fullname</th>
-                                        <th>Username</th>
-                                        <th>Emails</th>
-                                        <th>Level</th>
-                                        <th>Gender</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @include('adminlte.blocks.errors')
-                                    @include('adminlte.blocks.alerts')
-                                    @foreach($users as $user)
-                                    <tr>
-                                        <td><a href="{{ route('admin.dashboard.getUserProfile',[$user->id]) }}">{{ $user->id }}</a></td>
-                                        <td>{{ $user->fullname }}</td>
-                                        <td>{{ $user->username }}</td>
-                                        <td><span class="label label-success">{{ $user->email }}</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                @if($user->level === 1)
-                                                    Amin
-                                                @elseif($user->level === 2)
-                                                    Mod
-                                                @elseif($user->level === 3)
-                                                    Gangster
-                                                @elseif($user->level === 4)
-                                                    Member
-                                                @else
-                                                    Not Human
-                                                @endif
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @if($user->gender === 1)
-                                                Male
-                                            @elseif($user->gender === 2)
-                                                Female
-                                            @elseif($user->gender === 3)
-                                                Gay
-                                            @else
-                                                Les
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-block btn-xs btn-flat btn-primary" href="">Update</a>
-                                        </td>
-                                        <td>
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
-                                            <a class="btn btn-block btn-xs btn-flat btn-danger" href="{{ route('admin.dashboard.getDeleteUser',[$user->id]) }}">Delete</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    {{--<tr>--}}
-                                        {{--<td><a href="pages/examples/invoice.html">OR1848</a></td>--}}
-                                        {{--<td>Samsung Smart TV</td>--}}
-                                        {{--<td><span class="label label-warning">Pending</span></td>--}}
-                                        {{--<td>--}}
-                                            {{--<div class="sparkbar" data-color="#f39c12" data-height="20">--}}
-                                                {{--90,80,-90,70,61,-83,68--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
-                                        {{--<td>iPhone 6 Plus</td>--}}
-                                        {{--<td><span class="label label-danger">Delivered</span></td>--}}
-                                        {{--<td>--}}
-                                            {{--<div class="sparkbar" data-color="#f56954" data-height="20">--}}
-                                                {{--90,-80,90,70,-61,83,63--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
-                                        {{--<td>Samsung Smart TV</td>--}}
-                                        {{--<td><span class="label label-info">Processing</span></td>--}}
-                                        {{--<td>--}}
-                                            {{--<div class="sparkbar" data-color="#00c0ef" data-height="20">--}}
-                                                {{--90,80,-90,70,-61,83,63--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td><a href="pages/examples/invoice.html">OR1848</a></td>--}}
-                                        {{--<td>Samsung Smart TV</td>--}}
-                                        {{--<td><span class="label label-warning">Pending</span></td>--}}
-                                        {{--<td>--}}
-                                            {{--<div class="sparkbar" data-color="#f39c12" data-height="20">--}}
-                                                {{--90,80,-90,70,61,-83,68--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
-                                        {{--<td>iPhone 6 Plus</td>--}}
-                                        {{--<td><span class="label label-danger">Delivered</span></td>--}}
-                                        {{--<td>--}}
-                                            {{--<div class="sparkbar" data-color="#f56954" data-height="20">--}}
-                                                {{--90,-80,90,70,-61,83,63--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td><a href="pages/examples/invoice.html">OR9842</a></td>--}}
-                                        {{--<td>Call of Duty IV</td>--}}
-                                        {{--<td><span class="label label-success">Shipped</span></td>--}}
-                                        {{--<td>--}}
-                                            {{--<div class="sparkbar" data-color="#00a65a" data-height="20">--}}
-                                                {{--90,80,90,-70,61,-83,63--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer clearfix">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>
-                            <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All
-                                Users</a>
-                        </div>
-                        <!-- /.box-footer -->
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                    class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                    class="fa fa-times"></i></button>
                     </div>
-            @endsection
-        <!-- /.content-wrapper -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fullname</th>
+                                <th>Username</th>
+                                <th>Emails</th>
+                                <th>Level</th>
+                                <th>Gender</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @include('adminlte.blocks.errors')
+                            @include('adminlte.blocks.alerts')
+                            @foreach($users as $user)
+                                <tr>
+                                    <td>
+                                        <a href="{{ route('admin.dashboard.getUserProfile',[$user->id]) }}">{{ $user->id }}</a>
+                                    </td>
+                                    <td>{{ $user->fullname }}</td>
+                                    <td>{{ $user->username }}</td>
+                                    <td><span class="label label-success">{{ $user->email }}</span></td>
+                                    <td>
+                                        <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                            @if($user->level === 1)
+                                                Amin
+                                            @elseif($user->level === 2)
+                                                Mod
+                                            @elseif($user->level === 3)
+                                                Gangster
+                                            @elseif($user->level === 4)
+                                                Member
+                                            @else
+                                                Not Human
+                                            @endif
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @if($user->gender === 1)
+                                            Male
+                                        @elseif($user->gender === 2)
+                                            Female
+                                        @elseif($user->gender === 3)
+                                            Gay
+                                        @else
+                                            Les
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{--<a class="btn btn-block btn-xs btn-flat btn-primary" href="">Update</a>--}}
+                                        <button type="button" class="btn btn-block btn-xs btn-flat btn-primary"
+                                                data-toggle="modal" data-target="#modal-default">
+                                            <a href="#">Update</a>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
+                                        <a class="btn btn-block btn-xs btn-flat btn-danger"
+                                           href="{{ route('admin.dashboard.getDeleteUser',[$user->id]) }}">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            <div class="modal fade" id="modal-default" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span></button>
+                                            <h4 class="modal-title">Update Information User</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="box box-primary">
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+                                                <form role="form">
+                                                    <div class="box-body">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Email address</label>
+                                                            <input type="email" class="form-control"
+                                                                   id="exampleInputEmail1" placeholder="Enter email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default pull-left"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button" class="btn btn-primary">Save changes
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            {{--<tr>--}}
+                            {{--<td><a href="pages/examples/invoice.html">OR1848</a></td>--}}
+                            {{--<td>Samsung Smart TV</td>--}}
+                            {{--<td><span class="label label-warning">Pending</span></td>--}}
+                            {{--<td>--}}
+                            {{--<div class="sparkbar" data-color="#f39c12" data-height="20">--}}
+                            {{--90,80,-90,70,61,-83,68--}}
+                            {{--</div>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                            {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
+                            {{--<td>iPhone 6 Plus</td>--}}
+                            {{--<td><span class="label label-danger">Delivered</span></td>--}}
+                            {{--<td>--}}
+                            {{--<div class="sparkbar" data-color="#f56954" data-height="20">--}}
+                            {{--90,-80,90,70,-61,83,63--}}
+                            {{--</div>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                            {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
+                            {{--<td>Samsung Smart TV</td>--}}
+                            {{--<td><span class="label label-info">Processing</span></td>--}}
+                            {{--<td>--}}
+                            {{--<div class="sparkbar" data-color="#00c0ef" data-height="20">--}}
+                            {{--90,80,-90,70,-61,83,63--}}
+                            {{--</div>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                            {{--<td><a href="pages/examples/invoice.html">OR1848</a></td>--}}
+                            {{--<td>Samsung Smart TV</td>--}}
+                            {{--<td><span class="label label-warning">Pending</span></td>--}}
+                            {{--<td>--}}
+                            {{--<div class="sparkbar" data-color="#f39c12" data-height="20">--}}
+                            {{--90,80,-90,70,61,-83,68--}}
+                            {{--</div>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                            {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
+                            {{--<td>iPhone 6 Plus</td>--}}
+                            {{--<td><span class="label label-danger">Delivered</span></td>--}}
+                            {{--<td>--}}
+                            {{--<div class="sparkbar" data-color="#f56954" data-height="20">--}}
+                            {{--90,-80,90,70,-61,83,63--}}
+                            {{--</div>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                            {{--<td><a href="pages/examples/invoice.html">OR9842</a></td>--}}
+                            {{--<td>Call of Duty IV</td>--}}
+                            {{--<td><span class="label label-success">Shipped</span></td>--}}
+                            {{--<td>--}}
+                            {{--<div class="sparkbar" data-color="#00a65a" data-height="20">--}}
+                            {{--90,80,90,-70,61,-83,63--}}
+                            {{--</div>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>
+                    <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All
+                        Users</a>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+    @endsection
+    <!-- /.content-wrapper -->
     </section>
     <!-- /.content -->
 @endsection
