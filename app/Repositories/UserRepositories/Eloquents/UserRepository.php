@@ -10,7 +10,9 @@ namespace App\Repositories\UserRepositories\Eloquents;
 
 use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 use App\User;
+use Doctrine\DBAL\Driver\PDOException;
 use Hash;
+use Faker;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -40,18 +42,48 @@ class UserRepository implements UserRepositoryInterface
         return User::all()->where($attr, $param);
     }
 
-    public function insertNewUser($fullName, $username, $password, $email, $token)
+    public function insertNewUser($data)
     {
-        $newUser = new User;
-        $newUser->fullname = $fullName;
-        $newUser->username = $username;
-        $newUser->password = Hash::make($password);
-        $newUser->email = $email;
-        $newUser->remember_token = $token;
-        $newUser->confirm_code = Hash::make($fullName);
-        $newUser->total_money = 0;
-        $newUser->level = 1;
-        $newUser->confirmed = false;
-        $newUser->save();
+        $faker = Faker\Factory::create();
+        $token = array_shift($data);
+        $data['address'] = $faker->address;
+        $data['gender'] = rand(1, 4);
+        $data['description'] = $faker->text;
+        $data['total_money'] = $faker->numberBetween(10000, 999999999);
+        $data['confirm_code'] = md5($data['email']);
+        $data['confirmed'] = FALSE;
+        $data['level'] = rand(1, 4);
+        $data['image_avatar'] = $faker->imageUrl($width = 1000, $height = 1000);
+        $data['password'] = Hash::make($data['email']);
+        $data['remember_token'] = $token;
+        $newUser = new User($data);
+        try {
+            $newUser->save();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+        return true;
+    }
+
+    public function updateUserInfo($data, $id)
+    {
+        $updateUser = $this->findId($id);
+        foreach ($data as $k => $v) {
+            if ($k === '_token') {
+                continue;
+            }
+            $updateUser->$k = $v;
+        }
+        try {
+            $updateUser->save();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+        return true;
+    }
+
+    private function convertKeysData($data)
+    {
+
     }
 }

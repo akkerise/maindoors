@@ -18,5 +18,5 @@ interface UserRepositoryInterface
 
     public function getUserByAttr($attr, $param);
 
-    public function insertNewUser($fullName, $username, $password, $email, $token);
+    public function insertNewUser($data);
 }

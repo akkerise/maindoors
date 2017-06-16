@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'fullname', 'username',  'password', 'email', 'address' , 'gender' , 'confirmed' , 'description' , 'total_money'
+        'fullname', 'username',  'password', 'email', 'address' , 'gender' , 'confirmed' , 'description', 'confirm_code', 'image_avatar', 'remember_token'
     ];
 
     /**
@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','level'
+        'password','level'
     ];
 
     public function product(){

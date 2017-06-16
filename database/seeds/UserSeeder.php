@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
             DB::table('users')->insert([
                 'fullname' => $faker->name,
                 'username' => $faker->userName,
-                'password' => $faker->password,
                 'email' => $faker->safeEmail,
+                'password' => $faker->password,
                 'address' => $faker->address,
                 'gender' => rand(1, 4),
                 'description' => $faker->text($maxNbChars = 200),

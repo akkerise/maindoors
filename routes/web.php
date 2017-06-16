@@ -154,6 +154,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('dashboard', 'Admin\DashboardController@getDashboard')->name('admin.dashboard.getDashboard');
         Route::get('usermanager', 'Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');
         Route::get('deleteuser/{id}', 'Admin\UserManagermentController@getDeleteUser')->name('admin.dashboard.getDeleteUser');
+//        Route::get('updateuser/{id}', 'Admin\UserManagermentController@getUpdateUser')->name('admin.dashboard.getUpdateUser');
+        Route::post('updateuser/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
         Route::get('userprofile/{id}', 'Admin\UserManagermentController@getUserProfile')->name('admin.dashboard.getUserProfile');
         Route::get('userlevel/level/{param}', 'Admin\UserManagermentController@getUserLevel')->name('admin.dashboard.getUserLevel');
         Route::get('newuser', 'Admin\UserManagermentController@getNewUser')->name('admin.dashboard.getNewUser');
