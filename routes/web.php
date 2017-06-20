@@ -154,10 +154,16 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => 'adminlte'], function () {
         Route::get('dashboard', 'Admin\DashboardController@getDashboard')->name('admin.dashboard.getDashboard');
+
         Route::get('usermanager', 'Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');
+        Route::get('usermanager/{id}', 'Admin\UserManagermentController@getUserId')->name('admin.dashboard.getUserId');
+        Route::post('usermanager/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
+
         Route::get('deleteuser/{id}', 'Admin\UserManagermentController@getDeleteUser')->name('admin.dashboard.getDeleteUser');
+
 //        Route::get('updateuser/{id}', 'Admin\UserManagermentController@getUpdateUser')->name('admin.dashboard.getUpdateUser');
-        Route::post('updateuser/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
+        // Route::post('updateuser/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
+        
         Route::get('userprofile/{id}', 'Admin\UserManagermentController@getUserProfile')->name('admin.dashboard.getUserProfile');
         Route::get('userlevel/level/{param}', 'Admin\UserManagermentController@getUserLevel')->name('admin.dashboard.getUserLevel');
         Route::get('newuser', 'Admin\UserManagermentController@getNewUser')->name('admin.dashboard.getNewUser');
@@ -197,6 +203,11 @@ Route::get('instead/{nameModel}', 'TestController@getInstead');
 // Test Redis
 Route::get('redis', function () {
     $redis = Redis::connection();
+    try{
+        dd($redis);
+    }catch (PDOException $e){
+        dd($e->getMessage());
+    }
     $valueUser = \App\User::all();
     $valueProduct = \App\Product::all();
     $valueProduct = json_encode($valueProduct);
@@ -204,8 +215,9 @@ Route::get('redis', function () {
     $redis->set('user', $valueUser);
     $redis->set('product', $valueProduct);
     $timeReCache = \Carbon\Carbon::now()->addMinute(5);
-    echo $redis->get('user');
-    echo $redis->get('product');
+//    echo $redis->get('user');
+//    echo $redis->get('product');
+//    return response()->json($redis->get('product'));
 });
 
 Route::get('metronic', function(){

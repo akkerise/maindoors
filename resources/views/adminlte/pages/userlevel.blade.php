@@ -90,12 +90,48 @@
                                         @endif
                                     </td>
                                     <td>
-                                        {{--<a class="btn btn-block btn-xs btn-flat btn-primary" href="">Update</a>--}}
-                                        <button type="button" class="btn btn-block btn-xs btn-flat btn-default"
-                                                data-toggle="modal" data-target="#modal-update">
-                                            <a href="#">Update</a>
-                                        </button>
-                                        <div class="modal fade" id="modal-update" style="display: none;">
+                                        <a class="btn btn-block btn-xs btn-flat btn-primary"
+                                                data-toggle="modal" onclick="updateUser({{ $user }})" data-target="#modal-update" href="#">Update</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-block btn-xs btn-flat btn-danger"
+                                           href="{{ route('admin.dashboard.getDeleteUser',[$user->id]) }}">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+
+                <script>
+                    function updateUser(objUser){
+                        console.log(objUser);
+                        $('#exampleInputFullName').val(objUser.fullname);
+                        $('#exampleInputEmail').val(objUser.email);
+                        $('#exampleInputAddress').val(objUser.address);
+                        $('#formUpdateUser').attr('action', function(){
+                            return '{{ url('admin/usermanager') }}' + '/' + objUser.id;
+                       });
+                    }
+
+                        $('#formUpdateUser').on('submit', function (e) {
+                           e.preventdefault();
+                           console.log($('#updateUser').prop('action'));
+                           $.ajax({
+                               type: 'POST',
+                               url: 'http://localhost:8000/admin/usermanager/19',
+                               data: $('#formUpdateUser').serialize(),
+                               success: function (data) {
+                                   var d = $.parseJSON(data);
+                                   console.log(d);
+                               }
+                           });
+                       });
+                </script>
+
+                <div class="modal fade" id="modal-update" style="display: none;">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -107,47 +143,65 @@
                                                         <div class="box box-primary">
                                                             <!-- /.box-header -->
                                                             <!-- form start -->
-                                                            <form role="form" action="{{ route('admin.dashboard.postUpdateUser', [$user->id]) }}" method="post">
+                                                            <form id="formUpdateUser" role="form" action="" method="post">
                                                                 {{ csrf_field() }}
                                                                 <div class="box-body">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputFullName">Full Name</label>
-                                                                        <input type="text`" class="form-control"
-                                                                               id="exampleInputFullName" placeholder="Full Name" value="{{ $user->fullname }}" name="fullname">
+                                                                        <input type="text" class="form-control" id="exampleInputFullName" placeholder="Full Name" value="" name="fullname" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail">Email Address</label>
-                                                                        <input type="email" class="form-control"
-                                                                               id="exampleInputEmail" placeholder="Enter Email" value="{{ $user->email }}" name="email">
+                                                                        <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter Email" value="" name="email" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputAddress">Address</label>
-                                                                        <input type="text" class="form-control"
-                                                                               id="exampleInputAddress" placeholder="Address" value="{{ $user->address }}" name="address">
+                                                                        <input type="text" class="form-control" id="exampleInputAddress" placeholder="Address" value="" name="address" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputConfirmed">Confirmed</label>
                                                                         <div class="form-group">
-                                                                            <label class="radio-inline"><input value="true" type="radio" name="confirmed">Actived</label>
-                                                                            <label class="radio-inline"><input value="false" type="radio" name="confirmed">Not Active</label>
+                                                                            <label class="radio-inline"><input
+                                                                                        value="true" type="radio"
+                                                                                        name="confirmed">Actived</label>
+                                                                            <label class="radio-inline"><input
+                                                                                        value="false" type="radio"
+                                                                                        name="confirmed" checked="checked" required>Not
+                                                                                Active</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputLevel">Level</label>
                                                                         <div class="form-group">
-                                                                            <label class="radio-inline"><input value="1" type="radio" name="level">Admin</label>
-                                                                            <label class="radio-inline"><input value="2" type="radio" name="level">Mod</label>
-                                                                            <label class="radio-inline"><input value="3" type="radio" name="level">Gangster</label>
-                                                                            <label class="radio-inline"><input value="4" type="radio" name="level">Member</label>
+                                                                            <label class="radio-inline"><input value="1"
+                                                                                                               type="radio"
+                                                                                                               name="level">Admin</label>
+                                                                            <label class="radio-inline"><input value="2"
+                                                                                                               type="radio"
+                                                                                                               name="level">Mod</label>
+                                                                            <label class="radio-inline"><input value="3"
+                                                                                                               type="radio"
+                                                                                                               name="level">Gangster</label>
+                                                                            <label class="radio-inline"><input value="4"
+                                                                                                               type="radio"
+                                                                                                               name="level" checked="checked" required>Member</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputGender">Level</label>
                                                                         <div class="form-group">
-                                                                            <label class="radio-inline"><input value="1" type="radio" name="gender">Male</label>
-                                                                            <label class="radio-inline"><input value="2" type="radio" name="gender">Female</label>
-                                                                            <label class="radio-inline"><input value="3" type="radio" name="gender">Gay</label>
-                                                                            <label class="radio-inline"><input value="4" type="radio" name="gender">Les</label>
+                                                                            <label class="radio-inline"><input value="1"
+                                                                                                               type="radio"
+                                                                                                               name="gender">Male</label>
+                                                                            <label class="radio-inline"><input value="2"
+                                                                                                               type="radio"
+                                                                                                               name="gender">Female</label>
+                                                                            <label class="radio-inline"><input value="3"
+                                                                                                               type="radio"
+                                                                                                               name="gender">Gay</label>
+                                                                            <label class="radio-inline"><input value="4"
+                                                                                                               type="radio"
+                                                                                                               name="gender" checked="checked" required>Les</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -166,115 +220,6 @@
                                             </div>
                                             <!-- /.modal-dialog -->
                                         </div>
-                                    </td>
-                                    <td>
-                                        {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
-                                        <a class="btn btn-block btn-xs btn-flat btn-danger"
-                                           href="{{ route('admin.dashboard.getDeleteUser',[$user->id]) }}">Delete</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            {{--<tr>--}}
-                            {{--<td><a href="pages/examples/invoice.html">OR1848</a></td>--}}
-                            {{--<td>Samsung Smart TV</td>--}}
-                            {{--<td><span class="label label-warning">Pending</span></td>--}}
-                            {{--<td>--}}
-                            {{--<div class="sparkbar" data-color="#f39c12" data-height="20">--}}
-                            {{--90,80,-90,70,61,-83,68--}}
-                            {{--</div>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                            {{--</td>--}}
-                            {{--</tr>--}}
-                            {{--<tr>--}}
-                            {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
-                            {{--<td>iPhone 6 Plus</td>--}}
-                            {{--<td><span class="label label-danger">Delivered</span></td>--}}
-                            {{--<td>--}}
-                            {{--<div class="sparkbar" data-color="#f56954" data-height="20">--}}
-                            {{--90,-80,90,70,-61,83,63--}}
-                            {{--</div>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                            {{--</td>--}}
-                            {{--</tr>--}}
-                            {{--<tr>--}}
-                            {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
-                            {{--<td>Samsung Smart TV</td>--}}
-                            {{--<td><span class="label label-info">Processing</span></td>--}}
-                            {{--<td>--}}
-                            {{--<div class="sparkbar" data-color="#00c0ef" data-height="20">--}}
-                            {{--90,80,-90,70,-61,83,63--}}
-                            {{--</div>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                            {{--</td>--}}
-                            {{--</tr>--}}
-                            {{--<tr>--}}
-                            {{--<td><a href="pages/examples/invoice.html">OR1848</a></td>--}}
-                            {{--<td>Samsung Smart TV</td>--}}
-                            {{--<td><span class="label label-warning">Pending</span></td>--}}
-                            {{--<td>--}}
-                            {{--<div class="sparkbar" data-color="#f39c12" data-height="20">--}}
-                            {{--90,80,-90,70,61,-83,68--}}
-                            {{--</div>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                            {{--</td>--}}
-                            {{--</tr>--}}
-                            {{--<tr>--}}
-                            {{--<td><a href="pages/examples/invoice.html">OR7429</a></td>--}}
-                            {{--<td>iPhone 6 Plus</td>--}}
-                            {{--<td><span class="label label-danger">Delivered</span></td>--}}
-                            {{--<td>--}}
-                            {{--<div class="sparkbar" data-color="#f56954" data-height="20">--}}
-                            {{--90,-80,90,70,-61,83,63--}}
-                            {{--</div>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                            {{--</td>--}}
-                            {{--</tr>--}}
-                            {{--<tr>--}}
-                            {{--<td><a href="pages/examples/invoice.html">OR9842</a></td>--}}
-                            {{--<td>Call of Duty IV</td>--}}
-                            {{--<td><span class="label label-success">Shipped</span></td>--}}
-                            {{--<td>--}}
-                            {{--<div class="sparkbar" data-color="#00a65a" data-height="20">--}}
-                            {{--90,80,90,-70,61,-83,63--}}
-                            {{--</div>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-primary">Update</button>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                            {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger">Delete</button>--}}
-                            {{--</td>--}}
-                            {{--</tr>--}}
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.table-responsive -->
-                </div>
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>

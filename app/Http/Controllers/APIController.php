@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\User;
@@ -17,11 +17,12 @@ class APIController extends Controller
     }
 
     public function getAllUsers(){
-        return $this->userRepository->getAll();
+        return response()->json($this->userRepository->getAll(),200)->header('Content-Type', 'text/plain');
     }
 
-    public function saveApiData(){
-        $client = new Client();
+    public function getUserId($id){
+        $userId = $this->userRepository->findId($id);
 
+        return response()->json($userId,200);
     }
 }

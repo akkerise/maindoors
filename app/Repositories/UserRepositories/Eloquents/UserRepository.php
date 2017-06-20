@@ -77,12 +77,13 @@ class UserRepository implements UserRepositoryInterface
     public function updateUserInfo($data, $id)
     {
         $updateUser = $this->findId($id);
-        foreach ($data as $k => $v) {
-            if ($k === '_token') {
-                continue;
-            }
-            $updateUser->$k = $v;
-        }
+        $updateUser->remember_token = $data['_token'];
+        $updateUser->fullname = $data['fullname'];
+        $updateUser->email = $data['email'];
+        $updateUser->address = $data['address'];
+        $updateUser->confirmed = true;
+        $updateUser->level = $data['level'];
+        $updateUser->gender = $data['gender'];
         try {
             $updateUser->save();
         } catch (PDOException $e) {

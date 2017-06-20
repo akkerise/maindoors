@@ -54,18 +54,25 @@ class UserManagermentController extends Controller
         }
     }
 
-    public function postUpdateUser(Request $request, $id){
-        foreach ($request->all() as $k => $v){
+    public function getUserId($id)
+    {
+        $userId = $this->userManagerment->findId($id);
+        return view('adminlte.pages.usermanagerment', compact('userId'));
+    }
+
+    public function postUpdateUser($id, Request $request)
+    {
+        foreach ($request->all() as $k => $v) {
             $data[$k] = $v;
         }
         $updateUser = $this->userManagerment->findId($id);
-        $result = $this->userManagerment->updateUserInfo($data,$id);
-        if ($result === true){
+        $result = $this->userManagerment->updateUserInfo($data, $id);
+        if ($result === true) {
             return redirect()->route('admin.dashboard.getUser')->with([
                 'msgAlert' => 'Bạn đã cập nhật thành công thông tin của username : ' . $updateUser->username,
                 'lvlAlert' => 'success'
             ]);
-        }else{
+        } else {
             return redirect()->route('admin.dashboard.getUser')->with([
                 'msgAlert' => 'Bạn đã cập nhật thất bại thông tin của username : ' . $updateUser->username,
                 'lvlAlert' => 'warning'

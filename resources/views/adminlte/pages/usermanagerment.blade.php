@@ -59,7 +59,7 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('admin.dashboard.getUserProfile',[$user->id]) }}">{{ $user->id }}</a>
+                                        <a href="{{ route('admin.dashboard.getUserProfile', [$user->id]) }}">{{ $user->id }}</a>
                                     </td>
                                     <td>{{ $user->fullname }}</td>
                                     <td>{{ $user->username }}</td>
@@ -91,82 +91,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        {{--<a class="btn btn-block btn-xs btn-flat btn-primary" href="">Update</a>--}}
-                                        <button type="button" class="btn btn-block btn-xs btn-flat btn-default"
-                                                data-toggle="modal" data-target="#modal-update">
-                                            <a href="#">Update</a>
-                                        </button>
-                                        <div class="modal fade" id="modal-update" style="display: none;">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span></button>
-                                                        <h4 class="modal-title">Update Information User</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="box box-primary">
-                                                            <!-- /.box-header -->
-                                                            <!-- form start -->
-                                                            <form role="form" action="{{ route('admin.dashboard.postUpdateUser', [$user->id]) }}" method="post">
-                                                                {{ csrf_field() }}
-                                                                <div class="box-body">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputFullName">Full Name</label>
-                                                                        <input type="text`" class="form-control"
-                                                                               id="exampleInputFullName" placeholder="Full Name" value="{{ $user->fullname }}" name="fullname">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail">Email Address</label>
-                                                                        <input type="email" class="form-control"
-                                                                               id="exampleInputEmail" placeholder="Enter Email" value="{{ $user->email }}" name="email">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputAddress">Address</label>
-                                                                        <input type="text" class="form-control"
-                                                                               id="exampleInputAddress" placeholder="Address" value="{{ $user->address }}" name="address">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputConfirmed">Confirmed</label>
-                                                                        <div class="form-group">
-                                                                            <label class="radio-inline"><input value="true" type="radio" name="confirmed">Actived</label>
-                                                                            <label class="radio-inline"><input value="false" type="radio" name="confirmed">Not Active</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputLevel">Level</label>
-                                                                        <div class="form-group">
-                                                                            <label class="radio-inline"><input value="1" type="radio" name="level">Admin</label>
-                                                                            <label class="radio-inline"><input value="2" type="radio" name="level">Mod</label>
-                                                                            <label class="radio-inline"><input value="3" type="radio" name="level">Gangster</label>
-                                                                            <label class="radio-inline"><input value="4" type="radio" name="level">Member</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputGender">Level</label>
-                                                                        <div class="form-group">
-                                                                            <label class="radio-inline"><input value="1" type="radio" name="gender">Male</label>
-                                                                            <label class="radio-inline"><input value="2" type="radio" name="gender">Female</label>
-                                                                            <label class="radio-inline"><input value="3" type="radio" name="gender">Gay</label>
-                                                                            <label class="radio-inline"><input value="4" type="radio" name="gender">Les</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default pull-left"
-                                                                            data-dismiss="modal">Close
-                                                                    </button>
-                                                                    <button type="submit" class="btn btn-primary">Update
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /.modal-content -->
-                                            </div>
-                                            <!-- /.modal-dialog -->
-                                        </div>
+                                            <a id="btnUpdate" class="btn btn-block btn-xs btn-flat btn-primary" href="{{ route('admin.dashboard.getUserId', $user->id) }}" onclick="updateUser({{ $user }})" data-target="#modal-update" data-toggle="modal">Update</a>
                                     </td>
                                     <td>
                                         {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
@@ -277,6 +202,130 @@
                     </div>
                     <!-- /.table-responsive -->
                 </div>
+                
+                
+                <div class="modal fade" id="modal-update" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">×</span></button>
+                                                        <h4 class="modal-title">Update Information User</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="box box-primary">
+                                                            <!-- /.box-header -->
+                                                            <!-- form start -->
+                                                            <form id="updateUser" role="form" action="" method="POST">
+                                                                {{ csrf_field() }}
+                                                                <div class="box-body">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputFullName">Full Name</label>
+                                                                        <input type="text" class="form-control" id="exampleInputFullName" placeholder="Full Name" value="" name="fullname" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail">Email Address</label>
+                                                                        <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter Email" value="" name="email" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputAddress">Address</label>
+                                                                        <input type="text" class="form-control" id="exampleInputAddress" placeholder="Address" value="" name="address" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputConfirmed">Confirmed</label>
+                                                                        <div class="form-group">
+                                                                            <label class="radio-inline"><input
+                                                                                        value="true" type="radio"
+                                                                                        name="confirmed">Actived</label>
+                                                                            <label class="radio-inline"><input
+                                                                                        value="false" type="radio"
+                                                                                        name="confirmed" checked="checked" required>Not
+                                                                                Active</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputLevel">Level</label>
+                                                                        <div class="form-group">
+                                                                            <label class="radio-inline"><input value="1"
+                                                                                                               type="radio"
+                                                                                                               name="level">Admin</label>
+                                                                            <label class="radio-inline"><input value="2"
+                                                                                                               type="radio"
+                                                                                                               name="level">Mod</label>
+                                                                            <label class="radio-inline"><input value="3"
+                                                                                                               type="radio"
+                                                                                                               name="level">Gangster</label>
+                                                                            <label class="radio-inline"><input value="4"
+                                                                                                               type="radio"
+                                                                                                               name="level" checked="checked" required>Member</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputGender">Level</label>
+                                                                        <div class="form-group">
+                                                                            <label class="radio-inline"><input value="1"
+                                                                                                               type="radio"
+                                                                                                               name="gender">Male</label>
+                                                                            <label class="radio-inline"><input value="2"
+                                                                                                               type="radio"
+                                                                                                               name="gender">Female</label>
+                                                                            <label class="radio-inline"><input value="3"
+                                                                                                               type="radio"
+                                                                                                               name="gender">Gay</label>
+                                                                            <label class="radio-inline"><input value="4"
+                                                                                                               type="radio"
+                                                                                                               name="gender" checked="checked" required>Les</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-default pull-left"
+                                                                            data-dismiss="modal">Close
+                                                                    </button>
+                                                                    <button type="submit" class="btn btn-primary">Change</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+
+
+                <script>
+                   function updateUser(objUser) {
+                       $("#exampleInputFullName").val(objUser.fullname);
+                       $('#exampleInputEmail').val(objUser.email);
+                       $('#exampleInputAddress').val(objUser.address);
+                       $('#exampleInputId').val(objUser.id);
+                       $('#updateUser').attr('action', function(){
+                            return '{{ url('admin/usermanager') }}' + '/' + objUser.id;
+                       });
+                   }
+                   $(document).ready(function () {
+                       $('#updateUser').on('submit', function (e) {
+                           e.preventDefault();
+                           console.log($('#updateUser').prop('action'));
+                           $.ajax({
+                               type: 'POST',
+                               url: $('#updateUser').prop('action'),
+                               data: $('#updateUser').serialize(),
+                               success: function (data) {
+                                   console.log(data);
+                               }
+                           });
+                       })
+                   });
+                </script>
+                @push('scripts')
+                    <script src="scripts/usermanagerment.js"></script>
+                @endpush
+                
+
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>
