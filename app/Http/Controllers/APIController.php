@@ -16,13 +16,17 @@ class APIController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function getAllUsers(){
-        return response()->json($this->userRepository->getAll(),200)->header('Content-Type', 'text/plain');
+    public function getAllUsers()
+    {
+        $user = $this->userRepository->getAll();
+//        return response()->json($this->userRepository->getAll(), 200)->header('Content-Type', 'text/plain');
+        return response()->view('welcome', compact('user'), 200)->header('Content-Type', 'application/json');
     }
 
-    public function getUserId($id){
+    public function getUserId($id)
+    {
         $userId = $this->userRepository->findId($id);
 
-        return response()->json($userId,200);
+        return response()->json($userId, 200);
     }
 }
