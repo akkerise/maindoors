@@ -19,3 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('clgt', 'APIController@getAllUsers');
 Route::get('clgt/{id}', 'APIController@getUserId');
+
+
+Route::group(['middleware' => 'cors', 'prefix' => '/v1'], function () {
+
+    Route::post('/login', 'UserController@authenticate');
+
+    Route::post('/register', 'UserController@register');
+
+    Route::get('/logout/{api_token}', 'UserController@logout');
+
+});
