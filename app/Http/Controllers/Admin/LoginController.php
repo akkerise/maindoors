@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
-// use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Auth;
 
@@ -24,9 +22,9 @@ class LoginController extends Controller
 
     public function getLogin()
     {
-        if (empty(Auth::user())){
+        if (empty(Auth::user())) {
             return view('adminlte.pages.login');
-        }else{
+        } else {
             return redirect()->route('admin.dashboard.getDashboard')->with([
                 'msgAlert' => 'Bạn đã đăng nhập nên không thể đăng nhập lại !',
                 'lvlAlert' => 'warning'
@@ -40,8 +38,9 @@ class LoginController extends Controller
             'username' => $request->username,
             'password' => $request->password,
         ];
+
         if (Auth::attempt($login)) {
-            if (Auth::check() === true){
+            if (Auth::check() === true) {
                 return redirect()->route('admin.dashboard.getDashboard')->with([
                     'msgAlert' => 'Bạn đã đăng nhập thành công !',
                     'lvlAlert' => 'success'
