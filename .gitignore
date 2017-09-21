@@ -8,3 +8,4 @@ Homestead.json
 Homestead.yaml
 .env.forEnvironmentLocal
 .env.forDeployToHeroku
+/nbproject/private/
