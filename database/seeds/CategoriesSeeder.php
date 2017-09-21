@@ -16,10 +16,11 @@ class CategoriesSeeder extends Seeder
 //        $candidates = Candidate::lists('id');
         for ($i = 1; $i < $limit; $i++) {
             DB::table('categories')->insert([
-                'name' => $faker->name,
+                'category_name' => $faker->name,
                 'keyword' => strtolower($faker->text($maxNbChars = 15)),
                 'description' => $faker->text($maxNbChars = 200),
                 'parent_id' => rand(1,$limit),
+                'status' => rand(0,1),
                 'created_at' => $faker->dateTime($max = 'now'),
                 'updated_at' => $faker->dateTime($max = 'now'),
             ]);
