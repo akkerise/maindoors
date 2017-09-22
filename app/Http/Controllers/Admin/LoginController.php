@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
 use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Auth;
@@ -34,6 +35,7 @@ class LoginController extends Controller
 
     public function postLogin(AdminLoginRequest $request)
     {
+
         $login = [
             'username' => $request->username,
             'password' => $request->password,
@@ -52,6 +54,7 @@ class LoginController extends Controller
                 'lvlAlert' => 'warning'
             ]);
         }
+
     }
 
     public function getLogout(Request $request)

@@ -21,12 +21,18 @@ Route::get('clgt', 'API2Controller@getAllUsers');
 Route::get('clgt/{id}', 'API2Controller@getUserId');
 
 
-Route::group(['middleware' => 'cors', 'prefix' => '/v1'], function () {
+//Route::group(['middleware' => 'cors', 'prefix' => '/v1'], function () {
+//
+//    Route::post('/login', 'UserController@authenticate');
+//
+//    Route::post('/register', 'UserController@register');
+//
+//    Route::get('/logout/{api_token}', 'UserController@logout');
+//
+//});
 
-    Route::post('/login', 'UserController@authenticate');
-
-    Route::post('/register', 'UserController@register');
-
-    Route::get('/logout/{api_token}', 'UserController@logout');
-
+Route::post('auth/register', 'UserController@register');
+Route::post('auth/login', 'UserController@login');
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::get('user', 'UserController@getAuthUser');
 });

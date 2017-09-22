@@ -1,201 +1,71 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use App\User;
+namespace App\Http\Controllers;
+
+use Doctrine\DBAL\Driver\PDOException;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use JWTAuth;
-use Response;
-use App\Repositories\Transformers\UserTransformer;
-use \Illuminate\Http\Response as Res;
-use Validator;
-use Tymon\JWTAuth\Exceptions\JWTException;
+use App\User;
+use JWTAuthException;
+use Hash;
 
-class UserController extends ApiController
+class UserController extends Controller
 {
-    /**
-     * @var \App\Repository\Transformers\UserTransformer
-     * */
-    protected $userTransformer;
+    private $user;
 
-    public function __construct(userTransformer $userTransformer)
+    public function __construct(User $user)
     {
-
-        $this->userTransformer = $userTransformer;
-
+        $this->user = $user;
     }
 
-    /**
-     * @description: Api user authenticate method
-     * @author: Adelekan David Aderemi
-     * @param: email, password
-     * @return: Json String response
-     */
-    public function authenticate(Request $request)
+    public function register(Request $request)
     {
+        try{
 
-        $rules = array (
+            $user = $this->user->create([
+               'fullname' => $request->fullname,
+               'username' => $request->username,
+               'email' => $request->get('email'),
+               'password' => Hash::make($request->get('password')),
+               'confirm_code' => md5($request->fullname . $request->email),
+               'address' => $request->address,
+               'gender' => $request->gender,
+               'description' => $request->description,
+               'total_money' => $request->total_money,
+               'confirmed' => $request->confirmed,
+               'level' => $request->level
+            ]);
 
-            'email' => 'required|email',
-            'password' => 'required',
-
-        );
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator-> fails()){
-
-            return $this->respondValidationError('Fields Validation Failed.', $validator->errors());
-
+        }catch (PDOException $exception){
+            dd($exception->getMessage());
         }
 
-        else{
-
-            $user = User::where('email', $request['email'])->first();
-
-            if($user){
-                $api_token = $user->api_token;
-
-                if ($api_token == NULL){
-                    return $this->_login($request['email'], $request['password']);
-                }
-
-                try{
-
-                    $user = JWTAuth::toUser($api_token);
-
-                    return $this->respond([
-
-                        'status' => 'success',
-                        'status_code' => $this->getStatusCode(),
-                        'message' => 'Already logged in',
-                        'user' => $this->userTransformer->transform($user)
-
-                    ]);
-
-                }catch(JWTException $e){
-
-                    $user->api_token = NULL;
-                    $user->save();
-
-                    return $this->respondInternalError("Login Unsuccessful. An error occurred while performing an action!");
-
-                }
-            }
-            else{
-                return $this->respondWithError("Invalid Email or Password");
-            }
-
-        }
-
-    }
-
-    private function _login($email, $password)
-    {
-
-        $credentials = ['email' => $email, 'password' => $password];
-
-        if ( ! $token = JWTAuth::attempt($credentials)) {
-
-            return $this->respondWithError("User does not exist!");
-
-        }
-
-        $user = JWTAuth::toUser($token);
-
-        $user->api_token = $token;
-        $user->save();
-
-        return $this->respond([
-
-            'status' => 'success',
-            'status_code' => $this->getStatusCode(),
-            'message' => 'Login successful!',
-            'data' => $this->userTransformer->transform($user)
-
+        return response()->json([
+            'status' => 200,
+            'message' => 'User created successfully',
+            'data' => $user
         ]);
     }
 
-    /**
-     * @description: Api user register method
-     * @author: Adelekan David Aderemi
-     * @param: lastname, firstname, username, email, password
-     * @return: Json String response
-     */
-    public function register(Request $request)
+    public function login(Request $request)
     {
-
-        $rules = array (
-            'username' => 'required|max:255',
-            'fullname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:3'
-
-        );
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator-> fails()){
-
-            return $this->respondValidationError('Fields Validation Failed.', $validator->errors());
-
+        $credentials = $request->only('email', 'password');
+        $token = null;
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json(['invalid_email_or_password'], 422);
+            }
+        } catch (JWTAuthException $e) {
+            return response()->json(['failed_to_create_token'], 500);
         }
-
-        else{
-
-            $user = User::create([
-                'username' => $request['username'],
-                'confirm_code' => \Hash::make($request['username']),
-                'confirmed' => 0,
-                'fullname' => $request['fullname'],
-                'api_token' => 'clgt',
-                'image_avatar' => 'http://lorempixel.com/400/200',
-                'email' => $request['email'],
-                'password' => \Hash::make($request['password']),
-
-            ]);
-
-            return $this->_login($request['email'], $request['password']);
-
-        }
-
+        return response()->json(compact('token'));
     }
 
-    /**
-     * @description: Api user logout method
-     * @author: Adelekan David Aderemi
-     * @param: null
-     * @return: Json String response
-     */
-    public function logout($api_token)
+    public function getAuthUser(Request $request)
     {
-
-        try{
-
-            $user = JWTAuth::toUser($api_token);
-
-            $user->api_token = NULL;
-
-            $user->save();
-
-            JWTAuth::setToken($api_token)->invalidate();
-
-            $this->setStatusCode(Res::HTTP_OK);
-
-            return $this->respond([
-
-                'status' => 'success',
-                'status_code' => $this->getSltatusCode(),
-                'message' => 'Logout successful!',
-
-            ]);
-
-        }catch(JWTException $e){
-
-            return $this->respondInternalError("An error occurred while performing an action!");
-
-        }
-
+        $user = JWTAuth::toUser($request->token);
+        return response()->json(['data' => $user]);
     }
-
 }

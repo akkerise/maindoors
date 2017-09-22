@@ -23,7 +23,6 @@ class APIController extends Controller
     public function getUserId($id)
     {
         $userId = $this->userRepository->findId($id);
-
         return response()->json($userId, 200);
     }
 }
