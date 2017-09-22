@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fullname');
+            $table->string('fullname')->nullable();
             $table->string('username');
             $table->string('email')->nullable();
             $table->string('password')->nullable();
@@ -23,11 +23,12 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('gender')->nullable();
             $table->text('description')->nullable();
             $table->integer('total_money')->nullable();
-            $table->string('confirm_code');
-            $table->boolean('confirmed');
+            $table->string('confirm_code')->nullable();
+            $table->boolean('confirmed')->nullable();
             $table->tinyInteger('level')->nullable();
-            $table->text('image_avatar',1000);
-            $table->rememberToken(100);
+            $table->text('image_avatar',1000)->nullable();
+            $table->text('api_token')->nullable();
+            $table->rememberToken(1000);
             $table->timestamps();
         });
     }
