@@ -28,6 +28,7 @@ class UserSeeder extends Seeder
                 'confirmed' => $faker->boolean(),
                 'level' => $faker->numberBetween($min = 1, $max = 4),
                 'remember_token' => $faker->sha256,
+                'api_token' => $faker->sha256,
                 'image_avatar' => $faker->imageUrl($width=1000,$height=1000),
                 'created_at' => $faker->dateTime($max = 'now'),
                 'updated_at' => $faker->dateTime($max = 'now'),

@@ -10,42 +10,44 @@ use JWTAuth;
 use App\User;
 use JWTAuthException;
 use Hash;
+use App\Repositories\UserRepositories\Eloquents\UserRepository;
+use App\Services\UserService;
+use Auth;
 
 class UserController extends Controller
 {
     private $user;
+    private $userService;
+    private $userRepository;
 
-    public function __construct(User $user)
+    public function __construct(User $user, UserService $userService, UserRepository $userRepository)
     {
         $this->user = $user;
+        $this->userService = $userService;
+        $this->userRepository = $userRepository;
     }
 
     public function register(Request $request)
     {
         try {
+            $data = $request->all();
+            $data['password'] = Hash::make($data['password']);
+            foreach ($data as $k => $v) {
+                if ($v === null) {
+                    unset($data[$k]);
+                }
+            }
 
-            $user = $this->user->create([
-                'fullname' => $request->fullname,
-                'username' => $request->username,
-                'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
-                'confirm_code' => md5($request->fullname . $request->email),
-                'address' => $request->address,
-                'gender' => $request->gender,
-                'description' => $request->description,
-                'total_money' => $request->total_money,
-                'confirmed' => $request->confirmed,
-                'level' => $request->level
-            ]);
+            $user = $this->user->create($data);
 
         } catch (PDOException $exception) {
             dd($exception->getMessage());
         }
 
         return response()->json([
-            'status' => 200,
+            'status' => true,
             'message' => 'User created successfully',
-            'data' => $user
+            'user' => $user
         ]);
     }
 
@@ -62,7 +64,7 @@ class UserController extends Controller
         }
 
         try {
-            $this->user->where(['email' => $request->email])->update(['remember_token' => $token]);
+            $this->user->where(['email' => $request->email])->update(['api_token' => $token]);
         } catch (PDOException $e) {
             dd($e->getMessage());
         }
@@ -99,6 +101,25 @@ class UserController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'User updated successfully',
+            'data' => $data
+        ]);
+    }
+
+    public function getUserById(Request $request, $id)
+    {
+        if (!JWTAuth::authenticate($this->userRepository->findId($id)->api_token)) {
+            return response()->json(['token_is_invalid'], 422);
+        }
+        $data = $this->userService->getUserByApiJWT($id);
+        if (!$data) {
+            return response()->setStatusCode(404)->json([
+                'success' => false,
+                'message' => 'Username have id not invalid $id : ' . $id,
+            ]);
+        }
+        return response()->json([
+            'status' => 200,
+            'success' => true,
             'data' => $data
         ]);
     }
