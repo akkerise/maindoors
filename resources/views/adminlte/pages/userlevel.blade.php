@@ -91,7 +91,8 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-block btn-xs btn-flat btn-primary"
-                                                data-toggle="modal" onclick="updateUser({{ $user }})" data-target="#modal-update" href="#">Update</a>
+                                           data-toggle="modal" onclick="updateUser({{ $user }})"
+                                           data-target="#modal-update" href="#">Update</a>
                                     </td>
                                     <td>
                                         <a class="btn btn-block btn-xs btn-flat btn-danger"
@@ -106,120 +107,129 @@
                 </div>
 
                 <script>
-                    function updateUser(objUser){
-                        console.log(objUser);
+                    function updateUser(objUser) {
                         $('#exampleInputFullName').val(objUser.fullname);
                         $('#exampleInputEmail').val(objUser.email);
                         $('#exampleInputAddress').val(objUser.address);
-                        $('#formUpdateUser').attr('action', function(){
+                        $('#levelChecked' + objUser.level).prop('checked', true);
+                        $('#genderChecked' + objUser.gender).prop('checked', true);
+                        $('#formUpdateUser').attr('action', function () {
                             return '{{ url('admin/usermanager') }}' + '/' + objUser.id;
-                       });
+                        });
                     }
 
-                        $('#formUpdateUser').on('submit', function (e) {
-                           e.preventdefault();
-                           console.log($('#updateUser').prop('action'));
-                           $.ajax({
-                               type: 'POST',
-                               url: 'http://localhost:8000/admin/usermanager/19',
-                               data: $('#formUpdateUser').serialize(),
-                               success: function (data) {
-                                   var d = $.parseJSON(data);
-                                   console.log(d);
-                               }
-                           });
-                       });
+                    $('#formUpdateUser').on('submit', function (e) {
+                        e.preventdefault();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:8000/admin/usermanager/',
+                            data: $('#formUpdateUser').serialize(),
+                            success: function (data) {
+                                var d = $.parseJSON(data);
+                                console.log(d);
+                            }
+                        });
+                    });
                 </script>
 
                 <div class="modal fade" id="modal-update" style="display: none;">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span></button>
-                                                        <h4 class="modal-title">Update Information User</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="box box-primary">
-                                                            <!-- /.box-header -->
-                                                            <!-- form start -->
-                                                            <form id="formUpdateUser" role="form" action="" method="post">
-                                                                {{ csrf_field() }}
-                                                                <div class="box-body">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputFullName">Full Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputFullName" placeholder="Full Name" value="" name="fullname" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail">Email Address</label>
-                                                                        <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter Email" value="" name="email" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputAddress">Address</label>
-                                                                        <input type="text" class="form-control" id="exampleInputAddress" placeholder="Address" value="" name="address" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputConfirmed">Confirmed</label>
-                                                                        <div class="form-group">
-                                                                            <label class="radio-inline"><input
-                                                                                        value="true" type="radio"
-                                                                                        name="confirmed">Actived</label>
-                                                                            <label class="radio-inline"><input
-                                                                                        value="false" type="radio"
-                                                                                        name="confirmed" checked="checked" required>Not
-                                                                                Active</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputLevel">Level</label>
-                                                                        <div class="form-group">
-                                                                            <label class="radio-inline"><input value="1"
-                                                                                                               type="radio"
-                                                                                                               name="level">Admin</label>
-                                                                            <label class="radio-inline"><input value="2"
-                                                                                                               type="radio"
-                                                                                                               name="level">Mod</label>
-                                                                            <label class="radio-inline"><input value="3"
-                                                                                                               type="radio"
-                                                                                                               name="level">Gangster</label>
-                                                                            <label class="radio-inline"><input value="4"
-                                                                                                               type="radio"
-                                                                                                               name="level" checked="checked" required>Member</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputGender">Level</label>
-                                                                        <div class="form-group">
-                                                                            <label class="radio-inline"><input value="1"
-                                                                                                               type="radio"
-                                                                                                               name="gender">Male</label>
-                                                                            <label class="radio-inline"><input value="2"
-                                                                                                               type="radio"
-                                                                                                               name="gender">Female</label>
-                                                                            <label class="radio-inline"><input value="3"
-                                                                                                               type="radio"
-                                                                                                               name="gender">Gay</label>
-                                                                            <label class="radio-inline"><input value="4"
-                                                                                                               type="radio"
-                                                                                                               name="gender" checked="checked" required>Les</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default pull-left"
-                                                                            data-dismiss="modal">Close
-                                                                    </button>
-                                                                    <button type="submit" class="btn btn-primary">Update
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /.modal-content -->
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title">Update Information User</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="box box-primary">
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+                                    <form id="formUpdateUser" role="form" action="" method="post">
+                                        {{ csrf_field() }}
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="exampleInputFullName">Full Name</label>
+                                                <input type="text" class="form-control" id="exampleInputFullName"
+                                                       placeholder="Full Name" value="" name="fullname" required>
                                             </div>
-                                            <!-- /.modal-dialog -->
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail">Email Address</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail"
+                                                       placeholder="Enter Email" value="" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputAddress">Address</label>
+                                                <input type="text" class="form-control" id="exampleInputAddress"
+                                                       placeholder="Address" value="" name="address" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputConfirmed">Confirmed</label>
+                                                <div class="form-group">
+                                                    <label class="radio-inline"><input value="true" type="radio"
+                                                                                       name="confirmed">Actived</label>
+                                                    <label class="radio-inline"><input value="false" type="radio"
+                                                                                       name="confirmed"
+                                                                                       checked="checked" required>Not
+                                                        Active</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputLevel">Level</label>
+                                                <div class="form-group">
+                                                    <label class="radio-inline"><input id="levelChecked1"
+                                                                                       value="1"
+                                                                                       type="radio"
+                                                                                       name="level">Admin</label>
+                                                    <label class="radio-inline"><input id="levelChecked2"
+                                                                                       value="2"
+                                                                                       type="radio"
+                                                                                       name="level">Mod</label>
+                                                    <label class="radio-inline"><input id="levelChecked3"
+                                                                                       value="3"
+                                                                                       type="radio"
+                                                                                       name="level">Gangster</label>
+                                                    <label class="radio-inline"><input id="levelChecked4"
+                                                                                       value="4"
+                                                                                       type="radio"
+                                                                                       name="level"
+                                                                                       checked="checked"
+                                                                                       required>Member</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputGender">Level</label>
+                                                <div class="form-group">
+                                                    <label class="radio-inline"><input id="genderChecked1" value="1"
+                                                                                       type="radio"
+                                                                                       name="gender">Male</label>
+                                                    <label class="radio-inline"><input id="genderChecked2" value="2"
+                                                                                       type="radio"
+                                                                                       name="gender">Female</label>
+                                                    <label class="radio-inline"><input id="genderChecked3" value="3"
+                                                                                       type="radio"
+                                                                                       name="gender">Gay</label>
+                                                    <label class="radio-inline"><input id="genderChecked4" value="4"
+                                                                                       type="radio"
+                                                                                       name="gender" checked="checked"
+                                                                                       required>Les</label>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Update
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>

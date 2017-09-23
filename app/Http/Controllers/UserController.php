@@ -111,9 +111,11 @@ class UserController extends Controller
         if (!JWTAuth::authenticate($this->userRepository->findId($id)->api_token)) {
             return response()->json(['token_is_invalid'], 422);
         }
+        
         $data = $this->userService->getUserByApiJWT($id);
+
         if (!$data) {
-            return response()->setStatusCode(404)->json([
+            return response()->json([
                 'success' => false,
                 'message' => 'Username have id not invalid $id : ' . $id,
             ]);
