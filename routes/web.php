@@ -76,6 +76,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('usermanager', 'Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');
         Route::get('usermanager/{id}', 'Admin\UserManagermentController@getUserId')->name('admin.dashboard.getUserId');
+        Route::get('usermanagerajax/{id}', 'Admin\UserManagermentController@getUserIdCallAjax')->name('admin.dashboard.getUserIdCallAjax');
         // Route::get('usermanager/alluser', 'Admin\UserManagermentController@getAllUser')->name('admin.manager.getAllUser');
         Route::post('usermanager/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
 
@@ -128,10 +129,10 @@ Route::get('redis', function () {
     $valueProduct = \App\Product::all();
     $valueProduct = json_encode($valueProduct);
     $valueUser = json_encode($valueUser);
-    $redis->set('user', $valueUser);
-    $redis->set('product', $valueProduct);
+    $redis->set('users', $valueUser);
+    $redis->set('products', $valueProduct);
     $timeReCache = \Carbon\Carbon::now()->addMinute(5);
-    dd($redis->get('user'));
+    dd($redis->get('product'));
 //    echo $redis->get('product');
 //    return response()->json($redis->get('product'));
 });

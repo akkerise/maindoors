@@ -21,5 +21,5 @@ interface RedisServiceInterface {
 
     public function getterRedis();
     
-    public function reloadData();
+    public function reloadDataExpiresTime();
 }

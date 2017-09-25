@@ -57,7 +57,7 @@
                             @include('adminlte.blocks.errors')
                             @include('adminlte.blocks.alerts')
                             @if(!empty($users))
-                                @foreach($users as $user)
+                                @foreach($users as $userData => $user)
                                 <tr>
                                     <td>
                                         <a href="{{ route('admin.dashboard.getUserProfile', [$user->id]) }}">{{ $user->id }}</a>
@@ -80,6 +80,7 @@
                                             @endif
                                         </div>
                                     </td>
+                                    
                                     <td>
                                         @if($user->gender === 1)
                                             Male
@@ -92,9 +93,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a id="btnUpdate" class="btn btn-block btn-xs btn-flat btn-primary"
-                                           onclick="updateUser({{ $user }})" data-target="#modal-update"
-                                           data-toggle="modal">Update</a>
+                                        <a id="btnUpdate" name="{{ $user->id }}"  class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a>
+                                        {{-- <a id="btnUpdate" class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a> --}}
                                     </td>
                                     <td>
                                         {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
@@ -104,7 +104,6 @@
                                 </tr>
                             @endforeach
                             @endif
-
                             {{--<tr>--}}
                             {{--<td><a href="pages/examples/invoice.html">OR1848</a></td>--}}
                             {{--<td>Samsung Smart TV</td>--}}
@@ -206,14 +205,6 @@
                     </div>
                     <!-- /.table-responsive -->
                 </div>
-
-
-                
-
-
-
-
-
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>
@@ -223,16 +214,28 @@
                 <!-- /.box-footer -->
             </div>
             <script>
-                    function updateUser(objUser) {
-                        $('#exampleInputFullName').val(objUser.fullname);
-                        $('#exampleInputEmail').val(objUser.email);
-                        $('#exampleInputAddress').val(objUser.address);
-                        $('#levelChecked' + objUser.level).prop('checked', true);
-                        $('#genderChecked' + objUser.gender).prop('checked', true);
-                        $('#formUpdateUser').prop('action', function () {
-                            return '{{ url('admin/usermanager') }}' + '/' + objUser.id;
-                        });
-                    }
+
+                   $('#btnUpdate').on('click', function (e) {
+                     e.preventDefault();
+                     let idUser = $this;
+                     console.log(idUser);
+                     $.ajax({
+                        type: 'GET',
+                        url: 'http://localhost:8000/admin/usermanagerajax/'+ id,
+                        success: function(data) {
+                            let user = data.user;
+                            $('#exampleInputFullName').val(user.fullname);
+                            $('#exampleInputEmail').val(user.email);
+                            $('#exampleInputAddress').val(user.address);
+                            $('#levelChecked' + user.level).prop('checked', true);
+                            $('#genderChecked' + user.gender).prop('checked', true);
+                            $('#formUpdateUser').prop('action', function () {
+                                return '{{ url('admin/usermanager') }}' + '/' + user.id;
+                            });
+                        }
+                    });
+                   });
+                    
 
                     function deleteUser(id) {
                         let result = window.confirm('Are you sure delete id : ' + id + ' ?');

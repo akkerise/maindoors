@@ -10,7 +10,7 @@ namespace App\Services;
 
 use App\Services\Contracts\RedisServiceInterface;
 use Redis;
-use Carbon;
+use Carbon\Carbon;
 
 /**
  * Description of RedisService
@@ -30,15 +30,15 @@ class RedisService implements RedisServiceInterface {
     }
 
     public function setterRedis() {
-        $this->redis->set($tableName, $this->data);
+        $this->redis->set($this->tableName, $this->data);
     }
 
     public function getterRedis() {
-        return $this->redis->get($tableName);
+        return $this->redis->get($this->tableName);
     }
 
-    public function reloadData() {
-        $timeReloadData = Carbon::now()->addMinute(5);
+    public function reloadDataExpiresTime() {
+        $this->redis->expire('Data expire in 5 minutes', 300);
     }
 
 }
