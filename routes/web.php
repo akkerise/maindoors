@@ -124,11 +124,6 @@ Route::get('instead/{nameModel}', 'TestController@getInstead');
 // Test Redis
 Route::get('redis', function () {
     $redis = Redis::connection();
-    try{
-        dd($redis);
-    }catch (PDOException $e){
-        dd($e->getMessage());
-    }
     $valueUser = \App\User::all();
     $valueProduct = \App\Product::all();
     $valueProduct = json_encode($valueProduct);
@@ -136,7 +131,7 @@ Route::get('redis', function () {
     $redis->set('user', $valueUser);
     $redis->set('product', $valueProduct);
     $timeReCache = \Carbon\Carbon::now()->addMinute(5);
-//    echo $redis->get('user');
+    dd($redis->get('user'));
 //    echo $redis->get('product');
 //    return response()->json($redis->get('product'));
 });
