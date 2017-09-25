@@ -86,6 +86,7 @@ class UserManagermentController extends Controller {
     }
 
     public function getUserIdCallAjax($id) {
+
         $userId = $this->userManagerment->findId($id);
 
         if(!$userId){

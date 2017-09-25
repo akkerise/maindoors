@@ -93,12 +93,12 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a id="btnUpdate" name="{{ $user->id }}"  class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a>
+                                        <a id="btnUpdate" onclick="updateUser(this, {{ $user->id }})" class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a>
                                         {{-- <a id="btnUpdate" class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a> --}}
                                     </td>
                                     <td>
                                         {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
-                                        <a onclick="deleteUser({{ $user->id }})" id="btnDelete" class="btn btn-block btn-xs btn-flat btn-danger"
+                                        <a id="btnDelete" onclick="deleteUser({{ $user->id }})" class="btn btn-block btn-xs btn-flat btn-danger"
                                            >Delete</a>
                                     </td>
                                 </tr>
@@ -208,35 +208,32 @@
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>
-                    <input type="button" id="viewAllUser" class="btn btn-sm btn-default btn-flat pull-right">View All
-                        Users</input>
+                    <a type="button" id="viewAllUser" class="btn btn-sm btn-default btn-flat pull-right">View All
+                        Users</a>
                 </div>
                 <!-- /.box-footer -->
             </div>
             <script>
 
-                   $('#btnUpdate').on('click', function (e) {
-                     e.preventDefault();
-                     let idUser = $this;
-                     console.log(idUser);
-                     $.ajax({
-                        type: 'GET',
-                        url: 'http://localhost:8000/admin/usermanagerajax/'+ id,
-                        success: function(data) {
-                            let user = data.user;
-                            $('#exampleInputFullName').val(user.fullname);
-                            $('#exampleInputEmail').val(user.email);
-                            $('#exampleInputAddress').val(user.address);
-                            $('#levelChecked' + user.level).prop('checked', true);
-                            $('#genderChecked' + user.gender).prop('checked', true);
-                            $('#formUpdateUser').prop('action', function () {
-                                return '{{ url('admin/usermanager') }}' + '/' + user.id;
-                            });
-                        }
-                    });
-                   });
+                    function updateUser(elm, id){
+                        $.ajax({
+                            type: 'GET',
+                            url: 'http://localhost:8000/admin/usermanagerajax/'+ id,
+                            success: function(data) {
+                                let user = data.user;
+                                $('#exampleInputFullName').val(user.fullname);
+                                $('#exampleInputEmail').val(user.email);
+                                $('#exampleInputAddress').val(user.address);
+                                $('#levelChecked' + user.level).prop('checked', true);
+                                $('#confirmedChecked' + user.confirmed).prop('checked', true);
+                                $('#genderChecked' + user.gender).prop('checked', true);
+                                $('#formUpdateUser').prop('action', function () {
+                                    return '{{ url('admin/usermanager') }}' + '/' + user.id;
+                                });
+                            }
+                        });
+                    }
                     
-
                     function deleteUser(id) {
                         let result = window.confirm('Are you sure delete id : ' + id + ' ?');
                         if(result){
@@ -257,21 +254,6 @@
                         });
                     });
 
-
-
-
-
-                    // $('#viewAllUser').on('click', function(e){
-                    //     $.ajax({
-                    //         type: 'GET',
-                    //         url: 'http://localhost:8000/admin/usermanager/alluser/',
-                    //         data: $('#viewAllUser').val(),
-                    //         success: function (data) {
-                    //             console.log(data);
-                    //         }
-                    //     });
-
-                    // });
                 </script>
 
                 <div class="modal fade" id="modal-update" style="display: none;">
@@ -307,12 +289,12 @@
                                             <div class="form-group">
                                                 <label for="exampleInputConfirmed">Confirmed</label>
                                                 <div class="form-group">
-                                                    <label class="radio-inline"><input value="true" type="radio"
-                                                                                       name="confirmed">Actived</label>
-                                                    <label class="radio-inline"><input value="false" type="radio"
-                                                                                       name="confirmed"
-                                                                                       checked="checked" required>Not
-                                                        Active</label>
+                                                    <label class="radio-inline">
+                                                        <input id="confirmedChecked1" value="1" type="radio" name="confirmed">
+                                                    Actived</label>
+                                                    <label class="radio-inline">
+                                                        <input id="confirmedChecked0" value="0" type="radio" name="confirmed" checked="checked" required>
+                                                    Not Active</label>
                                                 </div>
                                             </div>
                                             <div class="form-group">

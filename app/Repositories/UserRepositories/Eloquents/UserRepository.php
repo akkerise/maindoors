@@ -81,7 +81,7 @@ class UserRepository implements UserRepositoryInterface
         $updateUser->fullname = $data['fullname'];
         $updateUser->email = $data['email'];
         $updateUser->address = $data['address'];
-        $updateUser->confirmed = true;
+        $updateUser->confirmed = $data['confirmed'];
         $updateUser->level = $data['level'];
         $updateUser->gender = $data['gender'];
         try {
