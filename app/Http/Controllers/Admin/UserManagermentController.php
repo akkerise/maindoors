@@ -79,4 +79,34 @@ class UserManagermentController extends Controller
             ]);
         }
     }
+
+
+    // need fix
+    public function getAllUser()
+
+    {
+        
+        // try {
+        //     // $user = $this->userManagerment->getAll();
+        //     // $user = User::all();
+        //     $user = '1';
+        // } catch (PDOException $e) {
+        //     dd($e->getMessage());
+        // }
+        // if (!$user) {
+        //     return response()->json([
+        //         'status' => 422,
+        //         'success' => false,
+        //         'message' => 'User not found same you wish !'
+        //     ]);
+        // }
+        // return response()->json([
+        //     'status' => 200,
+        //     'success' => true,
+        //     'data' => $user
+        // ]);
+        
+
+        return 1;
+    }
 }

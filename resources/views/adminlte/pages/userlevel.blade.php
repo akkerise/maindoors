@@ -122,8 +122,7 @@
                         e.preventdefault();
                         $.ajax({
                             type: 'POST',
-                            url: 'http://localhost:8000/admin/usermanager/',
-                            data: $('#formUpdateUser').serialize(),
+                            url: 'http://localhost:8000/admin/usermanager/alluser',
                             success: function (data) {
                                 var d = $.parseJSON(data);
                                 console.log(d);

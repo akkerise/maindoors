@@ -76,6 +76,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('usermanager', 'Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');
         Route::get('usermanager/{id}', 'Admin\UserManagermentController@getUserId')->name('admin.dashboard.getUserId');
+        // Route::get('usermanager/alluser', 'Admin\UserManagermentController@getAllUser')->name('admin.manager.getAllUser');
         Route::post('usermanager/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
 
         Route::get('deleteuser/{id}', 'Admin\UserManagermentController@getDeleteUser')->name('admin.dashboard.getDeleteUser');
@@ -87,6 +88,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('userlevel/level/{param}', 'Admin\UserManagermentController@getUserLevel')->name('admin.dashboard.getUserLevel');
         Route::get('newuser', 'Admin\UserManagermentController@getNewUser')->name('admin.dashboard.getNewUser');
         Route::post('newuser', 'Admin\UserManagermentController@postNewUser')->name('admin.dashboard.postNewUser');
+
 
 
         Route::get('/redirect', 'Admin\SocialAdminController@redirect')->name('redirectFacebook');

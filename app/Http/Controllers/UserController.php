@@ -111,7 +111,7 @@ class UserController extends Controller
         if (!JWTAuth::authenticate($this->userRepository->findId($id)->api_token)) {
             return response()->json(['token_is_invalid'], 422);
         }
-        
+
         $data = $this->userService->getUserByApiJWT($id);
 
         if (!$data) {
@@ -126,4 +126,25 @@ class UserController extends Controller
             'data' => $data
         ]);
     }
+
+    // public function getAllUser(Request $request, $id)
+    // {
+    //     if (!JWTAuth::authenticate($this->userRepository->findId($id)->api_token)) {
+    //         return response()->json(['token_is_invalid'], 422);
+    //     }
+        
+    //     $data = $this->userService->getUserByApiJWT($id);
+
+    //     if (!$data) {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Username have id not invalid $id : ' . $id,
+    //         ]);
+    //     }
+    //     return response()->json([
+    //         'status' => 200,
+    //         'success' => true,
+    //         'data' => $data
+    //     ]);
+    // }
 }

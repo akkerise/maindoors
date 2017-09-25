@@ -56,7 +56,8 @@
                             <tbody>
                             @include('adminlte.blocks.errors')
                             @include('adminlte.blocks.alerts')
-                            @foreach($users as $user)
+                            @if(!empty($users))
+                                @foreach($users as $user)
                                 <tr>
                                     <td>
                                         <a href="{{ route('admin.dashboard.getUserProfile', [$user->id]) }}">{{ $user->id }}</a>
@@ -92,17 +93,17 @@
                                     </td>
                                     <td>
                                         <a id="btnUpdate" class="btn btn-block btn-xs btn-flat btn-primary"
-                                           href="{{ route('admin.dashboard.getUserId', $user->id) }}"
                                            onclick="updateUser({{ $user }})" data-target="#modal-update"
                                            data-toggle="modal">Update</a>
                                     </td>
                                     <td>
                                         {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
-                                        <a class="btn btn-block btn-xs btn-flat btn-danger"
-                                           href="{{ route('admin.dashboard.getDeleteUser',[$user->id]) }}">Delete</a>
+                                        <a onclick="deleteUser({{ $user->id }})" id="btnDelete" class="btn btn-block btn-xs btn-flat btn-danger"
+                                           >Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
 
                             {{--<tr>--}}
                             {{--<td><a href="pages/examples/invoice.html">OR1848</a></td>--}}
@@ -207,6 +208,69 @@
                 </div>
 
 
+                
+
+
+
+
+
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>
+                    <input type="button" id="viewAllUser" class="btn btn-sm btn-default btn-flat pull-right">View All
+                        Users</input>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <script>
+                    function updateUser(objUser) {
+                        $('#exampleInputFullName').val(objUser.fullname);
+                        $('#exampleInputEmail').val(objUser.email);
+                        $('#exampleInputAddress').val(objUser.address);
+                        $('#levelChecked' + objUser.level).prop('checked', true);
+                        $('#genderChecked' + objUser.gender).prop('checked', true);
+                        $('#formUpdateUser').prop('action', function () {
+                            return '{{ url('admin/usermanager') }}' + '/' + objUser.id;
+                        });
+                    }
+
+                    function deleteUser(id) {
+                        let result = window.confirm('Are you sure delete id : ' + id + ' ?');
+                        if(result){
+                            window.location.replace('http://localhost:8000/admin/deleteuser/' + id);
+                        }
+                    }
+
+                    $('#formUpdateUser').on('submit', function (e) {
+                        e.preventdefault();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:8000/admin/usermanager/alluser',
+                            data: $('#formUpdateUser').serialize(),
+                            success: function (data) {
+                                var d = $.parseJSON(data);
+                                console.log(d);
+                            }
+                        });
+                    });
+
+
+
+
+
+                    // $('#viewAllUser').on('click', function(e){
+                    //     $.ajax({
+                    //         type: 'GET',
+                    //         url: 'http://localhost:8000/admin/usermanager/alluser/',
+                    //         data: $('#viewAllUser').val(),
+                    //         success: function (data) {
+                    //             console.log(data);
+                    //         }
+                    //     });
+
+                    // });
+                </script>
+
                 <div class="modal fade" id="modal-update" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -305,43 +369,6 @@
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
-
-
-                <script>
-                    function updateUser(objUser) {
-                        $('#exampleInputFullName').val(objUser.fullname);
-                        $('#exampleInputEmail').val(objUser.email);
-                        $('#exampleInputAddress').val(objUser.address);
-                        $('#levelChecked' + objUser.level).prop('checked', true);
-                        $('#genderChecked' + objUser.gender).prop('checked', true);
-                        $('#formUpdateUser').prop('action', function () {
-                            return '{{ url('admin/usermanager') }}' + '/' + objUser.id;
-                        });
-                    }
-
-                    $('#formUpdateUser').on('submit', function (e) {
-                        e.preventdefault();
-                        $.ajax({
-                            type: 'POST',
-                            url: 'http://localhost:8000/admin/usermanager/',
-                            data: $('#formUpdateUser').serialize(),
-                            success: function (data) {
-                                var d = $.parseJSON(data);
-                                console.log(d);
-                            }
-                        });
-                    });
-                </script>
-
-
-                <!-- /.box-body -->
-                <div class="box-footer clearfix">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>
-                    <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All
-                        Users</a>
-                </div>
-                <!-- /.box-footer -->
-            </div>
     @endsection
     <!-- /.content-wrapper -->
     </section>
