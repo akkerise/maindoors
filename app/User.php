@@ -44,9 +44,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
-//    public function checkLevel($username){
-//        $user = $this->all()->where('username',$username)->first();
-//        $level = $user->level;
-//        return $level;
-//    }
+    public function form(){
+
+    }
 }

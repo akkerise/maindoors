@@ -30,7 +30,11 @@ class RedisService implements RedisServiceInterface {
     }
 
     public function setterRedis() {
-        $this->redis->set($this->tableName, $this->data);
+        try{
+            $this->redis->set($this->tableName, $this->data);
+        } catch (\RedisException $ex) {
+            dd($ex->getMessage());
+        }
     }
 
     public function getterRedis() {

@@ -49,7 +49,7 @@
                                 <th>Emails</th>
                                 <th>Level</th>
                                 <th>Gender</th>
-                                <th></th>
+                                <th>Confirmed</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -80,7 +80,6 @@
                                             @endif
                                         </div>
                                     </td>
-                                    
                                     <td>
                                         @if($user->gender === 1)
                                             Male
@@ -93,7 +92,14 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a id="btnUpdate" onclick="updateUser(this, {{ $user->id }})" class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a>
+                                        @if($user->confirmed === 1)
+                                            TRUE
+                                        @else
+                                            FALSE
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a id="btnUpdate" onclick="updateUser({{ $user->id }})" class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a>
                                         {{-- <a id="btnUpdate" class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a> --}}
                                     </td>
                                     <td>
@@ -215,7 +221,7 @@
             </div>
             <script>
 
-                    function updateUser(elm, id){
+                    function updateUser(id){
                         $.ajax({
                             type: 'GET',
                             url: 'http://localhost:8000/admin/usermanagerajax/'+ id,
@@ -242,7 +248,7 @@
                     }
 
                     $('#formUpdateUser').on('submit', function (e) {
-                        e.preventdefault();
+                        e.preventDefault();
                         $.ajax({
                             type: 'POST',
                             url: 'http://localhost:8000/admin/usermanager/alluser',
