@@ -34,12 +34,9 @@ class Kernel extends ConsoleKernel {
      * @return void
      */
     protected function schedule(Schedule $schedule) {
-        // $schedule->call(function () {
-        //     $users = User::all();
-        //     $this->userService = new RedisService($users, 'users');
-        //     $this->userService->setterRedis();
-        //     $this->userService->reloadDataExpiresTime();
-        // })->everyMinute();
+        $schedule->call(function () {
+
+        })->everyMinute();
 //        $schedule->call('App\Repositories\UserRepositories\UserService@setProductsOnRedis')->everyMinute();
     }
 
