@@ -12,11 +12,11 @@ use App\Services\RedisService;
 
 class Kernel extends ConsoleKernel {
 
-    public $userService;
+    // public $userService;
 
-    public function __construct(UserService $userService){
-        $this->userService = $userService;
-    }
+    // public function __construct(UserService $userService){
+    //     $this->userService = $userService;
+    // }
 
     /**
      * The Artisan commands provided by your application.
@@ -34,12 +34,12 @@ class Kernel extends ConsoleKernel {
      * @return void
      */
     protected function schedule(Schedule $schedule) {
-        $schedule->call(function () {
-            $users = User::all();
-            $this->userService = new RedisService($users, 'users');
-            $this->userService->setterRedis();
-            $this->userService->reloadDataExpiresTime();
-        })->everyMinute();
+        // $schedule->call(function () {
+        //     $users = User::all();
+        //     $this->userService = new RedisService($users, 'users');
+        //     $this->userService->setterRedis();
+        //     $this->userService->reloadDataExpiresTime();
+        // })->everyMinute();
 //        $schedule->call('App\Repositories\UserRepositories\UserService@setProductsOnRedis')->everyMinute();
     }
 
