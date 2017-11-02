@@ -224,7 +224,7 @@
                     function updateUser(id){
                         $.ajax({
                             type: 'GET',
-                            url: 'http://localhost:8000/admin/usermanagerajax/'+ id,
+                            url: '{{ url('admin/usermanagerajax') }}' + '/' + id,
                             success: function(data) {
                                 let user = data.user;
                                 $('#exampleInputFullName').val(user.fullname);
@@ -243,7 +243,7 @@
                     function deleteUser(id) {
                         let result = window.confirm('Are you sure delete id : ' + id + ' ?');
                         if(result){
-                            window.location.replace('http://localhost:8000/admin/deleteuser/' + id);
+                            window.location.replace('{{ url('admin/deleteuser') }}' + '/' + id);
                         }
                     }
 
@@ -251,10 +251,10 @@
                         e.preventDefault();
                         $.ajax({
                             type: 'POST',
-                            url: 'http://localhost:8000/admin/usermanager/alluser',
+                            url: '{{ url('admin/usermanager/alluser') }}',
                             data: $('#formUpdateUser').serialize(),
                             success: function (data) {
-                                var d = $.parseJSON(data);
+                                let d = $.parseJSON(data);
                                 console.log(d);
                             }
                         });

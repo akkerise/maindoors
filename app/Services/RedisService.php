@@ -9,7 +9,7 @@
 namespace App\Services;
 
 use App\Services\Contracts\RedisServiceInterface;
-use Redis;
+use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 
 /**

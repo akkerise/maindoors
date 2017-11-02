@@ -39,7 +39,7 @@ class UserManagermentController extends Controller {
     }
 
     public function getUserLevel($param) {
-
+        
         $showUserLevel = $this->userManagerment->getUserByAttr('level', $param);
         return view('adminlte.pages.userlevel')->with([
                     'showUserLevel' => $showUserLevel
@@ -58,6 +58,7 @@ class UserManagermentController extends Controller {
         } else {
             $nameDeleteUser = $deleteUser->username;
             $deleteUser->delete();
+            $this->userService->updateDatabaseWithRedis();
             return redirect()->route('admin.dashboard.getUser')->with([
                         'msgAlert' => 'Bạn đã xóa thành công username : ' . $nameDeleteUser,
                         'lvlAlert' => 'success'
@@ -78,9 +79,11 @@ class UserManagermentController extends Controller {
         foreach ($request->all() as $k => $v) {
             $data[$k] = $v;
         }
+        
         $updateUser = $this->userManagerment->findId($id);
         $result = $this->userManagerment->updateUserInfo($data, $id);
         if ($result === true) {
+            $this->userService->updateDatabaseWithRedis();
             return redirect()->route('admin.dashboard.getUser')->with([
                         'msgAlert' => 'Bạn đã cập nhật thành công thông tin của username : ' . $updateUser->username,
                         'lvlAlert' => 'success'

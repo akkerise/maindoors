@@ -16,22 +16,25 @@ use JWTAuthException;
 use JWTAuth;
 use Redis;
 
-class UserService extends RedisService {
-    
+class UserService extends RedisService
+{
+
     const API_URL = 'http://localhost:8000/api/user';
 
     protected $userRepository;
 
-    private $userService;
+    private $redisService;
 
     public $allUsers;
 
-    public function __construct(UserRepositoryInterface $userRepository, RedisService $userService) {
+    public function __construct(UserRepositoryInterface $userRepository, RedisService $redisService)
+    {
         $this->userRepository = $userRepository;
-        $this->userService = $userService;
+        $this->redisService = $redisService;
     }
 
-    public function getUserByApiJWT($id) {
+    public function getUserByApiJWT($id)
+    {
         try {
             $data = $this->userRepository->findId($id);
         } catch (PDOException $e) {
@@ -43,51 +46,52 @@ class UserService extends RedisService {
         return $data;
     }
 
-    public function setAllUserOnRedis() {
+    public function setAllUserOnRedis()
+    {
         $users = $this->userRepository->getAll();
-        $this->userService = new RedisService($users, 'users');
-        $this->userService->setterRedis();
-        $this->userService->reloadDataExpiresTime();
+        $this->redisService = new RedisService($users, 'users');
+        $this->redisService->setterRedis();
     }
 
-    private function decodeData($data) {
+    private function decodeData($data)
+    {
         return json_decode($data);
     }
 
-    private function getAllUserByRepository() {
-        return $this->userRepository->getAll();
-    }
-
-    private function getAllUserByRedis() {
-        return $this->userService->getterRedis();
-    }
-
-    public function getAllUser() {
-        $flag = 0;
-        $flag++;
-        if ($flag === 1) {
-            $this->setAllUserOnRedis();
+    public function getAllUser()
+    {
+        if (!$this->redisService->getterRedis() || $this->redisService->getterRedis() === null) {
+            $this->updateDatabaseWithRedis();
+            return $this->userRepository->getAll();
         }
-        if (!$this->getAllUserByRedis() || $this->getAllUserByRedis() === null) {
-            return $this->getAllUserByRepository();
-        }
-        $this->allUsers = $this->decodeData($this->getAllUserByRedis());
+        $this->allUsers = $this->redisService->getterRedis();
         return $this->allUsers;
     }
 
-    public function getUserLevel() {
+    public function getUserLevel()
+    {
         return $this->allUsers;
     }
 
-    protected function arrayToObject($data) {
-        return (object) $data;
+    protected function arrayToObject($data)
+    {
+        return (object)$data;
     }
 
 
-    public function setProductsOnRedis(){
+    public function setProductsOnRedis()
+    {
         $products = Product::all();
-        $this->userService = new RedisService($products, 'products');
-        $this->userService->setterRedis();
-        $this->userService->reloadDataExpiresTime();
+        $this->redisService = new RedisService($products, 'products');
+        $this->redisService->setterRedis();
+        $this->redisService->reloadDataExpiresTime();
     }
+
+    public function updateDatabaseWithRedis()
+    {
+        $users = $this->userRepository->getAll();
+        $this->redisService = new RedisService($users, 'users');
+        $this->redisService->setterRedis();
+    }
+
 }
