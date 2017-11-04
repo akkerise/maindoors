@@ -13,13 +13,9 @@ use App\Services\RedisService;
 use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 use Doctrine\DBAL\Driver\PDOException;
 use JWTAuthException;
-use JWTAuth;
-use Redis;
 
 class UserService extends RedisService
 {
-
-    const API_URL = 'http://localhost:8000/api/user';
 
     protected $userRepository;
 
