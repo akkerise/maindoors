@@ -100,18 +100,17 @@ class UserManagermentController extends Controller {
     public function getUserIdCallAjax($id) {
 
         $userId = $this->userManagerment->findId($id);
-
         if (!$userId) {
             return response()->json([
-                        'success' => false,
-                        'status' => 404
+                'success' => false,
+                'status' => 400
             ]);
         }
 
         return response()->json([
-                    'success' => true,
-                    'status' => 200,
-                    'user' => $userId
+            'success' => true,
+            'status' => 200,
+            'user' => $userId
         ]);
     }
 

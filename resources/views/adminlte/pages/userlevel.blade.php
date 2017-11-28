@@ -90,13 +90,14 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a id="btnUpdate" onclick="updateUser(this, {{ $user->id }})" class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a>
-                                        {{-- <a id="btnUpdate" class="btn btn-block btn-xs btn-flat btn-primary" data-target="#modal-update" data-toggle="modal">Update</a> --}}
+                                        <a id="btnUpdate" data-id="{{$user->id}}"
+                                           class="btn btn-block btn-xs btn-flat btn-primary btnUpdate" data-target="#modal-update"
+                                           data-toggle="modal">Update</a>
                                     </td>
                                     <td>
-                                        {{--<button type="button" class="btn btn-block btn-xs btn-flat btn-danger"></button>--}}
-                                        <a id="btnDelete" onclick="deleteUser({{ $user->id }})" class="btn btn-block btn-xs btn-flat btn-danger"
-                                           >Delete</a>
+                                        <a id="btnDelete" data-id="{{ $user->id }}"
+                                           class="btn btn-block btn-xs btn-flat btn-danger btnDelete"
+                                        >Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -105,47 +106,6 @@
                     </div>
                     <!-- /.table-responsive -->
                 </div>
-
-                <script>
-                    function updateUser(elm, id){
-                        $.ajax({
-                            type: 'GET',
-                            url: 'http://localhost:8000/admin/usermanagerajax/'+ id,
-                            success: function(data) {
-                                let user = data.user;
-                                $('#exampleInputFullName').val(user.fullname);
-                                $('#exampleInputEmail').val(user.email);
-                                $('#exampleInputAddress').val(user.address);
-                                $('#levelChecked' + user.level).prop('checked', true);
-                                $('#confirmedChecked' + user.confirmed).prop('checked', true);
-                                $('#genderChecked' + user.gender).prop('checked', true);
-                                $('#formUpdateUser').prop('action', function () {
-                                    return '{{ url('admin/usermanager') }}' + '/' + user.id;
-                                });
-                            }
-                        });
-                    }
-                    
-                    function deleteUser(id) {
-                        let result = window.confirm('Are you sure delete id : ' + id + ' ?');
-                        if(result){
-                            window.location.replace('http://localhost:8000/admin/deleteuser/' + id);
-                        }
-                    }
-
-                    $('#formUpdateUser').on('submit', function (e) {
-                        e.preventdefault();
-                        $.ajax({
-                            type: 'POST',
-                            url: 'http://localhost:8000/admin/usermanager/alluser',
-                            data: $('#formUpdateUser').serialize(),
-                            success: function (data) {
-                                var d = $.parseJSON(data);
-                                console.log(d);
-                            }
-                        });
-                    });
-                </script>
 
                 <div class="modal fade" id="modal-update" style="display: none;">
                     <div class="modal-dialog">
@@ -181,11 +141,13 @@
                                                 <label for="exampleInputConfirmed">Confirmed</label>
                                                 <div class="form-group">
                                                     <label class="radio-inline">
-                                                        <input id="confirmedChecked1" value="true" type="radio" name="confirmed">
-                                                    Actived</label>
+                                                        <input id="confirmedChecked1" value="true" type="radio"
+                                                               name="confirmed">
+                                                        Actived</label>
                                                     <label class="radio-inline">
-                                                        <input id="confirmedChecked0" value="false" type="radio" name="confirmed" checked="checked" required>
-                                                    Not Active</label>
+                                                        <input id="confirmedChecked0" value="false" type="radio"
+                                                               name="confirmed" checked="checked" required>
+                                                        Not Active</label>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -258,3 +220,6 @@
     </section>
     <!-- /.content -->
 @endsection
+@push('scripts')
+
+@endpush

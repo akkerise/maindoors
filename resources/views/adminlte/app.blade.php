@@ -28,6 +28,14 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/skins/_all-skins.min.css') }}">
+    <script>
+        var config = {!!
+            json_encode([
+            'baseUrl' => "http://" . $_SERVER['SERVER_NAME']
+            ])
+        !!};
+    </script>
+
 
 
 {{--Secure Url--}}
@@ -90,8 +98,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
 <script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
-<script src="{{ asset('adminlte/dist/js/pages/user.js') }}"></script>
-
+<script src="{{ asset('adminlte/dist/js/common.js') }}"></script>
 
 {{--Secure Url--}}
 <!-- jQuery 2.2.3 -->
@@ -116,5 +123,6 @@
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{ secure_asset('adminlte/dist/js/demo.js') }}"></script> --}}
 {{-- <script src="{{ secure_asset('adminlte/dist/js/adminlte.js') }}"></script> --}}
+@stack('scripts')
 </body>
 </html>
