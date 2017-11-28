@@ -118,7 +118,11 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New User</a>
+                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">1</a>
+                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">2</a>
+                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">3</a>
+                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">4</a>
+                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">5</a>
                     <a type="button" id="viewAllUser" class="btn btn-sm btn-default btn-flat pull-right">View All
                         Users</a>
                 </div>

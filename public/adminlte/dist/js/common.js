@@ -4,28 +4,24 @@ $('.btnUpdate').on('click', function () {
         type: 'GET',
         url: config.baseUrl + '/admin/usermanagerajax' + '/' + id,
         beforeSend: function (jqXHR, settings) {
-            console.log(settings.url);
+            // console.log(settings.url)
         }
     })
-        .done(function (data) {
-            console.log(data);
-            let user = data.user;
-            $('#exampleInputFullName').val(user.fullname);
-            $('#exampleInputEmail').val(user.email);
-            $('#exampleInputAddress').val(user.address);
-            $('#levelChecked' + user.level).prop('checked', true);
-            $('#confirmedChecked' + user.confirmed).prop('checked', true);
-            $('#genderChecked' + user.gender).prop('checked', true);
-//                                $('#formUpdateUser').prop('action', function () {
-//                                    return 'admin/usermanager' + '/' + user.id;
-//                                });
-        })
-        .fail(function (err) {
-            console.log(err);
-        })
-        .always(function () {
-            console.log("complete");
-        });
+    .done(function (data) {
+        let user = data.user;
+        $('#exampleInputFullName').val(user.fullname);
+        $('#exampleInputEmail').val(user.email);
+        $('#exampleInputAddress').val(user.address);
+        $('#levelChecked' + user.level).prop('checked', true);
+        $('#confirmedChecked' + user.confirmed).prop('checked', true);
+        $('#genderChecked' + user.gender).prop('checked', true);
+    })
+    .fail(function (err) {
+        console.log(err);
+    })
+    .always(function () {
+        console.log("complete");
+    });
 })
 
 $('.btnDelete').on('click', function () {
@@ -43,7 +39,7 @@ $('#formUpdateUser').on('submit', function (e) {
         url: config.baseUrl + '/admin/usermanager/alluser',
         data: $('#formUpdateUser').serialize(),
         beforeSend: function (jqXHR, settings) {
-            console.log(settings.data);
+            // console.log(settings.url)
         }
     }).done(function (data) {
         let d = $.parseJSON(data);
@@ -51,7 +47,7 @@ $('#formUpdateUser').on('submit', function (e) {
     }).fail(function (err) {
         console.log(err);
     })
-        .always(function () {
-            console.log("complete");
-        });
+    .always(function () {
+        console.log("complete");
+    });
 });
