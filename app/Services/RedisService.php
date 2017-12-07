@@ -44,5 +44,4 @@ class RedisService implements RedisServiceInterface {
     public function reloadDataExpiresTime() {
         $this->redis->expire('Data expire in 5 minutes', 300);
     }
-
 }

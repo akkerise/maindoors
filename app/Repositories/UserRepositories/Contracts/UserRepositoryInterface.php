@@ -19,4 +19,6 @@ interface UserRepositoryInterface
     public function getUserByAttr($attr, $param);
 
     public function insertNewUser($data);
+
+    public function updateUserInfo($data, $id);
 }

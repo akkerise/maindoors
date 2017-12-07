@@ -146,80 +146,48 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="exampleInputFullName">Full Name</label>
-                                            <input type="text" class="form-control" id="exampleInputFullName"
-                                                   placeholder="Full Name" value="" name="fullname" required>
+                                            <input type="text" class="form-control" id="exampleInputFullName" placeholder="Full Name" value="" name="fullname" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail">Email Address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail"
-                                                   placeholder="Enter Email" value="" name="email" required>
+                                            <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter Email" value="" name="email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputAddress">Address</label>
-                                            <input type="text" class="form-control" id="exampleInputAddress"
-                                                   placeholder="Address" value="" name="address" required>
+                                            <input type="text" class="form-control" id="exampleInputAddress" placeholder="Address" value="" name="address" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputConfirmed">Confirmed</label>
                                             <div class="form-group">
                                                 <label class="radio-inline">
-                                                    <input id="confirmedChecked1" value="1" type="radio"
-                                                           name="confirmed">
-                                                    Actived</label>
+                                                    <input id="confirmedChecked1" value="1" type="radio" name="confirmed">Actived</label>
                                                 <label class="radio-inline">
-                                                    <input id="confirmedChecked0" value="0" type="radio"
-                                                           name="confirmed" checked="checked" required>
-                                                    Not Active</label>
+                                                    <input id="confirmedChecked0" value="0" type="radio" name="confirmed" checked="checked" required>Not Active</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputLevel">Level</label>
                                             <div class="form-group">
-                                                <label class="radio-inline"><input id="levelChecked1"
-                                                                                   value="1"
-                                                                                   type="radio"
-                                                                                   name="level">Admin</label>
-                                                <label class="radio-inline"><input id="levelChecked2"
-                                                                                   value="2"
-                                                                                   type="radio"
-                                                                                   name="level">Mod</label>
-                                                <label class="radio-inline"><input id="levelChecked3"
-                                                                                   value="3"
-                                                                                   type="radio"
-                                                                                   name="level">Gangster</label>
-                                                <label class="radio-inline"><input id="levelChecked4"
-                                                                                   value="4"
-                                                                                   type="radio"
-                                                                                   name="level"
-                                                                                   checked="checked"
-                                                                                   required>Member</label>
+                                                <label class="radio-inline"><input id="levelChecked1" value="1" type="radio" name="level">Admin</label>
+                                                <label class="radio-inline"><input id="levelChecked2" value="2" type="radio" name="level">Mod</label>
+                                                <label class="radio-inline"><input id="levelChecked3" value="3" type="radio" name="level">Gangster</label>
+                                                <label class="radio-inline"><input id="levelChecked4" value="4" type="radio" name="level" checked="checked" required>Member</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputGender">Level</label>
                                             <div class="form-group">
-                                                <label class="radio-inline"><input id="genderChecked1" value="1"
-                                                                                   type="radio"
-                                                                                   name="gender">Male</label>
-                                                <label class="radio-inline"><input id="genderChecked2" value="2"
-                                                                                   type="radio"
-                                                                                   name="gender">Female</label>
-                                                <label class="radio-inline"><input id="genderChecked3" value="3"
-                                                                                   type="radio"
-                                                                                   name="gender">Gay</label>
-                                                <label class="radio-inline"><input id="genderChecked4" value="4"
-                                                                                   type="radio"
-                                                                                   name="gender" checked="checked"
-                                                                                   required>Les</label>
+                                                <label class="radio-inline"><input id="genderChecked1" value="1" type="radio" name="gender">Male</label>
+                                                <label class="radio-inline"><input id="genderChecked2" value="2" type="radio" name="gender">Female</label>
+                                                <label class="radio-inline"><input id="genderChecked3" value="3" type="radio" name="gender">Gay</label>
+                                                <label class="radio-inline"><input id="genderChecked4" value="4" type="radio" name="gender" checked="checked" required>Les</label>
                                             </div>
                                         </div>
+                                        {{--<input type="hidden" id="hiddenId" name="id" value="">--}}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default pull-left"
-                                                data-dismiss="modal">Close
-                                        </button>
-                                        <button type="submit" class="btn btn-primary">Update
-                                        </button>
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </form>
                             </div>

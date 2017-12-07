@@ -69,13 +69,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('usermanager', 'Admin\UserManagermentController@getUser')->name('admin.dashboard.getUser');
         Route::get('usermanager/{id}', 'Admin\UserManagermentController@getUserId')->name('admin.dashboard.getUserId');
         Route::get('usermanagerajax/{id}', 'Admin\UserManagermentController@getUserIdCallAjax')->name('admin.dashboard.getUserIdCallAjax');
-        // Route::get('usermanager/alluser', 'Admin\UserManagermentController@getAllUser')->name('admin.manager.getAllUser');
+        Route::post('usermanagerajax/{id}', 'Admin\UserManagermentController@postUserIdCallAjax')->name('admin.dashboard.postUserIdCallAjax');
+//         Route::get('usermanager/alluser', 'Admin\UserManagermentController@getAllUser')->name('admin.manager.getAllUser');
         Route::post('usermanager/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
 
         Route::get('deleteuser/{id}', 'Admin\UserManagermentController@getDeleteUser')->name('admin.dashboard.getDeleteUser');
 
 //        Route::get('updateuser/{id}', 'Admin\UserManagermentController@getUpdateUser')->name('admin.dashboard.getUpdateUser');
-        // Route::post('updateuser/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
+//         Route::post('updateuser/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
 
         Route::get('userprofile/{id}', 'Admin\UserManagermentController@getUserProfile')->name('admin.dashboard.getUserProfile');
         Route::get('userlevel/level/{param}', 'Admin\UserManagermentController@getUserLevel')->name('admin.dashboard.getUserLevel');

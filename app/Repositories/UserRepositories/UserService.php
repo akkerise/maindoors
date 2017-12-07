@@ -49,19 +49,18 @@ class UserService extends RedisService
         $this->redisService->setterRedis();
     }
 
-    private function decodeData($data)
-    {
-        return json_decode($data);
-    }
-
     public function getAllUser()
     {
         if (!$this->redisService->getterRedis() || $this->redisService->getterRedis() === null) {
-            $this->updateDatabaseWithRedis();
+            $this->serviceUpdateUser();
             return $this->userRepository->getAll();
         }
         $this->allUsers = $this->redisService->getterRedis();
         return $this->allUsers;
+    }
+
+    public function getUserByIdOnRedis($id){
+
     }
 
     public function getUserLevel()
@@ -74,20 +73,19 @@ class UserService extends RedisService
         return (object)$data;
     }
 
-
-    public function setProductsOnRedis()
-    {
-        $products = Product::all();
-        $this->redisService = new RedisService($products, 'products');
-        $this->redisService->setterRedis();
-        $this->redisService->reloadDataExpiresTime();
-    }
-
-    public function updateDatabaseWithRedis()
+    public function serviceUpdateUser()
     {
         $users = $this->userRepository->getAll();
         $this->redisService = new RedisService($users, 'users');
         $this->redisService->setterRedis();
     }
 
+    public function getUserIdByAjax($id){
+        $user = $this->getAllUser();
+        echo "<pre>"; var_dump($user[7]); echo "</pre>"; die();
+        if ($user[$id]){
+            return $user[$id];
+        }
+        return $this->userRepository->findId($id);
+    }
 }
