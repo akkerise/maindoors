@@ -13,6 +13,7 @@ use App\Services\RedisService;
 use App\Repositories\UserRepositories\Contracts\UserRepositoryInterface;
 use Doctrine\DBAL\Driver\PDOException;
 use JWTAuthException;
+use Illuminate\Support\Facades\Redis;
 
 class UserService extends RedisService
 {
@@ -81,11 +82,13 @@ class UserService extends RedisService
     }
 
     public function getUserIdByAjax($id){
-        $user = $this->getAllUser();
-        echo "<pre>"; var_dump($user[7]); echo "</pre>"; die();
-        if ($user[$id]){
-            return $user[$id];
-        }
+//        $user = $this->getAllUser();
+        $user = Redis::get('user:profile:'.$id);
+        echo "<pre>"; var_dump($user); echo "</pre>"; die();
+//        if ($user[$id]){
+//            return $user[$id];
+//        }
+
         return $this->userRepository->findId($id);
     }
 }
