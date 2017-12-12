@@ -86,12 +86,21 @@ class UserService extends RedisService
         $user = $this->getAllUser();
         $collection = collect($user);
         $userId = $collection->where('id', $id);
+        $userData = $this->convertDataFromRedis($userId);
 
-        if (!empty($userId)){
+        if (!empty($userData)){
             $userId->toArray();
-            return $userId;
+            return $userData;
         }
 
         return $this->userRepository->findId($id);
+    }
+
+    protected function convertDataFromRedis($userData){
+        $data = [];
+        foreach ($userData as $key => $value){
+            $data = $value;
+        }
+        return $data;
     }
 }
