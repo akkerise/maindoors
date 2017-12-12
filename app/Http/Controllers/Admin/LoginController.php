@@ -25,12 +25,11 @@ class LoginController extends Controller
     {
         if (empty(Auth::user())) {
             return view('adminlte.pages.login');
-        } else {
-            return redirect()->route('admin.dashboard.getDashboard')->with([
-                'msgAlert' => 'Bạn đã đăng nhập nên không thể đăng nhập lại !',
-                'lvlAlert' => 'warning'
-            ]);
-        }
+        } 
+        return redirect()->route('admin.dashboard.getDashboard')->with([
+            'msgAlert' => 'Bạn đã đăng nhập nên không thể đăng nhập lại !',
+            'lvlAlert' => 'warning'
+        ]);
     }
 
     public function postLogin(AdminLoginRequest $request)
@@ -48,12 +47,11 @@ class LoginController extends Controller
                     'lvlAlert' => 'success'
                 ]);
             }
-        } else {
-            return redirect()->route('admin.login.getLogin')->with([
-                'msgAlert' => 'Đăng nhập thất bại, mời bạn nhập lại thông tin!',
-                'lvlAlert' => 'warning'
-            ]);
-        }
+        } 
+        return redirect()->route('admin.login.getLogin')->with([
+            'msgAlert' => 'Đăng nhập thất bại, mời bạn nhập lại thông tin!',
+            'lvlAlert' => 'warning'
+        ]);
 
     }
 

@@ -8,9 +8,8 @@ $('.btnUpdate').on('click', function () {
         }
     })
         .done(function (data) {
-            console.log(data.user);
             let user = data.user;
-
+            console.log(user);
             $('#exampleInputFullName').val(user.fullname);
             $('#exampleInputEmail').val(user.email);
             $('#exampleInputAddress').val(user.address);

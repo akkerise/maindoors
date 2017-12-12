@@ -57,7 +57,7 @@ class UserService extends RedisService
             return $this->userRepository->getAll();
         }
         $this->allUsers = $this->redisService->getterRedis();
-        return $this->allUsers;
+        return json_decode($this->allUsers, true);
     }
 
     public function getUserByIdOnRedis($id){
@@ -82,12 +82,15 @@ class UserService extends RedisService
     }
 
     public function getUserIdByAjax($id){
-//        $user = $this->getAllUser();
-        $user = Redis::get('user:profile:'.$id);
-        echo "<pre>"; var_dump($user); echo "</pre>"; die();
-//        if ($user[$id]){
-//            return $user[$id];
-//        }
+
+        $user = $this->getAllUser();
+        $collection = collect($user);
+        $userId = $collection->where('id', $id);
+
+        if (!empty($userId)){
+            $userId->toArray();
+            return $userId;
+        }
 
         return $this->userRepository->findId($id);
     }
