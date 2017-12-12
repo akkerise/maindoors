@@ -52,7 +52,8 @@ class UserService extends RedisService
 
     public function getAllUser()
     {
-        if (!$this->redisService->getterRedis() || $this->redisService->getterRedis() === null) {
+        echo "<pre>"; var_dump($this->redisService->checkRedisConnection()); echo "</pre>"; die();
+        if (empty($this->redisService->getterRedis())) {
             $this->serviceUpdateUser();
             return $this->userRepository->getAll();
         }
