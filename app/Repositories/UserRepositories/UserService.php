@@ -52,7 +52,6 @@ class UserService extends RedisService
 
     public function getAllUser()
     {
-        echo "<pre>"; var_dump($this->redisService->checkRedisConnection()); echo "</pre>"; die();
         if (empty($this->redisService->getterRedis())) {
             $this->serviceUpdateUser();
             return $this->userRepository->getAll();
@@ -61,7 +60,8 @@ class UserService extends RedisService
         return json_decode($this->allUsers, true);
     }
 
-    public function getUserByIdOnRedis($id){
+    public function getUserByIdOnRedis($id)
+    {
 
     }
 
@@ -82,14 +82,15 @@ class UserService extends RedisService
         $this->redisService->setterRedis();
     }
 
-    public function getUserIdByAjax($id){
+    public function getUserIdByAjax($id)
+    {
 
         $user = $this->getAllUser();
         $collection = collect($user);
         $userId = $collection->where('id', $id);
         $userData = $this->convertDataFromRedis($userId);
 
-        if (!empty($userData)){
+        if (!empty($userData)) {
             $userId->toArray();
             return $userData;
         }
@@ -97,9 +98,10 @@ class UserService extends RedisService
         return $this->userRepository->findId($id);
     }
 
-    protected function convertDataFromRedis($userData){
+    protected function convertDataFromRedis($userData)
+    {
         $data = [];
-        foreach ($userData as $key => $value){
+        foreach ($userData as $key => $value) {
             $data = $value;
         }
         return $data;

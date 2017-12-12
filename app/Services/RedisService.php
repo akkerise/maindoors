@@ -32,8 +32,8 @@ class RedisService implements RedisServiceInterface {
     public function setterRedis() {
         try{
             $this->redis->set($this->tableName, $this->data);
-        } catch (\RedisException $ex) {
-            dd($ex->getMessage());
+        } catch (\RedisException $e) {
+            dd($e->getMessage());
         }
     }
 
@@ -48,11 +48,8 @@ class RedisService implements RedisServiceInterface {
     public function checkRedisConnection(){
         try{
             $this->redis->ping();
-        }catch (Exception $e){
+        }catch (\RedisException $e){
             $e->getMessage();
-        }
-        if(isset($e)){
-            return false;
         }
         return true;
     }
