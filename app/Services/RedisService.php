@@ -46,6 +46,14 @@ class RedisService implements RedisServiceInterface {
     }
 
     public function checkRedisConnection(){
-        return $this->redis;
+        try{
+            $this->redis->ping();
+        }catch (Exception $e){
+            $e->getMessage();
+        }
+        if(isset($e)){
+            return false;
+        }
+        return true;
     }
 }
