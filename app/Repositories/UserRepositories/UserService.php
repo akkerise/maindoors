@@ -60,19 +60,9 @@ class UserService extends RedisService
         return json_decode($this->allUsers, true);
     }
 
-    public function getUserByIdOnRedis($id)
-    {
-
-    }
-
     public function getUserLevel()
     {
         return $this->allUsers;
-    }
-
-    protected function arrayToObject($data)
-    {
-        return (object)$data;
     }
 
     public function serviceUpdateUser()
@@ -88,7 +78,7 @@ class UserService extends RedisService
         $user = $this->getAllUser();
         $collection = collect($user);
         $userId = $collection->where('id', $id);
-        $userData = $this->convertDataFromRedis($userId);
+        $userData = self::convertDataFromRedis($userId);
 
         if (!empty($userData)) {
             $userId->toArray();
@@ -98,7 +88,7 @@ class UserService extends RedisService
         return $this->userRepository->findId($id);
     }
 
-    protected function convertDataFromRedis($userData)
+    private static function convertDataFromRedis($userData)
     {
         $data = [];
         foreach ($userData as $key => $value) {

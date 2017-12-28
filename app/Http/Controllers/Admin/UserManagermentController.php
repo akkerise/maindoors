@@ -107,7 +107,7 @@ class UserManagermentController extends Controller
     public function getUserIdCallAjax($id, Request $request)
     {
         if ($request->ajax()) {
-            $userId = $this->userService->getUserIdByAjax(intval($request->id));
+            $userId = $this->userService->getUserIdByAjax((int)($request->id));
             if (empty($userId)) {
                 return response()->json([
                     'success' => false,
@@ -126,7 +126,6 @@ class UserManagermentController extends Controller
 
     public function postUserIdCallAjax($id, Request $request)
     {
-
         foreach ($request->all() as $k => $v) {
             $data[$k] = $v;
         }
