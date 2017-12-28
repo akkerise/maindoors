@@ -10,3 +10,4 @@ Homestead.yaml
 .env.forDeployToHeroku
 /nbproject/private/
 /.phpintel
+.env
