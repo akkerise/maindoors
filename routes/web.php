@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('usermanager/{id}', 'Admin\UserManagermentController@getUserId')->name('admin.dashboard.getUserId');
         Route::get('usermanagerajax/{id}', 'Admin\UserManagermentController@getUserIdCallAjax')->name('admin.dashboard.getUserIdCallAjax');
         Route::post('usermanagerajax/{id}', 'Admin\UserManagermentController@postUserIdCallAjax')->name('admin.dashboard.postUserIdCallAjax');
+        
 //         Route::get('usermanager/alluser', 'Admin\UserManagermentController@getAllUser')->name('admin.manager.getAllUser');
         Route::post('usermanager/{id}', 'Admin\UserManagermentController@postUpdateUser')->name('admin.dashboard.postUpdateUser');
 
