@@ -4,7 +4,7 @@ $('.btnUpdate').on('click', function () {
         type: 'GET',
         url: config.baseUrl + '/admin/usermanagerajax/' + id,
         beforeSend: function (jqXHR, settings) {
-            console.log(settings.url)
+            // console.log(settings.url)
         }
     })
         .done(function (data) {
@@ -16,7 +16,7 @@ $('.btnUpdate').on('click', function () {
             $('#levelChecked' + user.level).prop('checked', true);
             $('#confirmedChecked' + user.confirmed).prop('checked', true);
             $('#genderChecked' + user.gender).prop('checked', true);
-            $('#mButtonUpdate').prop('data-id', user.id);
+            $('#mButtonUpdate').attr('value', user.id);
         })
         .fail(function (err) {
             console.log(err);
@@ -35,25 +35,22 @@ $('.btnDelete').on('click', function () {
 });
 
 $('#formUpdateUser').on('submit', function (e) {
-    let id = $('#mButtonUpdate').attr('data-id');
-    console.log(this);
+    let id = $('#mButtonUpdate').attr('value');
     e.preventDefault();
     $.ajax({
         type: 'POST',
         url: config.baseUrl + '/admin/usermanagerajax/' + id,
         data: $('#formUpdateUser').serialize(),
         beforeSend: function (jqXHR, settings) {
-            console.log(settings.url)
+            // console.log(settings.url)
         }
     })
         .done(function (data) {
-            console.log(data);
             // let data = $.parseJSON(data);
-            console.log(data);
             $("#hiddenId").prop('value', '');
         })
         .fail(function (err) {
-            console.log(err);
+            console.log('err');
         })
         .always(function () {
             console.log("complete");
