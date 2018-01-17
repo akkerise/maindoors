@@ -16,7 +16,7 @@ $('.btnUpdate').on('click', function () {
             $('#levelChecked' + user.level).prop('checked', true);
             $('#confirmedChecked' + user.confirmed).prop('checked', true);
             $('#genderChecked' + user.gender).prop('checked', true);
-            $('#mButtonUpdate').attr('data-id', user.id);
+            $('#mButtonUpdate').prop('data-id', user.id);
         })
         .fail(function (err) {
             console.log(err);
@@ -35,8 +35,8 @@ $('.btnDelete').on('click', function () {
 });
 
 $('#formUpdateUser').on('submit', function (e) {
-    let id = $(this).attr('data-id');
-    console.log(id);
+    let id = $('#mButtonUpdate').attr('data-id');
+    console.log(this);
     e.preventDefault();
     $.ajax({
         type: 'POST',
@@ -47,7 +47,8 @@ $('#formUpdateUser').on('submit', function (e) {
         }
     })
         .done(function (data) {
-            let data = $.parseJSON(data);
+            console.log(data);
+            // let data = $.parseJSON(data);
             console.log(data);
             $("#hiddenId").prop('value', '');
         })
